@@ -44,7 +44,7 @@ stages:
 install_dependencies:
   stage: dependencies
   script:
-    - npm ci
+    - yarn init
   cache:
     paths:
       - node_modules/
