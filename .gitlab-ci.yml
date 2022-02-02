@@ -44,7 +44,7 @@ stages:
 install_dependencies:
   stage: dependencies
   script:
-    - yarn init
+    - rm -rf node_modules && yarn install --frozen-lockfile
   cache:
     paths:
       - node_modules/
