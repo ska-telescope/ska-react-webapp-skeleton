@@ -43,6 +43,11 @@
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/",
       "!src/index.jsx"
+    ],
+    "coverageReporters": [
+      "text",
+      "cobertura",
+      "html"
     ]
   },
   "browserslist": [
