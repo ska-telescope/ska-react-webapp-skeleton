@@ -19,9 +19,9 @@ install_dependencies:
   tags:
   - k8srunner
   before_script:
-  - npm config set registry $CAR_NPM_REPOSITORY_URL
   - rm -rf node_modules 
   script:
+  - npm config set registry $CAR_NPM_REPOSITORY_URL
   - yarn install
   cache:
     paths:
