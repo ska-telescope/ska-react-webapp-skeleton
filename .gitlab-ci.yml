@@ -20,9 +20,9 @@ install_dependencies:
   - k8srunner
   before_script:
   - rm -rf node_modules 
-  script:
   - npm config set registry https://artefact.skao.int/repository/npm-internal/
   - yarn add @ska-telescope/ska-javascript-components@latest
+  script:
   - npm config set registry https://registry.npmjs.org/
   - yarn install
   cache:
@@ -99,9 +99,10 @@ build:
     paths:
       - node_modules/
     policy: pull
-  script:
+  before_script:
     - npm config set registry https://artefact.skao.int/repository/npm-internal/
     - yarn add @ska-telescope/ska-javascript-components@latest
+  script:
     - npm config set registry https://registry.npmjs.org/
     - yarn build
 
