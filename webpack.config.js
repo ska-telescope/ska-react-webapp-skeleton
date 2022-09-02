@@ -11,10 +11,17 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
   },
-
+  experiments: {
+    outputModule: true
+  },
   devServer: {
     port: 8090,
-    historyApiFallback: true
+    historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+    }
   },
 
   module: {
@@ -44,9 +51,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'skeleton',
       filename: 'remoteEntry.js',
+      library: { type: 'module' },
       remotes: {},
       exposes: {
-        './ExampleComponent': './src/components/ExampleComponent/ExampleComponent.jsx'
+        './ExampleComponent': './src/components/App/App.jsx'
       },
       shared: {
         ...deps,
@@ -79,6 +87,15 @@ module.exports = {
           eager: true,
           singleton: true,
           requiredVersion: deps['i18next-http-backend']
+        },
+        // Material UI
+        '@mui/material': { singleton: true, requiredVersion: 'auto', eager: true },
+        '@emotion/react': { singleton: true, requiredVersion: 'auto', eager: true },
+        '@emotion/styled': { singleton: true, requiredVersion: 'auto', eager: true },
+
+        '@ska-telescope/ska-javascript-components': {
+          requiredVersion: 'auto',
+          eager: true
         },
         moment: {
           eager: true,
