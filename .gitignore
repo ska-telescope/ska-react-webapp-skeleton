@@ -34,4 +34,3 @@ linting.xml
 package-lock.json
 
 PrivateRules.mak
-*.lock
