@@ -63,7 +63,7 @@ To run the application using docker, build the docker file in the root directory
  docker run -p 8090:8090 ska-react-webapp-skeleton
 ```
 
-The project will then be accessible at the url http://localhost:8100/
+The project will then be accessible at the url http://localhost:8090/
 
 ## Testing
 
