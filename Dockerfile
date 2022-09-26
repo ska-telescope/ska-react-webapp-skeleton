@@ -10,9 +10,6 @@ RUN npm config set registry https://artefact.skao.int/repository/npm-internal/ &
 WORKDIR /app
 COPY . .
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /usr/node_modules/.bin:$PATH
-
 # install app dependencies
 RUN yarn install && yarn cache clean
 
