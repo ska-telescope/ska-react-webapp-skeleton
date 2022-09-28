@@ -44,7 +44,7 @@ From the project directory, you can run any of the following:
 
 - `> yarn start`
 
-  Runs the app in the development mode at [http://localhost:3000](http://localhost:3000). The app will recompile and restart if you make any edits to the source files. Any linting errors will also be shown in the console.
+  Runs the app in the development mode at [http://localhost:8090](http://localhost:8090). The app will recompile and restart if you make any edits to the source files. Any linting errors will also be shown in the console.
 
 - `> yarn test`
 
@@ -53,6 +53,17 @@ From the project directory, you can run any of the following:
 - `> yarn build`
 
   Builds the app for production to the `build` folder. The build is minified and any JSX is transpiled to JavaScript. Your app is ready to be deployed!
+
+### Running the application inside a container
+
+To run the application using docker, build the docker file in the root directory and run the container exposing port 8090.
+
+```
+ docker build -t ska-react-webapp-skeleton .
+ docker run -p 8090:8090 ska-react-webapp-skeleton
+```
+
+The project will then be accessible at the url http://localhost:8090/
 
 ## Testing
 

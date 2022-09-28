@@ -1,7 +1,11 @@
 {
   "name": "ska-webapps-react-skeleton",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
+  "license": "BSD 3-Clause",
+  "description": "SKA React Web App Skeleton",
+  "main": "index.js",
+  "repository": "git@gitlab.com:ska-telescope/templates/ska-react-webapp-skeleton.git",
   "scripts": {
     "build": "react-scripts build",
     "code-analysis": "./node_modules/.bin/eslint \"src/**\" --ignore-path .eslintignore -f junit -o linting.xml",
