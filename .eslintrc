@@ -6,8 +6,15 @@
     "node": true
   },
   "extends": ["react-app", "airbnb", "prettier"],
+  "import/resolver": {
+    "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".ts", ".d.ts", ".tsx"]
+  },
   "plugins": ["prettier"],
   "rules": {
+    "linebreak-style": 0,     
     "prettier/prettier": ["error"]
   }
+}
 }
