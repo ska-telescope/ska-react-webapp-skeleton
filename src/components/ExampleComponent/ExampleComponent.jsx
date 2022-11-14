@@ -9,7 +9,7 @@ const ExampleComponent = () => {
   const { t } = useTranslation();
 
   return (
-    <div id="loginId">
+    <div id="loginId" data-testid="loginId">
       <Paper color="transparent" elevation={0} sx={{ height: '100%', width: '100%' }}>
         <Grid
           container

@@ -31,7 +31,7 @@ function App() {
         </div>
         */}
 
-          <ExampleComponent id="exampleComponentId" />
+          <ExampleComponent id="exampleComponentId" data-testid="exampleComponentId" />
         </div>
       </React.Suspense>
     </ThemeProvider>
