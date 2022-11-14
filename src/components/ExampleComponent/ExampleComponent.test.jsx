@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import ExampleComponent from './ExampleComponent';
 
 describe('Example Component', () => {
   it('renders without crashing', () => {
-    shallow(<ExampleComponent />);
+    render(<ExampleComponent />);
   });
 });
