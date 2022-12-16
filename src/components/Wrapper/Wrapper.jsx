@@ -1,10 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
-// import { mount } from 'leftSideBar/leftSideBar';
 import { mount } from 'angularSkeleton/angularSkeleton';
 
 const Wrapper = () => {
   useEffect(() => {
+    // TODO : Need to do some error handling to cover if the mount fails for any reason
     mount();
   }, []);
   return (
