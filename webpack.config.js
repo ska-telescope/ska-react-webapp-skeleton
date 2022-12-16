@@ -3,19 +3,22 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 
 const deps = require('./package.json').dependencies;
 
-module.exports = {
-  output: {
-    publicPath: 'http://localhost:8090/'
-  },
+module.exports = () => { return {
+  entry: "./src/index.jsx",
+  output: {},
 
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
+  
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
   },
-  experiments: {
-    outputModule: true
-  },
+
   devServer: {
-    port: 8090,
+    port: 4221,
     historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -47,14 +50,18 @@ module.exports = {
     ]
   },
 
+  devtool: "source-map",
+
   plugins: [
     new ModuleFederationPlugin({
-      name: 'skeleton',
+      name: 'angularSkeletonWrapper',
       filename: 'remoteEntry.js',
-      library: { type: 'module' },
-      remotes: {},
+      remotes: {
+        angularSkeleton: 'angularSkeleton@http://localhost:8091/remoteEntry.js',
+        leftSideBar:"leftSidebar@http://localhost:3002/remoteEntry.js",
+      },
       exposes: {
-        './ExampleComponent': './src/components/App/App.jsx'
+        './AngularSkeletonWrapper': './src/components/App/App.jsx'
       },
       shared: {
         ...deps,
@@ -67,45 +74,11 @@ module.exports = {
           eager: true,
           singleton: true,
           requiredVersion: deps['react-dom']
-        },
-        i18next: {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps.i18next
-        },
-        'react-i18next': {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps['react-i18next']
-        },
-        'i18next-browser-languagedetector': {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps['i18next-browser-languagedetector']
-        },
-        'i18next-http-backend': {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps['i18next-http-backend']
-        },
-        // Material UI
-        '@mui/material': { singleton: true, requiredVersion: 'auto', eager: true },
-        '@emotion/react': { singleton: true, requiredVersion: 'auto', eager: true },
-        '@emotion/styled': { singleton: true, requiredVersion: 'auto', eager: true },
-
-        '@ska-telescope/ska-javascript-components': {
-          requiredVersion: 'auto',
-          eager: true
-        },
-        moment: {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps.moment
         }
       }
     }),
     new HtmlWebPackPlugin({
       template: './public/index.html'
-    })
+    })   
   ]
-};
+};};

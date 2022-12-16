@@ -1,7 +1,7 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import './App.scss';
-import ExampleComponent from '../ExampleComponent/ExampleComponent';
+import Wrapper from '../Wrapper/Wrapper';
 import theme from '../../services/theme/theme';
 /* Include if language buttons required
 import i18n from '../../services/i18n/i18n';
@@ -31,7 +31,7 @@ function App() {
         </div>
         */}
 
-          <ExampleComponent id="exampleComponentId" data-testid="exampleComponentId" />
+          <Wrapper id="wrapperId" data-testid="wrapperId" />
         </div>
       </React.Suspense>
     </ThemeProvider>

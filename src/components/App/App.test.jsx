@@ -7,7 +7,7 @@ describe('App Component', () => {
     render(<App />);
   });
 
-  it('displays the exampleComponent', () => {
+  it('displays the component', () => {
     render(<App />);
     expect(screen.getByTestId('loginId')).toBeTruthy();
   });

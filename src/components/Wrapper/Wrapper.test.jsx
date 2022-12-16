@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ExampleComponent from './ExampleComponent';
+import Wrapper from './Wrapper';
 
-describe('Example Component', () => {
+describe('Angular Skeleton Wrapper', () => {
   it('renders without crashing', () => {
-    render(<ExampleComponent />);
+    render(<Wrapper />);
   });
 });
