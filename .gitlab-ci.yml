@@ -60,8 +60,8 @@ test_and_coverage:
   before_script:
     - mkdir -p build/reports
   script:
-    - yarn run test
-    - yarn run test:coverage
+    - yarn test
+    - yarn test:coverage
     - mv junit.xml build/reports/unit-tests.xml
     - mv build/coverage/cobertura-coverage.xml build/reports/code-coverage.xml
 
@@ -101,6 +101,7 @@ build:
     policy: pull
   script:
     - npm config set registry https://registry.npmjs.org/
+    - yarn install
     - yarn build
 
 # export the report
