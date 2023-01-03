@@ -7,13 +7,13 @@
   "main": "index.js",
   "repository": "git@gitlab.com:ska-telescope/templates/ska-react-webapp-skeleton.git",
   "scripts": {
-    "build": "webpack serve --mode production",
+    "build": "webpack --mode production",
     "code-analysis": "./node_modules/.bin/eslint \"src/**\" --ignore-path .eslintignore -f junit -o linting.xml",
     "lint:fix": "eslint src/**/*.{js,jsx} --fix",
     "lint": "eslint src/**/*.{js,jsx}",
     "test": "react-scripts test --env=jsdom --watchAll=true",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --coverageDirectory=build/coverage",
-    "start": "webpack serve --open --mode development"
+    "start": "webpack serve --mode development --open"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
