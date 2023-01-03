@@ -41,7 +41,8 @@ code_analysis:
   before_script:
     - mkdir -p build/reports
   script:
-    - yarn run code-analysis
+    - yarn install
+    - yarn code-analysis
     - mv linting.xml build/reports/linting.xml
   artifacts:
     paths:
