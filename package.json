@@ -11,8 +11,8 @@
     "code-analysis": "./node_modules/.bin/eslint \"src/**\" --ignore-path .eslintignore -f junit -o linting.xml",
     "lint:fix": "eslint src/**/*.{js,jsx} --fix",
     "lint": "eslint src/**/*.{js,jsx}",
-    "test": "react-scripts test --env=jsdom --reporters=default --reporters=jest-junit",
-    "test:coverage": "react-scripts test --coverage --coverageDirectory=build/coverage",
+    "test": "react-scripts test --env=jsdom --watchAll=true",
+    "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --coverageDirectory=build/coverage",
     "start": "webpack serve --open --mode development"
   },
   "dependencies": {

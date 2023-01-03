@@ -69,14 +69,7 @@ The project will then be accessible at the url http://localhost:8090/
 
 ### Writing
 
-We use Jest as the test running framework. It will look for test files with any of the following naming conventions:
-
-- Files with `.js` suffix in `__tests__` folders.
-- Files with `.test.js` suffix in any folder.
-- Files with `.spec.js` suffix in any folder.
-
-The .test.js / .spec.js files (or the `__tests__` folders) can be located at any depth under the src top level folder.
-We recommend to put the test files or folders next to the code they are testing.
+We use Jest as the test running framework. It will look for test files within a number of locatioms, however the standard that the SKAO will employ will be the use of `.test.js` in the same folder as what is being tested. 
 
 ```
 components
@@ -102,11 +95,9 @@ To run the tests with coverage, execute
 
     > yarn test:coverage
 
-The coverage results are displayed in the console. They are also written to the `coverage` folder as:
+The coverage results are displayed in the console. They are also written to the `coverage` folder.
 
-- `lcov-report` - A coverage report as a series of html pages, open `index.html` in a web browser to view
-- `clover.xml` - A clover coverage report that can be viewed in the clover code-coverage tools
-- `coverage-final.json` - A json format.
+- `./build/coverage/index.html` - open in a web browser to view
 
 **All the tests should pass before merging the code**
 
