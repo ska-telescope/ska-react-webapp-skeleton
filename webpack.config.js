@@ -3,17 +3,20 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 
 const deps = require('./package.json').dependencies;
 
-module.exports = {
-  output: {
-    publicPath: 'http://localhost:8090/'
-  },
+module.exports = () => { return {
+  entry: "./src/index.jsx",
+  output: {},
 
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
+  
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
   },
-  experiments: {
-    outputModule: true
-  },
+
   devServer: {
     port: 8090,
     historyApiFallback: true,
@@ -47,12 +50,15 @@ module.exports = {
     ]
   },
 
+  devtool: "source-map",
+
   plugins: [
     new ModuleFederationPlugin({
-      name: 'skeleton',
+      name: 'reactSkeleton',
       filename: 'remoteEntry.js',
-      library: { type: 'module' },
-      remotes: {},
+      remotes: {
+        counterStore: 'counterStore@http://localhost:8094/remoteEntry.js',
+      },
       exposes: {
         './ExampleComponent': './src/components/App/App.jsx'
       },
@@ -106,6 +112,6 @@ module.exports = {
     }),
     new HtmlWebPackPlugin({
       template: './public/index.html'
-    })
+    })   
   ]
-};
+};};

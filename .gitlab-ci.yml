@@ -41,7 +41,8 @@ code_analysis:
   before_script:
     - mkdir -p build/reports
   script:
-    - yarn run code-analysis
+    - yarn install
+    - yarn code-analysis
     - mv linting.xml build/reports/linting.xml
   artifacts:
     paths:
@@ -59,8 +60,9 @@ test_and_coverage:
   before_script:
     - mkdir -p build/reports
   script:
-    - yarn run test
-    - yarn run test:coverage
+    - yarn install
+    - yarn test
+    - yarn test:coverage
     - mv junit.xml build/reports/unit-tests.xml
     - mv build/coverage/cobertura-coverage.xml build/reports/code-coverage.xml
 
@@ -80,8 +82,9 @@ list_dependencies:
       - node_modules/
     policy: pull
   script:
-    - npm list --depth=0 --json >> npm_deps.json
-    - npm list --depth=0  >> npm_deps.txt
+    - yarn install
+    - yarn list --depth=0 --json >> npm_deps.json
+    - yarn list --depth=0  >> npm_deps.txt
     - mkdir .public
     - cp npm_deps.txt .public/
     - cp npm_deps.json .public/
@@ -100,6 +103,7 @@ build:
     policy: pull
   script:
     - npm config set registry https://registry.npmjs.org/
+    - yarn install
     - yarn build
 
 # export the report
