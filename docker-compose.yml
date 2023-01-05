@@ -1,5 +1,5 @@
 ---
-version: '1.0'
+version: '3.4'
 services:
   react-skeleton:
     build:
@@ -10,4 +10,3 @@ services:
       - 8090:8090
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
