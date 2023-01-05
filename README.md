@@ -56,7 +56,14 @@ From the project directory, you can run any of the following:
 
 ### Running the application inside a container
 
-To run the application using docker, build the docker file in the root directory and run the container exposing port 8090.
+There are two ways that this can be done as below:
+
+1. Run using docker compose
+```
+ docker-compose up -d 
+```
+
+2. build the docker file in the root directory and run the container exposing port 8090.
 
 ```
  docker build -t ska-react-webapp-skeleton .
