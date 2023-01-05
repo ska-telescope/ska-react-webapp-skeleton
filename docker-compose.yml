@@ -1,0 +1,13 @@
+---
+version: '1.0'
+services:
+  react-skeleton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'react-skeleton'
+    ports:
+      - 8090:8090
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

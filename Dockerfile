@@ -1,5 +1,5 @@
 # pull the base image
-FROM node:alpine
+FROM node:18.12.1
 
 # Install the SKAO specific library
 RUN npm config set registry https://artefact.skao.int/repository/npm-internal/ &&\
