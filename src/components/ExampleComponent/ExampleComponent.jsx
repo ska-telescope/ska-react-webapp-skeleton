@@ -5,8 +5,14 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from 'react-i18next';
 
-const ExampleComponent = () => {
+// eslint-disable-next-line react/prop-types
+const ExampleComponent = inValues => {
   const { t } = useTranslation();
+
+  // eslint-disable-next-line react/destructuring-assignment
+  const telescope = inValues.telescope ? inValues.telescope : { name: 'LOCAL TELESCOPE' };
+  // eslint-disable-next-line react/destructuring-assignment
+  const user = inValues.user ? inValues.user : { username: 'LOCAL USER' };
 
   return (
     <div id="loginId" data-testid="loginId">
@@ -26,6 +32,8 @@ const ExampleComponent = () => {
                 <p>{t('date_format_one', { date: new Date() })}</p>
                 <p>{t('date_format_two', { date: new Date() })}</p>
                 <p>{t('intlNumber', { val: 2000 })}</p>
+                <p>{telescope.name}</p>
+                <p>{user.username}</p>
                 <p>{t('dummy')}</p>
               </Card>
             </Box>

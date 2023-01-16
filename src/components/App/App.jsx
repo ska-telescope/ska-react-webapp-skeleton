@@ -7,7 +7,8 @@ import theme from '../../services/theme/theme';
 import i18n from '../../services/i18n/i18n';
 */
 
-function App() {
+// eslint-disable-next-line react/prop-types
+function App({ user, telescope }) {
   /* Code below to change the language when language buttons are clicked
     const handleOnclick = e => {
     e.preventDefault();
@@ -31,7 +32,12 @@ function App() {
         </div>
         */}
 
-          <ExampleComponent id="exampleComponentId" data-testid="exampleComponentId" />
+          <ExampleComponent
+            id="exampleComponentId"
+            data-testid="exampleComponentId"
+            telescope={telescope}
+            user={user}
+          />
         </div>
       </React.Suspense>
     </ThemeProvider>
