@@ -15,7 +15,7 @@ const ExampleComponent = inValues => {
   const user = inValues.user ? inValues.user : { username: 'LOCAL USER' };
 
   return (
-    <div id="loginId" data-testid="loginId">
+    <div id="loginId" data-testid="dataloginId">
       <Paper color="transparent" elevation={0} sx={{ height: '100%', width: '100%' }}>
         <Grid
           container
