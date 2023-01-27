@@ -46,6 +46,10 @@ From the project directory, you can run any of the following:
 
   Runs the app in the development mode at [http://localhost:8090](http://localhost:8090). The app will recompile and restart if you make any edits to the source files. Any linting errors will also be shown in the console.
 
+- `> yarn cypress`
+
+  Launches Cypress which has been set up to provide component testing.   For further information on the use of Cypress, see https://docs.cypress.io/guides/component-testing/overview
+
 - `> yarn test`
 
   Launches the test runner in the interactive watch mode. See the [testing](#testing) section for more information.
