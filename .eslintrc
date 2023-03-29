@@ -8,6 +8,7 @@
   "extends": ["react-app", "airbnb", "prettier"],
   "plugins": ["prettier"],
   "rules": {
+    "react/destructuring-assignment": 0,
     "prettier/prettier": ["error"],
     "linebreak-style": 0
   }
