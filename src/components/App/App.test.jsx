@@ -9,6 +9,6 @@ describe('App Component', () => {
 
   it('displays the exampleComponent', () => {
     render(<App />);
-    expect(screen.getByTestId('dataloginId')).toBeTruthy();
+    expect(screen.getByTestId('dataLoginId')).toBeTruthy();
   });
 });
