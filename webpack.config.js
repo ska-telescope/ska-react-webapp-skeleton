@@ -104,6 +104,10 @@ module.exports = () => {
             requiredVersion: 'auto',
             eager: true
           },
+          '@ska-telescope/ska-gui-components': {
+            requiredVersion: 'auto',
+            eager: true
+          },
           moment: {
             eager: true,
             singleton: true,

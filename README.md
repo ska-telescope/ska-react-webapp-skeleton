@@ -24,13 +24,13 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 2.  Clone the project from GitHub
 
-3.  Install the SKAO specific library
+3.  Install the SKAO specific libraries
 
-> npm config set registry https://artefact.skao.int/repository/npm-internal/
+> npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/
 
 > yarn add @ska-telescope/ska-javascript-components@latest
 
-> npm config set registry https://registry.npmjs.org/
+> yarn add @ska-telescope/ska-gui-components@latest
 
 4.  Install all the necessary project dependencies by running
 
@@ -48,7 +48,7 @@ From the project directory, you can run any of the following:
 
 - `> yarn cypress`
 
-  Launches Cypress which has been set up to provide component testing.   For further information on the use of Cypress, see https://docs.cypress.io/guides/component-testing/overview
+  Launches Cypress which has been set up to provide component testing. For further information on the use of Cypress, see https://docs.cypress.io/guides/component-testing/overview
 
 - `> yarn test`
 
@@ -63,8 +63,9 @@ From the project directory, you can run any of the following:
 There are two ways that this can be done as below:
 
 1. Run using docker compose
+
 ```
- docker-compose up -d 
+ docker-compose up -d
 ```
 
 2. build the docker file in the root directory and run the container exposing port 8090.
@@ -80,7 +81,7 @@ The project will then be accessible at the url http://localhost:8090/
 
 ### Writing
 
-We use Jest as the test running framework. It will look for test files within a number of locatioms, however the standard that the SKAO will employ will be the use of `.test.js` in the same folder as what is being tested. 
+We use Jest as the test running framework. It will look for test files within a number of locations, however the standard that the SKAO will employ will be the use of `.test.js` in the same folder as what is being tested.
 
 ```
 components
@@ -137,7 +138,7 @@ Install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeume
 
 Errors should now show in the editor. `shift + alt + F` will format a file, or you can turn on the format on save setting.
 
-#### JetBrains (WebStorm, IntelliJ IDEA etc.)
+#### JetBrains (WebStorm, etc.)
 
 ESLint is integrated into the Ultimate versions of all JetBrains IDEs
 
