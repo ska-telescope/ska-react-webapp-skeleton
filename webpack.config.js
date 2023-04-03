@@ -100,10 +100,6 @@ module.exports = () => {
           '@emotion/react': { singleton: true, requiredVersion: 'auto', eager: true },
           '@emotion/styled': { singleton: true, requiredVersion: 'auto', eager: true },
 
-          '@ska-telescope/ska-javascript-components': {
-            requiredVersion: 'auto',
-            eager: true
-          },
           '@ska-telescope/ska-gui-components': {
             requiredVersion: 'auto',
             eager: true

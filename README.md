@@ -28,14 +28,17 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 > npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/
 
-> yarn add @ska-telescope/ska-javascript-components@latest
-
 > yarn add @ska-telescope/ska-gui-components@latest
 
 4.  Install all the necessary project dependencies by running
 
-        > yarn init
+> yarn init
 
+### SKA Components
+
+These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI.  It is noted that all the components from ska-javascript are passed thru so separate inclusion is not required if the ska-gui-components are also required.
+
+For specifics of the components available, please refer to the appropriate repository
 ### Running and Building the Application
 
 Scripts for running, testing, and building the application are provided as part of the standard configuration. These are run using YARN and listed in the scripts section of the package.json file.
