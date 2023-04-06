@@ -7,8 +7,12 @@ import theme, { THEME_DARK, THEME_LIGHT } from '../../services/theme/theme';
 const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;
 
-// eslint-disable-next-line react/prop-types
-function App({ user, telescope }) {
+export interface AppProps {
+  user?: { username: string };
+  telescope?: { name: string };
+}
+
+function App({ user, telescope }: AppProps) {
   // Theme related
   const [themeMode, setThemeMode] = React.useState(THEME_LIGHT);
 

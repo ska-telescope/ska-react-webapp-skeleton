@@ -36,9 +36,10 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 ### SKA Components
 
-These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI.  It is noted that all the components from ska-javascript are passed thru so separate inclusion is not required if the ska-gui-components are also required.
+These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI. It is noted that all the components from ska-javascript are passed thru so separate inclusion is not required if the ska-gui-components are also required.
 
 For specifics of the components available, please refer to the appropriate repository
+
 ### Running and Building the Application
 
 Scripts for running, testing, and building the application are provided as part of the standard configuration. These are run using YARN and listed in the scripts section of the package.json file.
@@ -90,8 +91,9 @@ We use Jest as the test running framework. It will look for test files within a 
 components
 |
 └─ App
-   |  App.jsx
-   |  App.test.jsx
+   |  App.cy.tsx
+   |  App.tsx
+   |  App.test.tsx
 ```
 
 [React-Testing-Library](https://testing-library.com/) and [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) have been included to improve the testing framework and test readability.
