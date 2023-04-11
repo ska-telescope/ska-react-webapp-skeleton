@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Card, Grid, Paper } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Status } from '@ska-telescope/ska-javascript-components';
-import { AlertCard } from '@ska-telescope/ska-gui-components';
+import { AlertCard, Status } from '@ska-telescope/ska-gui-components';
 
 const ALERT_CARD_TITLE = 'AlertCard Title';
 const ALERT_CARD_FILLED = false;
@@ -26,7 +25,8 @@ const ExampleComponent = inValues => {
   const user = inValues.user ? inValues.user : { username: 'LOCAL USER' };
 
   return (
-    <div id="loginId" data-testid="dataLoginId">
+    <Box id="loginId" data-testid="dataLoginId" m={1}>
+      <AlertCard title={ALERT_CARD_TITLE} array={ALERT_CARD_DATA} filled={ALERT_CARD_FILLED} />
       <Paper color="transparent" elevation={0} sx={{ height: '100%', width: '100%' }}>
         <Grid
           container
@@ -48,16 +48,11 @@ const ExampleComponent = inValues => {
                 <p>{user.username}</p>
                 <p>{t('dummy')}</p>
               </Card>
-              <AlertCard
-                title={ALERT_CARD_TITLE}
-                array={ALERT_CARD_DATA}
-                filled={ALERT_CARD_FILLED}
-              />
             </Box>
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </Box>
   );
 };
 

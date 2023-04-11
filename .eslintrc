@@ -5,11 +5,11 @@
     "jest": true,
     "node": true
   },
-  "extends": ["react-app", "airbnb", "prettier"],
-  "plugins": ["prettier"],
+  "extends": ["prettier", "plugin:cypress/recommended"],
+  "plugins": ["prettier", "cypress"],
   "rules": {
-    "react/destructuring-assignment": 0,
     "prettier/prettier": ["error"],
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "jest/expect-expect": "off"
   }
 }

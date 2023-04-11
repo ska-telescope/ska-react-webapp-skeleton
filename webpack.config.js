@@ -61,7 +61,7 @@ module.exports = () => {
           counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
         },
         exposes: {
-          './ExampleComponent': './src/components/App/App.jsx'
+          './ExampleComponent': './src/components/App/App.tsx'
         },
         shared: {
           ...deps,
@@ -100,10 +100,6 @@ module.exports = () => {
           '@emotion/react': { singleton: true, requiredVersion: 'auto', eager: true },
           '@emotion/styled': { singleton: true, requiredVersion: 'auto', eager: true },
 
-          '@ska-telescope/ska-javascript-components': {
-            requiredVersion: 'auto',
-            eager: true
-          },
           '@ska-telescope/ska-gui-components': {
             requiredVersion: 'auto',
             eager: true

@@ -28,13 +28,17 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 > npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/
 
-> yarn add @ska-telescope/ska-javascript-components@latest
-
 > yarn add @ska-telescope/ska-gui-components@latest
 
 4.  Install all the necessary project dependencies by running
 
-        > yarn init
+> yarn init
+
+### SKA Components
+
+These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI. It is noted that all the components from ska-javascript are passed thru so separate inclusion is not required if the ska-gui-components are also required.
+
+For specifics of the components available, please refer to the appropriate repository
 
 ### Running and Building the Application
 
@@ -87,8 +91,9 @@ We use Jest as the test running framework. It will look for test files within a 
 components
 |
 └─ App
-   |  App.jsx
-   |  App.test.jsx
+   |  App.cy.tsx
+   |  App.tsx
+   |  App.test.tsx
 ```
 
 [React-Testing-Library](https://testing-library.com/) and [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) have been included to improve the testing framework and test readability.

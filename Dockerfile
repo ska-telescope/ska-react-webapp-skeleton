@@ -3,7 +3,6 @@ FROM node:18.12.1
 
 # Install the SKAO specific libraries
 RUN npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/ &&\
-    yarn add @ska-telescope/ska-javascript-components@latest &&\
     yarn add @ska-telescope/ska-gui-components@latest
 
 # # set the working direction
