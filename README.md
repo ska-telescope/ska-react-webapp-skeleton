@@ -148,25 +148,3 @@ Errors should now show in the editor. `shift + alt + F` will format a file, or y
 ESLint is integrated into the Ultimate versions of all JetBrains IDEs
 
 Prettier can be installed through a [plugin](https://plugins.jetbrains.com/plugin/10456-prettier). Follow the steps [here](https://www.jetbrains.com/help/idea/prettier.html) to configure it.
-
-## Documentation
-
-The documentation generator for this project is derived from SKA's [SKA Developer Portal repository](http://developer.skatelescope.org/en/latest/projects/document_project.html)
-
-### Writing
-
-The documentation can be edited under `./docs/src`. They're written in reStructured text (.rst).
-
-### Building
-
-In order to build the documentation for this specific project, execute the following under ./docs:
-
-    > make html
-
-or
-
-    > docker run --rm -d -v $(pwd):/tmp -w /tmp netresearch/sphinx-buildbox sh -c "make html"
-
-The latter requires Docker to be installed on your system but not Python, Sphinx, and other dependencies.
-
-The documentation can then be consulted by opening the file `./docs/build/html/index.html`
