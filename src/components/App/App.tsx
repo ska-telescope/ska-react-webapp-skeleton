@@ -31,10 +31,10 @@ function App({ user, telescope }: AppProps) {
           // Button for light/dark mode included, and sample implementation provided.
         }
         <Header id="theHeader" themeToggle={themeToggle}>
-          <Grid item>THIS</Grid>
-          <Grid item>IS</Grid>
-          <Grid item>THE</Grid>
-          <Grid item>Header</Grid>
+          <Grid id={"headerItem1"} item>THIS</Grid>
+          <Grid id={"headerItem2"} item>IS</Grid>
+          <Grid id={"headerItem3"} item>THE</Grid>
+          <Grid id={"headerItem4"} item>HEADER</Grid>
         </Header>
         <Paper>
           {
@@ -61,10 +61,10 @@ function App({ user, telescope }: AppProps) {
           // Even distribution of the children is built in
         }
         <Footer>
-          <Grid item>THIS</Grid>
-          <Grid item>IS</Grid>
-          <Grid item>THE</Grid>
-          <Grid item>FOOTER</Grid>
+          <Grid id={"footerItem1"} item>THIS</Grid>
+          <Grid id={"footerItem2"} item>IS</Grid>
+          <Grid id={"footerItem3"} item>THE</Grid>
+          <Grid id={"footerItem4"} item>FOOTER</Grid>
         </Footer>
       </React.Suspense>
     </ThemeProvider>
