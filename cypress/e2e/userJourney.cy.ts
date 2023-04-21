@@ -4,20 +4,20 @@ context('Testing react skeleton', () => {
     cy.visit('http://localhost:8090/')
   })
   it('verify header', () => {
-    cy.get('[id=headerItem1]').contains('THIS').should('be.visible')
-    cy.get('[id=headerItem2]').contains('IS').should('be.visible')
-    cy.get('[id=headerItem3]').contains('THE').should('be.visible')
-    cy.get('[id=headerItem4]').contains('HEADER').should('be.visible')
+    cy.get('[id=headerItem1]').should('include.text', 'THIS')
+    cy.get('[id=headerItem2]').should('include.text','IS')
+    cy.get('[id=headerItem3]').should('include.text','THE')
+    cy.get('[id=headerItem4]').should('include.text','HEADER')
     cy.get('[data-testid="Brightness7Icon"]').click()
     cy.get('[aria-label="skaWebsite"]').click()
 
   })
 
   it('verify footer', () => {
-    cy.get('[id=footerItem1]').contains('THIS').should('be.visible')
-    cy.get('[id=footerItem2]').contains('IS').should('be.visible')
-    cy.get('[id=footerItem3]').contains('THE').should('be.visible')
-    cy.get('[id=footerItem4]').contains('FOOTER').should('be.visible')
+    cy.get('[id=footerItem1]').should('include.text', 'THIS')
+    cy.get('[id=footerItem2]').should('include.text','IS')
+    cy.get('[id=footerItem3]').should('include.text','THE')
+    cy.get('[id=footerItem4]').should('include.text','FOOTER')
   })
 
   it('verify alert card', () => {
