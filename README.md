@@ -40,6 +40,21 @@ These are supplied from the ska-javascript-component library for pure components
 
 For specifics of the components available, please refer to the appropriate repository
 
+### Services
+
+Included are a number of services, which have also been implemented into the code, providing simple examples.
+It is expected that in the main that there will be no updates to these services directly
+
+Below is a list of the current services, together with their purpose.
+
+i18n : Allows for text to be displayed in the language of the browser, with English as the default
+redux-telescope : Local storage containing the current telescope.  Accessed via the stateStorage service
+redux-theme : Local storage containing the current theme.  Accessed via the stateStorage service
+redux-user : Local storage containing the current user.  Accessed via the stateStorage service
+stateStorage : Contains Creation and access to the localStorage
+theme : Contains the initialization of the latest SKAO Theme
+types : Contains the TS type definitions for the services above
+
 ### Running and Building the Application
 
 Scripts for running, testing, and building the application are provided as part of the standard configuration. These are run using YARN and listed in the scripts section of the package.json file.

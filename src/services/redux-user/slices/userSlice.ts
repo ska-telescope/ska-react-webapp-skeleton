@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User,  UserState } from '@landing-page/types'
+import { User,  UserState } from '../../types/user'
 
 export const initialState: UserState = {
-    user: null,
+    user: null
 }
 
 export const userSlice = createSlice({
@@ -14,14 +14,10 @@ export const userSlice = createSlice({
         },
         clear:(state) => {
             state.user = null
-        },
+        }
     }
 })
 
 export const userSliceActions = userSlice.actions
-
 export const userSliceReducer = userSlice.reducer
-
 export default userSlice.reducer
-
-

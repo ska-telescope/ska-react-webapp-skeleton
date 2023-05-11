@@ -12,8 +12,6 @@ import { userSliceActions, userSliceReducer } from '../redux-user/slices/userSli
 import { Telescope, TELESCOPE_LOW } from '../types/telescope';
 import { User } from '../types/user';
 
-/********************************************************/
-
 const rootReducer = {
   telescope: telescopeSliceReducer,
   themeMode: themeSliceReducer,
@@ -21,12 +19,12 @@ const rootReducer = {
 }
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware, save(), dynamicMiddlewares];
-const pre_loaded_state = load();
+const preLoadedState = load();
 
 const storage = configureStore({
   reducer: rootReducer,
   middleware,
-  preloadedState: pre_loaded_state,
+  preloadedState: preLoadedState,
 });
 
 function initStore() {
@@ -42,8 +40,6 @@ export function StoreProvider({ children }: StoreProviderProps) {
     return <Provider store={store}>{children}</Provider>
   }
 
-/********************************************************/
-
 export type RootState = ReturnType<typeof storage.getState>;
 
 export const storageObject = {
@@ -56,7 +52,7 @@ export const storageObject = {
     const dispatch = useDispatch();
     return {
       telescope,
-      updateTelescope: (telescope: Telescope) => dispatch(telescopeSliceActions.change(telescope)),
+      updateTelescope: (inValue: Telescope) => dispatch(telescopeSliceActions.change(inValue)),
       //
       themeMode,
       darkMode, 
@@ -64,9 +60,7 @@ export const storageObject = {
       //
       user,
       clearUser: () => dispatch(userSliceActions.clear()),
-      updateUser: (user: User) => dispatch(userSliceActions.update(user)),
+      updateUser: (inValue: User) => dispatch(userSliceActions.update(inValue)),
     }
   }
 }
-
-/********************************************************/
