@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
@@ -15,7 +16,13 @@ module.exports = () => {
     },
 
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      // Add support for TypeScripts fully qualified ESM imports.
+      extensionAlias: {
+       ".js": [".js", ".ts"],
+       ".cjs": [".cjs", ".cts"],
+       ".mjs": [".mjs", ".mts"]
+      }
     },
 
     devServer: {
@@ -39,7 +46,7 @@ module.exports = () => {
         },
         {
           test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader']
+          use: ['style-loader', 'css-loader']
         },
         {
           test: /\.(ts|tsx|js|jsx)$/,
@@ -47,6 +54,10 @@ module.exports = () => {
           use: {
             loader: 'babel-loader'
           }
+        },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
         }
       ]
     },
@@ -61,7 +72,7 @@ module.exports = () => {
           counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
         },
         exposes: {
-          './ExampleComponent': './src/components/ExampleComponent/ExampleComponent.tsx'
+          './signalMetrics': './src/components/Container/Container.tsx'
         },
         shared: {
           ...deps,
@@ -96,21 +107,20 @@ module.exports = () => {
             singleton: true,
             requiredVersion: deps['i18next-http-backend']
           },
-          // Material UI
-          '@mui/material': { singleton: true, requiredVersion: deps['@mui/material'], eager: true },
+          // Material-UI
+          '@mui/material': { eager: true, singleton: true,  requiredVersion: deps['@mui/material'] },
+          '@mui/icons-material': { eager: true, singleton: true, requiredVersion: deps['@mui/icons-material'] },
           // Redux
           'react-redux': { singleton: true, requiredVersion: deps['react-redux'], eager: true },
           'redux': { singleton: true, requiredVersion: deps['redux'], eager: true },
           '@reduxjs/toolkit': { singleton: true, requiredVersion: deps['@reduxjs/toolkit'], eager: true },
-          'redux-saga': { singleton: true, requiredVersion: deps['redux-saga'], eager: true },
-          'redux-localstorage-simple': { singleton: true, requiredVersion: deps['redux-localstorage-simple'], eager: true },
-          'redux-dynamic-middlewares': { singleton: true, requiredVersion: deps['redux-dynamic-middlewares'], eager: true },
           // SKAO components  
           '@ska-telescope/ska-gui-components': {
             requiredVersion: deps['@ska-telescope/ska-gui-components'],
             eager: true
           },
           // mixture
+          'react-plotly.js': { singleton: true, requiredVersion: deps['react-plotly.js'], eager: true },
           '@emotion/react': { singleton: true, requiredVersion: deps['@emotion/react'], eager: true },
           '@emotion/styled': { singleton: true, requiredVersion: deps['@emotion/styled'], eager: true },
           moment: {
@@ -122,6 +132,16 @@ module.exports = () => {
       }),
       new HtmlWebPackPlugin({
         template: './public/index.html'
+      }),
+      new webpack.EnvironmentPlugin({
+        REACT_APP_WS_API: 'ws://localhost:8002/consumer',
+        REACT_APP_MESSAGE_TYPE: 'json',
+        REACT_APP_DATA_API_URL: 'http://localhost:8002',
+        REACT_APP_WORKFLOW_INTERVAL_SECONDS: 60,
+        REACT_APP_WORKFLOW_STATISTICS_INTERVAL_SECONDS: 10,
+        REACT_APP_DASHBOARD_URL_SUBDIRECTORY: '',
+        REACT_USE_LOCAL_DATA: true,  // Ensure set to false for production
+        SKIP_PREFLIGHT_CHECK: true
       })
     ]
   };

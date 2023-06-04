@@ -1,11 +1,11 @@
 import React from 'react';
 import { mount } from 'cypress/react18';
-import ExampleComponent from './ExampleComponent';
+import Container from './Container';
 
-describe('<ExampleComponent />', () => {
+describe('<Container />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
     // eslint-disable-next-line no-undef
-    mount(<ExampleComponent />);
+    mount(<Container />);
   });
 });
