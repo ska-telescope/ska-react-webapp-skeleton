@@ -7,6 +7,7 @@ import Plot from 'react-plotly.js';
 import SignalCard  from '../SignalCard/SignalCard';
 import { storageObject } from '../../services/stateStorage';
 import { COLOR, PROTOCOL } from '../../utils/constants';
+import { Chart } from "react-google-charts";
 
 interface SpectrumPlotProps {
   resize: number;
@@ -102,26 +103,12 @@ const SpectrumPlot = ({ resize, socketStatus, data }: SpectrumPlotProps) => {
       showContent={showContent}
       setShowContent={showToggle}
     >
-      <Plot 
-        data={chartData} 
-        layout={{
-          autosize: false,
-          title: chartTitle(),
-          plot_bgcolor: darkMode ? "black" : "white",
-          paper_bgcolor: darkMode ? "black" : "white",
-          width:  parentWidth(),
-          height: parentWidth() / RATIO,
-          xaxis: {
-            title: xLabel(),
-            color: darkMode ? "white" : "black",
-            automargin: true
-          },
-          yaxis: {
-            title: yLabel(),
-            color: darkMode ? "white" : "black",
-            automargin: true
-          }
-        }}/>
+      <Chart
+          chartType="ScatterChart"
+          data={chartData}
+          width="100%"
+          height="400px"
+      />
     </SignalCard>
   );
 };
