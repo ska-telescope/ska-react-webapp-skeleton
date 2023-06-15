@@ -120,8 +120,6 @@ components
 ```
 Note that the Container component is the one that is exposed via WebPack 5 ModuleFederationPlugin, so this naming and positioning should be maintained.
 
-[React-Testing-Library](https://testing-library.com/) and [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) have been included to improve the testing framework and test readability.
-
 See the developer guide for more information
 
 ### Running
