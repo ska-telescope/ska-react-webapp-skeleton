@@ -1,10 +1,10 @@
 import React from 'react';
 import { CssBaseline, Grid, Paper, ThemeProvider, Typography } from '@mui/material';
 import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
-import ExampleComponent from '../ExampleComponent/ExampleComponent';
-import TelescopeToggle from '../TelescopeToggle/telescopeToggle';
-import { storageObject } from '../../services/stateStorage/store';
-import theme from '../../services/theme/theme';
+import Container from '../components/Container/Container';
+import TelescopeToggle from '../components/TelescopeToggle/telescopeToggle';
+import { storageObject } from '../services/stateStorage/store';
+import theme from '../services/theme/theme';
 
 const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;
@@ -35,10 +35,10 @@ function App() {
           }
           <Spacer size={HEADER_HEIGHT} axis={SPACER_VERTICAL} />
           {
-            // ExampleComponent :
+            // Container :
             // This is the ONLY element that is currently able be accessed via micro-frontend implementation
           }
-          <ExampleComponent data-testid="exampleComponentId"/>
+          <Container data-testid="containerId"/>
           {
             // Example of the spacer being used to stop content from being hidden behind the Footer component
           }
