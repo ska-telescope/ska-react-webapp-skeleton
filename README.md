@@ -5,7 +5,7 @@
 This project is intended to act as a skeleton for any SKA developer looking to make a React based web application.
 
 It includes tools for linting, code formatting, and testing which are easily integrated into various IDEs.
-It also includes modular federation, exposing the Container component, which can be imported into other applications.
+It also includes modular federation, exposing the ReactSkeleton component, which can be imported into other applications.
 
 ### Requirements
 
@@ -34,9 +34,39 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 > yarn init
 
+### Steps to convert to your own application.
+
+Here are the steps required to migrate this application for use within the Portal.  These are required so that we can ensure a unique reference into the Portal.   For this example we will use the name NewApp as the name of the new application
+
+1. Clone the application into the appropriate folder
+2. Follow the installation instructions in the previous paragraph
+3. ReactSkeleton.tsx : Change `ReactSkeleton` to `NewApp` in 2 locations
+4. ReactSkeleton.tsx : Change filename to `NewApp.tsx
+5. ReactSkeleton.cy.tsx : Change `ReactSkeleton` to `NewApp` in 4 locations
+6. ReactSkeleton.cy.tsx : Change filename to `NewApp.cy.tsx
+7. Change Folder name from ReactSkeleton to NewApp
+8. App.tsx : Change `ReactSkeleton` to `NewApp` in 4 locations
+9. webPack.config.js : Change path for `ReactSkeleton` so it points to `NewApp\NewApp`.
+
+Compilation and running this application will allow it to be shown within the ReactSkeleton menu item within the developer section of the SKA-Portal.   Whilst initial development is being done and until the application is allocated a permanent location, it is suggested that no other WebPack changes are done.
+
+### During development
+
+It is note that the introduction of new libraries may throw an error.  This is usually because WebPack requires the library to be included as part of the ModuleFederationPlugin entry within the webpack.config.js    It is suggested that the new library be added into the area on the configuration annotated mixture.  
+
+### Adjustment once final positioning within the SKA-Portal has been determined.
+
+So that there is no clashes with other applications originating from a skeleton, the following steps should be taken.  Once these are done the application will no longer be available via the ReactSKeleton menu item within the SKA-Portal
+
+1. webpack.config.js : Change the devServer port number from 8090.
+2. webpack.config.js : Change the final ReactSkeleton entry to NewApp. 
+3. Relate these new values back to the developer responsible for updating the SKA-Portal
+
+Once these steps have been completed, the application should be accessible from it's new location in the SKA-Portal
+
 ### SKA Components
 
-These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI. It is noted that all the components from ska-javascript are passed thru so separate inclusion is not required if the ska-gui-components are also required.
+These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI. It is noted that all the components from ska-javascript are passed through so separate inclusion is not required if the ska-gui-components are also required.
 
 For specifics of the components available, please refer to the appropriate repository
 
@@ -113,12 +143,12 @@ App
 |
 components
 |
-└─ Container
-   |  Container.cy.tsx
-   |  Container.tsx
+└─ ReactSkeleton
+   |  ReactSkeleton.cy.tsx
+   |  ReactSkeleton.tsx
 
 ```
-Note that the Container component is the one that is exposed via WebPack 5 ModuleFederationPlugin, so this naming and positioning should be maintained.
+Note that the ReactSkeleton component is  exposed via WebPack 5 ModuleFederationPlugin, so this name should be changed to reflect the application being written ( e.g.  SignalDisplay, DataProductDashboard ...)
 
 See the developer guide for more information
 
