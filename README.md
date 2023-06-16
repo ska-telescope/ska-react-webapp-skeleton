@@ -5,7 +5,7 @@
 This project is intended to act as a skeleton for any SKA developer looking to make a React based web application.
 
 It includes tools for linting, code formatting, and testing which are easily integrated into various IDEs.
-It also includes modular federation, exposing the ExampleComponent, which can be imported into other applications.
+It also includes modular federation, exposing the Container component, which can be imported into other applications.
 
 ### Requirements
 
@@ -24,7 +24,7 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 2.  Clone the project from GitHub
 
-3.  Install the SKAO specific libraries
+3.  Install the SKAO specific library
 
 > npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/
 
@@ -61,9 +61,13 @@ Scripts for running, testing, and building the application are provided as part 
 
 From the project directory, you can run any of the following:
 
-- `> yarn start`
+- `> yarn dev`
 
   Runs the app in the development mode at [http://localhost:8090](http://localhost:8090). The app will recompile and restart if you make any edits to the source files. Any linting errors will also be shown in the console.
+
+- `> yarn start`
+
+  Same as `yarn dev` but for some implementations it is prefixed with NODE_ENV=testing.  This is used in the CI/CD Processes
 
 - `> yarn cypress`
 
@@ -100,18 +104,21 @@ The project will then be accessible at the url http://localhost:8090/
 
 ### Writing
 
-We use Jest as the test running framework. It will look for test files within a number of locations, however the standard that the SKAO will employ will be the use of `.test.js` in the same folder as what is being tested.
+We use Cypress as the test running framework. It will look for test files within a number of locations, however the standard that the SKAO will employ will be the use of `.cy.{tsx | jsx}` in the same folder as the component being tested.
 
 ```
+App
+|  App.cy.tsx
+|  App.tsx
+|
 components
 |
-└─ App
-   |  App.cy.tsx
-   |  App.tsx
-   |  App.test.tsx
-```
+└─ Container
+   |  Container.cy.tsx
+   |  Container.tsx
 
-[React-Testing-Library](https://testing-library.com/) and [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) have been included to improve the testing framework and test readability.
+```
+Note that the Container component is the one that is exposed via WebPack 5 ModuleFederationPlugin, so this naming and positioning should be maintained.
 
 See the developer guide for more information
 
