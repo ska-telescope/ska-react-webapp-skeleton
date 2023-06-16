@@ -49,7 +49,7 @@ const ALERT_CARD_4_DATA = [
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
 
-const Container = () => {
+const ReactSkeleton = () => {
   const { t } = useTranslation();
   const { telescope, user } = storageObject.useStore();
 
@@ -90,4 +90,4 @@ const Container = () => {
   );
 };
 
-export default Container;
+export default ReactSkeleton;
