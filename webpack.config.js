@@ -120,6 +120,7 @@ module.exports = () => {
             eager: true
           },
           // mixture
+          'react-google-charts': { singleton: true, requiredVersion: deps['react-google-charts'], eager: true },
           'react-plotly.js': { singleton: true, requiredVersion: deps['react-plotly.js'], eager: true },
           '@emotion/react': { singleton: true, requiredVersion: deps['@emotion/react'], eager: true },
           '@emotion/styled': { singleton: true, requiredVersion: deps['@emotion/styled'], eager: true },
