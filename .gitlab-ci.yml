@@ -61,9 +61,7 @@ test_and_coverage:
     - mkdir -p build/reports
   script:
     - yarn install
-    - yarn test
     - yarn test:coverage
-    - mv junit.xml build/reports/unit-tests.xml
     - mv build/coverage/cobertura-coverage.xml build/reports/code-coverage.xml
 
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
