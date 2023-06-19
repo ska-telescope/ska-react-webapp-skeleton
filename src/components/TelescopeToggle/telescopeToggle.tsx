@@ -5,51 +5,49 @@ import { storageObject } from '../../services/stateStorage/store';
 import { Key } from 'react';
 
 export const TelescopeToggle = () => {
+  const { telescope, updateTelescope } = storageObject.useStore();
 
-    const { telescope, updateTelescope } = storageObject.useStore();
+  const telescopeChange = (_event: React.MouseEvent<HTMLElement>, newTelescope: Telescope) => {
+    if (newTelescope) {
+      updateTelescope(newTelescope);
+    }
+  };
 
-    const telescopeChange = (
-      _event: React.MouseEvent<HTMLElement>,
-      newTelescope: Telescope
-    ) => {
-      if ( newTelescope ) {
-        updateTelescope(newTelescope);
-      }
-    };
-
-    return (
-        <ToggleButtonGroup
-        color="secondary"
-        value={telescope}
-        exclusive
-        onChange={telescopeChange}
-        aria-label="Platform"
-      >
-        {TelescopeList.map((tel: Telescope, key: Key | null | undefined): JSX.Element => {
+  return (
+    <ToggleButtonGroup
+      color="secondary"
+      value={telescope}
+      exclusive
+      onChange={telescopeChange}
+      aria-label="Platform"
+    >
+      {TelescopeList.map(
+        (tel: Telescope, key: Key | null | undefined): JSX.Element => {
           return (
-            <ToggleButton 
+            <ToggleButton
               id={tel.name + ' ButtonId'}
-              key={key} 
+              key={key}
               selected={tel.code === telescope.code}
-              value={tel} 
+              value={tel}
               sx={{
-                "&.Mui-selected": {
-                  backgroundColor: "primary.dark"
+                '&.Mui-selected': {
+                  backgroundColor: 'primary.dark'
                 },
-                "&.Mui-focusVisible": {
-                  backgroundColor: "primary.dark"
+                '&.Mui-focusVisible': {
+                  backgroundColor: 'primary.dark'
                 },
-                ":hover": {
-                  backgroundColor: "primary.main"
+                ':hover': {
+                  backgroundColor: 'primary.main'
                 }
               }}
             >
               {tel.name}
             </ToggleButton>
           );
-        })}
-      </ToggleButtonGroup>
-    );
-  }
+        }
+      )}
+    </ToggleButtonGroup>
+  );
+};
 
 export default TelescopeToggle;

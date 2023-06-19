@@ -23,9 +23,9 @@ function App() {
           // Button for light/dark mode included, and sample implementation provided.
         }
         <Header data-testid="skaHeader" themeToggle={toggleTheme}>
-        <Grid item />
+          <Grid item />
           <Grid item>
-            <Typography variant='h4'>SKA REACT SKELETON</Typography>
+            <Typography variant="h4">SKA REACT SKELETON</Typography>
           </Grid>
           <Grid item />
         </Header>
@@ -37,7 +37,7 @@ function App() {
           {
             // This is the ONLY component that is accessible via micro-frontend implementation
           }
-          <ReactSkeleton data-testid="reactSkeletonId"/>
+          <ReactSkeleton data-testid="reactSkeletonId" />
           {
             // Example of the spacer being used to stop content from being hidden behind the Footer component
           }
@@ -48,11 +48,11 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer>
-          <Grid item  />
-          <Grid item alignItems='center' justifyContent="center" >
-            <TelescopeToggle/>
+          <Grid item />
+          <Grid item alignItems="center" justifyContent="center">
+            <TelescopeToggle />
           </Grid>
-          <Grid item  />
+          <Grid item />
         </Footer>
       </React.Suspense>
     </ThemeProvider>

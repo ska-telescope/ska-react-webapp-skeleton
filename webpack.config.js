@@ -100,19 +100,39 @@ module.exports = () => {
           '@mui/material': { singleton: true, requiredVersion: deps['@mui/material'], eager: true },
           // Redux
           'react-redux': { singleton: true, requiredVersion: deps['react-redux'], eager: true },
-          'redux': { singleton: true, requiredVersion: deps['redux'], eager: true },
-          '@reduxjs/toolkit': { singleton: true, requiredVersion: deps['@reduxjs/toolkit'], eager: true },
+          redux: { singleton: true, requiredVersion: deps['redux'], eager: true },
+          '@reduxjs/toolkit': {
+            singleton: true,
+            requiredVersion: deps['@reduxjs/toolkit'],
+            eager: true
+          },
           'redux-saga': { singleton: true, requiredVersion: deps['redux-saga'], eager: true },
-          'redux-localstorage-simple': { singleton: true, requiredVersion: deps['redux-localstorage-simple'], eager: true },
-          'redux-dynamic-middlewares': { singleton: true, requiredVersion: deps['redux-dynamic-middlewares'], eager: true },
-          // SKAO components  
+          'redux-localstorage-simple': {
+            singleton: true,
+            requiredVersion: deps['redux-localstorage-simple'],
+            eager: true
+          },
+          'redux-dynamic-middlewares': {
+            singleton: true,
+            requiredVersion: deps['redux-dynamic-middlewares'],
+            eager: true
+          },
+          // SKAO components
           '@ska-telescope/ska-gui-components': {
             requiredVersion: deps['@ska-telescope/ska-gui-components'],
             eager: true
           },
           // mixture
-          '@emotion/react': { singleton: true, requiredVersion: deps['@emotion/react'], eager: true },
-          '@emotion/styled': { singleton: true, requiredVersion: deps['@emotion/styled'], eager: true },
+          '@emotion/react': {
+            singleton: true,
+            requiredVersion: deps['@emotion/react'],
+            eager: true
+          },
+          '@emotion/styled': {
+            singleton: true,
+            requiredVersion: deps['@emotion/styled'],
+            eager: true
+          },
           moment: {
             eager: true,
             singleton: true,
