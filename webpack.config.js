@@ -61,7 +61,7 @@ module.exports = () => {
           counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
         },
         exposes: {
-          './ExampleComponent': './src/components/Container/Container.tsx'
+          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
         },
         shared: {
           ...deps,
