@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { storageObject } from '../../services/stateStorage/store';
 import { AlertCard, Status } from '@ska-telescope/ska-gui-components';
 
-const ALERT_CARD_1_TITLE = 'Alert Card ( Not filled, with contents not filled / values suppressed )';
+const ALERT_CARD_1_TITLE =
+  'Alert Card ( Not filled, with contents not filled / values suppressed )';
 const ALERT_CARD_1_FILLED = false;
 const ALERT_CARD_1_DATA = [
   { level: 0, title: 'Level 0', value: 1, filled: false, hideValue: true },
@@ -34,7 +35,8 @@ const ALERT_CARD_3_DATA = [
   { level: 5, title: 'Level 5', value: 1, filled: false, hideValue: true }
 ];
 
-const ALERT_CARD_4_TITLE = 'Alert Card ( Not filled, with contents filled / values shown.  Levels 2 - 4 coloured as Warnings )';
+const ALERT_CARD_4_TITLE =
+  'Alert Card ( Not filled, with contents filled / values shown.  Levels 2 - 4 coloured as Warnings )';
 const ALERT_CARD_4_FILLED = false;
 const ALERT_CARD_4_DATA = [
   { level: 0, title: 'Level 0', value: 1, filled: true, hideValue: false },
@@ -49,13 +51,17 @@ const ALERT_CARD_4_DATA = [
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
 
-const Container = () => {
+const ReactSkeleton = () => {
   const { t } = useTranslation();
   const { telescope, user } = storageObject.useStore();
 
   return (
     <>
-      <AlertCard title={ALERT_CARD_1_TITLE} array={ALERT_CARD_1_DATA} filled={ALERT_CARD_1_FILLED} />
+      <AlertCard
+        title={ALERT_CARD_1_TITLE}
+        array={ALERT_CARD_1_DATA}
+        filled={ALERT_CARD_1_FILLED}
+      />
       <Grid
         container
         spacing={0}
@@ -64,7 +70,11 @@ const Container = () => {
         justifyContent="space-between"
       >
         <Grid item>
-          <AlertCard title={ALERT_CARD_2_TITLE} array={ALERT_CARD_2_DATA} filled={ALERT_CARD_2_FILLED} />
+          <AlertCard
+            title={ALERT_CARD_2_TITLE}
+            array={ALERT_CARD_2_DATA}
+            filled={ALERT_CARD_2_FILLED}
+          />
         </Grid>
 
         <Grid item>
@@ -82,12 +92,20 @@ const Container = () => {
           </Box>
         </Grid>
         <Grid item>
-          <AlertCard title={ALERT_CARD_3_TITLE} array={ALERT_CARD_3_DATA} filled={ALERT_CARD_3_FILLED} />
+          <AlertCard
+            title={ALERT_CARD_3_TITLE}
+            array={ALERT_CARD_3_DATA}
+            filled={ALERT_CARD_3_FILLED}
+          />
         </Grid>
       </Grid>
-      <AlertCard title={ALERT_CARD_4_TITLE} array={ALERT_CARD_4_DATA} filled={ALERT_CARD_4_FILLED} />
+      <AlertCard
+        title={ALERT_CARD_4_TITLE}
+        array={ALERT_CARD_4_DATA}
+        filled={ALERT_CARD_4_FILLED}
+      />
     </>
   );
 };
 
-export default Container;
+export default ReactSkeleton;

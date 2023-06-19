@@ -8,14 +8,14 @@
   "repository": "git@gitlab.com:ska-telescope/templates/ska-react-webapp-skeleton.git",
   "scripts": {
     "build": "webpack --mode production",
-    "code-analysis": "eslint src/**/*.{js,jsx.ts.tsx} --ignore-path .eslintignore -f junit -o linting.xml",
+    "code-analysis": "eslint src/**/*.{js,jsx,ts,tsx} --ignore-path .eslintignore -f junit -o linting.xml",
     "cypress": "cypress open",
     "dev": "webpack serve --mode development --open",
-    "lint": "eslint src/**/*.{js,jsx.ts.tsx}",
-    "lint:fix": "eslint src/**/*.{js,jsx.ts.tsx} --fix",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
     "prettier": "prettier --check \"**/*\"",
     "prettier:fix": "prettier --write \"**/*\"",
-    "test": "react-scripts test --env=jsdom --reporters=default --reporters=jest-junit --watchAll=false",
+    "test": "react-scripts test --env=jsdom --reporters=default --watchAll=false",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --coverageDirectory=build/coverage",
     "test:watch": "react-scripts test --env=jsdom --watchAll=true",
     "start": "webpack serve --mode development --open"
