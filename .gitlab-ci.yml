@@ -60,6 +60,7 @@ test_and_coverage:
     policy: pull
   before_script:
     - mkdir -p build/reports
+    - mkdir -p build/.nyc_output
     - yarn install --immutable
   script:
     - yarn start &
