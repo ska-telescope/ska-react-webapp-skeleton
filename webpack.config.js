@@ -78,12 +78,12 @@ module.exports = () => {
           // i18n
           i18next: {
             eager: true,
-            singleton: true,
+            // singleton: true,
             requiredVersion: deps.i18next
           },
           'react-i18next': {
             eager: true,
-            singleton: true,
+            // singleton: true,
             requiredVersion: deps['react-i18next']
           },
           'i18next-browser-languagedetector': {
@@ -93,7 +93,7 @@ module.exports = () => {
           },
           'i18next-http-backend': {
             eager: true,
-            singleton: true,
+            // singleton: true,
             requiredVersion: deps['i18next-http-backend']
           },
           // Material UI

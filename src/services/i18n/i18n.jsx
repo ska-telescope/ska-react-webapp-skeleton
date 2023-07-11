@@ -1,34 +1,22 @@
-/* istanbul ignore next */
-
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
-import moment from 'moment';
 
-i18n
+const i18nSkeleton = i18next.createInstance();
+i18nSkeleton
   .use(Backend)
   .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    lng: 'en',
-    ns: ['translations'],
-    defaultNS: 'translations',
-    initImmediate: false,
-    useSuspense: true,
-    debug: true,
-    interpolation: {
-      format(value, format) {
-        if (value instanceof Date) {
-          return moment(value).format(format);
-        }
-        if (typeof value === 'number') {
-          return new Intl.NumberFormat().format(value);
-        }
-        return typeof value;
-      }
+  .init(
+    {
+      fallbackLng: 'en',
+      ns: ['reactSkeleton'],
+      defaultNS: 'reactSkeleton',
+      debug: true
+    },
+    (err, t) => {
+      if (err) return console.error('something went wrong loading', err);
+      t('key');
     }
-  });
+  );
 
-export default i18n;
+export default i18nSkeleton;
