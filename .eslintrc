@@ -2,15 +2,13 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true,
     "node": true
   },
   "extends": ["prettier", "plugin:cypress/recommended"],
   "plugins": ["prettier", "cypress"],
   "rules": {
     "prettier/prettier": ["error"],
-    "linebreak-style": 0,
-    "jest/expect-expect": "off"
+    "linebreak-style": 0
   },
   "parser": "@babel/eslint-parser"
 }
