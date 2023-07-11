@@ -18,6 +18,7 @@
     "test": "react-scripts test --env=jsdom --reporters=default --watchAll=false",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --coverageDirectory=build/coverage",
     "test:watch": "react-scripts test --env=jsdom --watchAll=true",
+    "skao:update": "yarn add @ska-telescope/ska-gui-components@latest",
     "start": "webpack serve --mode development --open"
   },
   "dependencies": {
@@ -28,7 +29,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.12.1",
     "@reduxjs/toolkit": "^1.9.5",
-    "@ska-telescope/ska-gui-components": "^0.1.19",
+    "@ska-telescope/ska-gui-components": "^0.1.25",
     "bundle-loader": "^0.5.6",
     "i18next": "^21.8.9",
     "i18next-browser-languagedetector": "^6.1.2",

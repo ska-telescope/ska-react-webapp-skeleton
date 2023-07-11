@@ -1,5 +1,6 @@
 import React from 'react';
 import { CssBaseline, Grid, Paper, ThemeProvider, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
 import TelescopeToggle from '../components/TelescopeToggle/telescopeToggle';
@@ -10,7 +11,12 @@ const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;
 
 function App() {
+  const { t } = useTranslation('reactSkeleton');
   const { themeMode, toggleTheme } = storageObject.useStore();
+
+  const skao = t('toolTip.button.skao');
+  const mode = t('toolTip.button.mode');
+  const toolTip = { skao: skao, mode: mode };
 
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
@@ -22,7 +28,7 @@ function App() {
           // Logo with URL link included
           // Button for light/dark mode included, and sample implementation provided.
         }
-        <Header data-testid="skaHeader" themeToggle={toggleTheme}>
+        <Header data-testid="skaHeader" themeToggle={toggleTheme} toolTip={toolTip}>
           <Grid item />
           <Grid item>
             <Typography variant="h4">SKA REACT SKELETON</Typography>
