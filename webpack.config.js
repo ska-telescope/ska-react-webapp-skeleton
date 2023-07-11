@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
@@ -54,6 +55,11 @@ module.exports = () => {
     devtool: 'source-map',
 
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.VERSION': JSON.stringify(
+          process.env.npm_package_version,
+        ),
+      }),
       new ModuleFederationPlugin({
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',

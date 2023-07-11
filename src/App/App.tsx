@@ -17,6 +17,7 @@ function App() {
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
   const toolTip = { skao: skao, mode: mode };
+  const version = process.env.VERSION;
 
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
@@ -54,7 +55,9 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer>
-          <Grid item />
+          <Grid item>
+            {version}
+          </Grid>
           <Grid item alignItems="center" justifyContent="center">
             <TelescopeToggle />
           </Grid>

@@ -65,7 +65,7 @@ test_and_coverage:
   script:
     - yarn start &
     - yarn test:coverage:report:ci
-    - mv build/coverage/cobertura-coverage.xml build/reports/code-coverage.xml
+    - mv build/reports/cobertura-coverage.xml build/reports/code-coverage.xml
 
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
   artifacts:
