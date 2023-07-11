@@ -55,9 +55,7 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer>
-          <Grid item>
-            {version}
-          </Grid>
+          <Grid item>{version}</Grid>
           <Grid item alignItems="center" justifyContent="center">
             <TelescopeToggle />
           </Grid>
