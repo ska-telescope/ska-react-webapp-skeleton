@@ -50,6 +50,7 @@ code_analysis:
 
 # run the test coverage reports
 test_and_coverage:
+  image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   stage: test
   tags:
     - k8srunner
@@ -59,9 +60,10 @@ test_and_coverage:
     policy: pull
   before_script:
     - mkdir -p build/reports
+    - yarn install --immutable
   script:
-    - yarn install
-    - yarn test:coverage
+    - yarn start &
+    - yarn test:coverage:report:ci
     - mv build/coverage/cobertura-coverage.xml build/reports/code-coverage.xml
 
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
