@@ -55,13 +55,13 @@ module.exports = () => {
 
     plugins: [
       new ModuleFederationPlugin({
-        name: 'reactSkeleton',
+        name: 'ptt',
         filename: 'remoteEntry.js',
         remotes: {
           counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
         },
         exposes: {
-          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
+          './ptt': './src/components/Container/Container.tsx'
         },
         shared: {
           ...deps,
