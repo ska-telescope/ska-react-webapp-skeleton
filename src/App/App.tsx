@@ -28,7 +28,7 @@ function App() {
           // Logo with URL link included
           // Button for light/dark mode included, and sample implementation provided.
         }
-        <Header data-testid="skaHeader" themeToggle={toggleTheme} toolTip={toolTip} >
+        <Header data-testid="skaHeader" themeToggle={toggleTheme} toolTip={toolTip}>
           <Grid item />
           <Grid item>
             <Typography variant="h4">SKA REACT SKELETON</Typography>

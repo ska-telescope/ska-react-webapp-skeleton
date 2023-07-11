@@ -8,10 +8,10 @@
     "number": "Number Label",
     "text": "Text Label"
   },
-  "toolTip":{
+  "toolTip": {
     "button": {
       "mode": "Colour Mode Toggle",
       "skao": "SKAO WebSite"
-     }
+    }
   }
 }

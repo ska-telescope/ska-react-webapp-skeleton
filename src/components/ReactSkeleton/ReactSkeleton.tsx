@@ -41,8 +41,8 @@ const STATUS_SIZE = 50;
 const ReactSkeleton = () => {
   const { t } = useTranslation('reactSkeleton');
   const { telescope, user } = storageObject.useStore();
-  const [ theNumber, setTheNumber] = React.useState(0);
-  const [ theText, setTheText] = React.useState('');
+  const [theNumber, setTheNumber] = React.useState(0);
+  const [theText, setTheText] = React.useState('');
 
   return (
     <>
@@ -54,10 +54,10 @@ const ReactSkeleton = () => {
         justifyContent="space-between"
       >
         <Grid item>
-          <TextEntry label={t("label.text")} value={theText} setValue={setTheText} />
+          <TextEntry label={t('label.text')} value={theText} setValue={setTheText} />
         </Grid>
         <Grid item>
-          <NumberEntry label={t("label.number")} value={theNumber} setValue={setTheNumber} />
+          <NumberEntry label={t('label.number')} value={theNumber} setValue={setTheNumber} />
         </Grid>
       </Grid>
       <Grid
