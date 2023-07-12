@@ -8,10 +8,7 @@ export const TelescopeToggle = () => {
   const { t } = useTranslation();
   const { telescope, updateTelescope } = storageObject.useStore();
 
-  const telescopeChange = (
-    _event: React.MouseEvent<HTMLElement>,
-    newTelescope: Telescope,
-  ) => {
+  const telescopeChange = (_event: React.MouseEvent<HTMLElement>, newTelescope: Telescope) => {
     if (newTelescope) {
       updateTelescope(newTelescope);
     }
@@ -39,22 +36,22 @@ export const TelescopeToggle = () => {
                   '&.Mui-selected': {
                     color: 'primary.main',
                     backgroundColor: 'secondary.main',
-                    fontWeight: 'bold',
+                    fontWeight: 'bold'
                   },
                   '&.Mui-focusVisible': {
                     color: 'primary.main',
-                    backgroundColor: 'secondary.dark',
+                    backgroundColor: 'secondary.dark'
                   },
                   ':hover': {
                     color: 'primary.main',
-                    backgroundColor: 'secondary.dark',
-                  },
+                    backgroundColor: 'secondary.dark'
+                  }
                 }}
               >
                 {tel.name}
               </ToggleButton>
             );
-          },
+          }
         )}
       </ToggleButtonGroup>
     </Tooltip>
