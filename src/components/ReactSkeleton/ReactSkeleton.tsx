@@ -99,9 +99,9 @@ const ReactSkeleton = () => {
       </Grid>
       <Grid data-testid="alertCard4" item>
         <AlertCard
-            title={ALERT_CARD_4_TITLE}
-            array={ALERT_CARD_4_DATA}
-            filled={ALERT_CARD_4_FILLED}
+          title={ALERT_CARD_4_TITLE}
+          array={ALERT_CARD_4_DATA}
+          filled={ALERT_CARD_4_FILLED}
         />
       </Grid>
     </>
