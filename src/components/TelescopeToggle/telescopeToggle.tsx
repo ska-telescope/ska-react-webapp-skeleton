@@ -1,52 +1,63 @@
 import React from 'react';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { Telescope, TelescopeList } from '../../services/types/telescope';
 import { storageObject } from '../../services/stateStorage/store';
-import { Key } from 'react';
 
 export const TelescopeToggle = () => {
+  const { t } = useTranslation();
   const { telescope, updateTelescope } = storageObject.useStore();
 
-  const telescopeChange = (_event: React.MouseEvent<HTMLElement>, newTelescope: Telescope) => {
+  const telescopeChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    newTelescope: Telescope,
+  ) => {
     if (newTelescope) {
       updateTelescope(newTelescope);
     }
   };
 
   return (
-    <ToggleButtonGroup
-      color="secondary"
-      value={telescope}
-      exclusive
-      onChange={telescopeChange}
-      aria-label="Platform"
-    >
-      {TelescopeList.map(
-        (tel: Telescope, key: Key | null | undefined): JSX.Element => {
-          return (
-            <ToggleButton
-              id={tel.name + ' ButtonId'}
-              key={key}
-              selected={tel.code === telescope.code}
-              value={tel}
-              sx={{
-                '&.Mui-selected': {
-                  backgroundColor: 'primary.dark'
-                },
-                '&.Mui-focusVisible': {
-                  backgroundColor: 'primary.dark'
-                },
-                ':hover': {
-                  backgroundColor: 'primary.main'
-                }
-              }}
-            >
-              {tel.name}
-            </ToggleButton>
-          );
-        }
-      )}
-    </ToggleButtonGroup>
+    <Tooltip title={t('toolTip.button.telescopeToggle')} arrow>
+      <ToggleButtonGroup
+        color="secondary"
+        value={telescope}
+        exclusive
+        onChange={telescopeChange}
+        aria-label="TelescopeToggle"
+      >
+        {TelescopeList.map(
+          (tel: Telescope, key: React.Key | null | undefined): JSX.Element => {
+            return (
+              <ToggleButton
+                id={tel.name + ' ButtonId'}
+                aria-label={tel.name + ' ButtonId'}
+                key={key}
+                selected={tel.code === telescope.code}
+                value={tel}
+                sx={{
+                  '&.Mui-selected': {
+                    color: 'primary.main',
+                    backgroundColor: 'secondary.main',
+                    fontWeight: 'bold',
+                  },
+                  '&.Mui-focusVisible': {
+                    color: 'primary.main',
+                    backgroundColor: 'secondary.dark',
+                  },
+                  ':hover': {
+                    color: 'primary.main',
+                    backgroundColor: 'secondary.dark',
+                  },
+                }}
+              >
+                {tel.name}
+              </ToggleButton>
+            );
+          },
+        )}
+      </ToggleButtonGroup>
+    </Tooltip>
   );
 };
 
