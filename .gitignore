@@ -28,7 +28,8 @@ yarn-error.log*
 
 /.vs
 /.vscode
-/coverage
+.idea/
+dist/
 junit.xml
 linting.xml
 

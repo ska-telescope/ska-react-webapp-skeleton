@@ -64,6 +64,7 @@ test_and_coverage:
     - yarn install --immutable
   script:
     - yarn start &
+    - yarn test:e2e:headless
     - yarn test:coverage:report:ci
     - mv build/reports/cobertura-coverage.xml build/reports/code-coverage.xml
 
