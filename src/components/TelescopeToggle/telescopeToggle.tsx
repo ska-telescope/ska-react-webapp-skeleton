@@ -1,6 +1,6 @@
 import React from 'react';
-import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { ButtonToggle } from '@ska-telescope/ska-gui-components';
 import { Telescope, TelescopeList } from '../../services/types/telescope';
 import { storageObject } from '../../services/stateStorage/store';
 
@@ -14,47 +14,23 @@ export const TelescopeToggle = () => {
     }
   };
 
+  const getOptions = (inList: any) => {
+    const results: { id: string; label: string; value: any }[] = [];
+    inList.forEach((el: Telescope): void => {
+      results.push({ id: el.code, label: el.name, value: el });
+    });
+    return results;
+  };
+
   return (
-    <Tooltip title={t('toolTip.button.telescopeToggle')} arrow>
-      <ToggleButtonGroup
-        color="secondary"
-        value={telescope}
-        exclusive
-        onChange={telescopeChange}
-        aria-label="TelescopeToggle"
-      >
-        {TelescopeList.map(
-          (tel: Telescope, key: React.Key | null | undefined): JSX.Element => {
-            return (
-              <ToggleButton
-                id={tel.name + ' ButtonId'}
-                aria-label={tel.name + ' ButtonId'}
-                key={key}
-                selected={tel.code === telescope.code}
-                value={tel}
-                sx={{
-                  '&.Mui-selected': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.main',
-                    fontWeight: 'bold'
-                  },
-                  '&.Mui-focusVisible': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.dark'
-                  },
-                  ':hover': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.dark'
-                  }
-                }}
-              >
-                {tel.name}
-              </ToggleButton>
-            );
-          }
-        )}
-      </ToggleButtonGroup>
-    </Tooltip>
+    <ButtonToggle
+      current={telescope.code}
+      label={t('label.button.telescopeToggle')}
+      options={getOptions(TelescopeList)}
+      setValue={telescopeChange}
+      toolTip={t('toolTip.button.telescopeToggle')}
+      value={telescope}
+    />
   );
 };
 

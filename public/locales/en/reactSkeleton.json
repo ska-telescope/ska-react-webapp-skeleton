@@ -5,13 +5,17 @@
   "dummy": "I am in ENGLISH translation file only",
   "intlNumber": "{{val, number}}",
   "label": {
+    "button": {
+      "telescopeToggle": "Telescope Toggle"
+    },
     "number": "Number Label",
     "text": "Text Label"
   },
   "toolTip": {
     "button": {
       "mode": "Colour Mode Toggle",
-      "skao": "SKAO WebSite"
+      "skao": "SKAO WebSite",
+      "telescopeToggle": "Switch between available telescopes"
     }
   }
 }
