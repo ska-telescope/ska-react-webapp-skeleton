@@ -73,6 +73,27 @@ test_and_coverage:
     paths:
       - build/
 
+test-counts:
+  image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+  stage: scan
+  tags:
+    - k8srunner
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+  before_script:
+    - mkdir -p build/tests
+    - yarn install --immutable
+  script:
+    - yarn test:cypress:component:ci
+    - yarn start &
+    - yarn test:cypress:e2e:ci
+    - yarn merge-reports
+  artifacts:
+    paths:
+      - build/
+
 # list the current top level dependencies for the project
 list_dependencies:
   stage: test
