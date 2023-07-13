@@ -1,10 +1,11 @@
 import React from 'react';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { ButtonToggle } from '@ska-telescope/ska-gui-components';
 import { Telescope, TelescopeList } from '../../services/types/telescope';
-import { storageObject } from '../../services/stateStorage/store';
-import { Key } from 'react';
+import { storageObject } from '../../services/stateStorage';
 
 export const TelescopeToggle = () => {
+  const { t } = useTranslation();
   const { telescope, updateTelescope } = storageObject.useStore();
 
   const telescopeChange = (_event: React.MouseEvent<HTMLElement>, newTelescope: Telescope) => {
@@ -13,40 +14,23 @@ export const TelescopeToggle = () => {
     }
   };
 
+  const getOptions = (inList: any) => {
+    const results: { id: string; label: string; value: any }[] = [];
+    inList.forEach((el: Telescope): void => {
+      results.push({ id: el.code, label: el.name, value: el });
+    });
+    return results;
+  };
+
   return (
-    <ToggleButtonGroup
-      color="secondary"
+    <ButtonToggle
+      current={telescope.code}
+      label={t('label.button.telescopeToggle')}
+      options={getOptions(TelescopeList)}
+      setValue={telescopeChange}
+      toolTip={t('toolTip.button.telescopeToggle')}
       value={telescope}
-      exclusive
-      onChange={telescopeChange}
-      aria-label="Platform"
-    >
-      {TelescopeList.map(
-        (tel: Telescope, key: Key | null | undefined): JSX.Element => {
-          return (
-            <ToggleButton
-              id={tel.name + ' ButtonId'}
-              key={key}
-              selected={tel.code === telescope.code}
-              value={tel}
-              sx={{
-                '&.Mui-selected': {
-                  backgroundColor: 'primary.dark'
-                },
-                '&.Mui-focusVisible': {
-                  backgroundColor: 'primary.dark'
-                },
-                ':hover': {
-                  backgroundColor: 'primary.main'
-                }
-              }}
-            >
-              {tel.name}
-            </ToggleButton>
-          );
-        }
-      )}
-    </ToggleButtonGroup>
+    />
   );
 };
 

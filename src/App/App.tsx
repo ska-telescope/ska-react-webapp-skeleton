@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
 import TelescopeToggle from '../components/TelescopeToggle/telescopeToggle';
-import { storageObject } from '../services/stateStorage/store';
+import { storageObject } from '../services/stateStorage';
 import theme from '../services/theme/theme';
 
 const HEADER_HEIGHT = 70;
@@ -17,6 +17,7 @@ function App() {
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
   const toolTip = { skao: skao, mode: mode };
+  const version = process.env.VERSION;
 
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
@@ -54,7 +55,7 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer>
-          <Grid item />
+          <Grid item>{version}</Grid>
           <Grid item alignItems="center" justifyContent="center">
             <TelescopeToggle />
           </Grid>

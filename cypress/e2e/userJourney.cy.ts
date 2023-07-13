@@ -3,29 +3,31 @@ context('Testing react skeleton', () => {
     cy.visit('http://localhost:8090/');
   });
   it('verify header', () => {
-    cy.get('[id=headerItem1]').should('include.text', 'THIS');
-    cy.get('[id=headerItem2]').should('include.text', 'IS');
-    cy.get('[id=headerItem3]').should('include.text', 'THE');
-    cy.get('[id=headerItem4]').should('include.text', 'HEADER');
+    cy.get('h4').contains('SKA REACT SKELETON');
     cy.get('[data-testid="Brightness7Icon"]').click();
     cy.get('[aria-label="skaWebsite"]').click();
   });
 
   it('verify footer', () => {
-    cy.get('[id=footerItem1]').should('include.text', 'THIS');
-    cy.get('[id=footerItem2]').should('include.text', 'IS');
-    cy.get('[id=footerItem3]').should('include.text', 'THE');
-    cy.get('[id=footerItem4]').should('include.text', 'FOOTER');
+    cy.get('button').contains('SKA LOW');
+    cy.get('button').contains('SKA MID');
   });
 
-  it('verify alert card', () => {
-    cy.contains('AlertCard Title').should('be.visible');
-    cy.contains('Level 0').should('be.visible');
-    cy.contains('Level 1').should('be.visible');
-    cy.contains('Level 2').should('be.visible');
-    cy.contains('Level 3').should('be.visible');
-    cy.contains('Level 4').should('be.visible');
-    cy.contains('Level 5').should('be.visible');
-    cy.contains('Level 6').should('be.visible');
+  it('verify alert cards', () => {
+    cy.get('[data-testid="alertCard2"]').contains(
+      'Alert Card ( Not filled, content variations displayed )'
+    );
+    cy.get('[data-testid="alertCard3"]').contains(
+      'Alert Card ( Border colored to most significant warning level. )'
+    );
+    cy.get('[data-testid="alertCard4"]').contains(
+      'Alert Card ( Not filled, with contents filled / values shown. Levels 2 - 4 coloured as Warnings )'
+    );
+    cy.get('[data-testid="status"]').contains('language');
+    cy.get('[data-testid="status"]').contains('SKA LOW');
+    cy.get('[data-testid="status"]').contains('dummy');
+
+    cy.get('[data-testid="textLabel"]').should('exist');
+    cy.get('[data-testid="NumberLabel"]').should('exist');
   });
 });

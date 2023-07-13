@@ -1,23 +1,26 @@
-import { defineConfig } from 'cypress';
+/* eslint-disable global-require */
+const { defineConfig } = require("cypress");
 
-export default defineConfig({
+module.exports = defineConfig({
   component: {
     devServer: {
-      framework: 'create-react-app',
-      bundler: 'webpack'
-    }
-  },
-
-  component: {
-    devServer: {
-      framework: 'create-react-app',
-      bundler: 'webpack'
+      framework: "react",
+      bundler: "webpack"
+    },
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+      return require('./cypress/plugins/index.js')(on, config)
     }
   },
 
   e2e: {
+    defaultCommandTimeout: 12000,
+
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      require('./cypress/plugins/index.js')(on, config)
+      on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'))
+      return config
     }
   }
 });

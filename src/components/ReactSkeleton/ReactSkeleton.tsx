@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { storageObject } from '../../services/stateStorage/store';
+import { storageObject } from '../../services/stateStorage';
 import { AlertCard, NumberEntry, TextEntry, Status } from '@ska-telescope/ska-gui-components';
 
 const ALERT_CARD_2_TITLE = 'Alert Card ( Not filled, content variations displayed )';
@@ -53,10 +53,10 @@ const ReactSkeleton = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid item>
+        <Grid data-testid="textLabel" item>
           <TextEntry label={t('label.text')} value={theText} setValue={setTheText} />
         </Grid>
-        <Grid item>
+        <Grid data-testid="NumberLabel" item>
           <NumberEntry label={t('label.number')} value={theNumber} setValue={setTheNumber} />
         </Grid>
       </Grid>
@@ -67,7 +67,7 @@ const ReactSkeleton = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid item>
+        <Grid data-testid="alertCard2" item>
           <AlertCard
             title={ALERT_CARD_2_TITLE}
             array={ALERT_CARD_2_DATA}
@@ -77,7 +77,7 @@ const ReactSkeleton = () => {
 
         <Grid item>
           <Box>
-            <Card variant="outlined">
+            <Card data-testid="status" variant="outlined">
               <p>{t('language')}</p>
               {false && <p>{t('date_format_one', { date: new Date() })}</p>}
               {false && <p>{t('date_format_two', { date: new Date() })}</p>}
@@ -89,7 +89,7 @@ const ReactSkeleton = () => {
             </Card>
           </Box>
         </Grid>
-        <Grid item>
+        <Grid data-testid="alertCard3" item>
           <AlertCard
             title={ALERT_CARD_3_TITLE}
             array={ALERT_CARD_3_DATA}
@@ -97,11 +97,13 @@ const ReactSkeleton = () => {
           />
         </Grid>
       </Grid>
-      <AlertCard
-        title={ALERT_CARD_4_TITLE}
-        array={ALERT_CARD_4_DATA}
-        filled={ALERT_CARD_4_FILLED}
-      />
+      <Grid data-testid="alertCard4" item>
+        <AlertCard
+          title={ALERT_CARD_4_TITLE}
+          array={ALERT_CARD_4_DATA}
+          filled={ALERT_CARD_4_FILLED}
+        />
+      </Grid>
     </>
   );
 };

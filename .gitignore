@@ -12,6 +12,7 @@
 /build
 
 # misc
+.nyc_output/*
 .DS_Store
 .env.local
 .env.development.local
@@ -27,7 +28,8 @@ yarn-error.log*
 
 /.vs
 /.vscode
-/coverage
+.idea/
+dist/
 junit.xml
 linting.xml
 
