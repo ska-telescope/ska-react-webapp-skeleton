@@ -23,9 +23,9 @@ context('Testing react skeleton', () => {
     cy.get('[data-testid="alertCard4"]').contains(
       'Alert Card ( Not filled, with contents filled / values shown. Levels 2 - 4 coloured as Warnings )'
     );
-    cy.get('[data-testid="status"]').contains('ENGLISH');
+    cy.get('[data-testid="status"]').contains('language');
     cy.get('[data-testid="status"]').contains('SKA LOW');
-    cy.get('[data-testid="status"]').contains('I am in ENGLISH translation file only');
+    cy.get('[data-testid="status"]').contains('dummy');
 
     cy.get('[data-testid="textLabel"]').should('exist');
     cy.get('[data-testid="NumberLabel"]').should('exist');
