@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
 import TelescopeToggle from '../components/TelescopeToggle/telescopeToggle';
-import { storageObject } from '../services/stateStorage/store';
+import { storageObject } from '../services/stateStorage';
 import theme from '../services/theme/theme';
-import { Provider } from 'react-redux';
 
 const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;

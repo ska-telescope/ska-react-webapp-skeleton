@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonToggle } from '@ska-telescope/ska-gui-components';
 import { Telescope, TelescopeList } from '../../services/types/telescope';
-import { storageObject } from '../../services/stateStorage/store';
+import { storageObject } from '../../services/stateStorage';
 
 export const TelescopeToggle = () => {
   const { t } = useTranslation();
