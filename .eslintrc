@@ -4,11 +4,10 @@
     "es6": true,
     "node": true
   },
-  "extends": ["prettier", "plugin:cypress/recommended"],
+  "extends": ["react-app", "prettier", "plugin:cypress/recommended"],
   "plugins": ["prettier", "cypress"],
   "rules": {
     "prettier/prettier": ["error"],
     "linebreak-style": 0
-  },
-  "parser": "@babel/eslint-parser"
+  }
 }
