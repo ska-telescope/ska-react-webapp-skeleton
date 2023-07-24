@@ -1,11 +1,11 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { mount } from 'cypress/react18';
-import App from './App';
+import QuerySearch from './QuerySearch';
 
-describe('<App />', () => {
+describe('<QuerySearch />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
-    mount(<App />);
+    // eslint-disable-next-line no-undef
+    mount(<QuerySearch />);
   });
 });

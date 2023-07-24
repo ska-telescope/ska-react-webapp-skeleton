@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
@@ -55,17 +54,14 @@ module.exports = () => {
     devtool: 'source-map',
 
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.VERSION': JSON.stringify(process.env.npm_package_version)
-      }),
       new ModuleFederationPlugin({
-        name: 'reactSkeleton',
+        name: 'ptt',
         filename: 'remoteEntry.js',
         remotes: {
           counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
         },
         exposes: {
-          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
+          './ptt': './src/components/Container/Container.tsx'
         },
         shared: {
           ...deps,
@@ -82,12 +78,12 @@ module.exports = () => {
           // i18n
           i18next: {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps.i18next
           },
           'react-i18next': {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps['react-i18next']
           },
           'i18next-browser-languagedetector': {
@@ -97,7 +93,7 @@ module.exports = () => {
           },
           'i18next-http-backend': {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps['i18next-http-backend']
           },
           // Material UI
@@ -141,6 +137,10 @@ module.exports = () => {
             eager: true,
             singleton: true,
             requiredVersion: deps.moment
+          },
+          axios: {
+            eager: true,
+            singleton: true
           }
         }
       }),

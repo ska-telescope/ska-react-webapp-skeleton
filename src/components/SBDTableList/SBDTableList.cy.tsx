@@ -1,11 +1,11 @@
 import React from 'react';
 import { mount } from 'cypress/react18';
-import ReactSkeleton from './ReactSkeleton';
+import SBDTableList from './SBDTableList';
 
-describe('<ReactSkeleton />', () => {
+describe('<ViewEBInfo />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
     // eslint-disable-next-line no-undef
-    mount(<ReactSkeleton />);
+    mount(<SBDTableList searchType={''} data={undefined} search={undefined} />);
   });
 });
