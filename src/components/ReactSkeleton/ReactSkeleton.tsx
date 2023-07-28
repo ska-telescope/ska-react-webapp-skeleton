@@ -1,8 +1,15 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
-import RefreshIcon from "@mui/icons-material/Refresh";
-import { Button, ButtonColorTypes, ButtonVariantTypes, DropDown, NumberEntry, TextEntry } from '@ska-telescope/ska-gui-components';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import {
+  Button,
+  ButtonColorTypes,
+  ButtonVariantTypes,
+  DropDown,
+  NumberEntry,
+  TextEntry
+} from '@ska-telescope/ska-gui-components';
 
 const DROPDOWN_1 = [
   { label: 'Full ( 64 x 13.5m + 133 x 15)', value: '1' },
@@ -77,9 +84,9 @@ const ReactSkeleton = () => {
   const [field09, setField09] = React.useState('0.435');
   const [field10, setField10] = React.useState('2');
   const [field11, setField11] = React.useState(30);
-  const [field12, setField12] = React.useState("13.44 kHz (5.1 km/s)");
+  const [field12, setField12] = React.useState('13.44 kHz (5.1 km/s)');
   const [field13, setField13] = React.useState('3');
-  const [field14, setField14] = React.useState("40.32 KHz ( 15.2 km/s )");
+  const [field14, setField14] = React.useState('40.32 KHz ( 15.2 km/s )');
   const [field15, setField15] = React.useState('1');
   const [field16, setField16] = React.useState('1');
   const [field17, setField17] = React.useState('1');
@@ -95,11 +102,21 @@ const ReactSkeleton = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid data-testid="textLabel" item md={6} >
-          <DropDown label="Array Configuration" value={field01} setValue={setField01} options={DROPDOWN_1}/>
+        <Grid data-testid="textLabel" item md={6}>
+          <DropDown
+            label="Array Configuration"
+            value={field01}
+            setValue={setField01}
+            options={DROPDOWN_1}
+          />
         </Grid>
         <Grid data-testid="textLabel" item md={6}>
-          <DropDown label="Observing Band" value={field02} setValue={setField02} options={DROPDOWN_2} />
+          <DropDown
+            label="Observing Band"
+            value={field02}
+            setValue={setField02}
+            options={DROPDOWN_2}
+          />
         </Grid>
         <Grid data-testid="textLabel" item md={3}>
           <TextEntry label="Right Ascension" value={field03} setValue={setField03} required />
@@ -113,7 +130,7 @@ const ReactSkeleton = () => {
         <Grid data-testid="Weather PWV" item md={3}>
           <TextEntry label="Array Configuration" value={field06} setValue={setField06} />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
+        <Grid data-testid="textLabel" item md={6}>
           <Grid
             container
             spacing={0}
@@ -121,64 +138,74 @@ const ReactSkeleton = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Grid data-testid="textLabel" item md={10} >
+            <Grid data-testid="textLabel" item md={10}>
               <TextEntry label="Central Frequency" value={field07} setValue={setField07} />
             </Grid>
-            <Grid data-testid="textLabel" item md={2} >
-              <DropDown label="" value={field08} setValue={setField08} options={DROPDOWN_3}/>
+            <Grid data-testid="textLabel" item md={2}>
+              <DropDown label="" value={field08} setValue={setField08} options={DROPDOWN_3} />
             </Grid>
           </Grid>
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
+        <Grid data-testid="textLabel" item md={6}>
           <Grid
-              container
-              spacing={0}
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-            <Grid data-testid="textLabel" item md={10} >
+            container
+            spacing={0}
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Grid data-testid="textLabel" item md={10}>
               <TextEntry label="Continuum Bandwidth" value={field09} setValue={setField09} />
             </Grid>
-            <Grid data-testid="textLabel" item md={2} >
-              <DropDown label="" value={field10} setValue={setField10} options={DROPDOWN_3}/>
+            <Grid data-testid="textLabel" item md={2}>
+              <DropDown label="" value={field10} setValue={setField10} options={DROPDOWN_3} />
             </Grid>
           </Grid>
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
+        <Grid data-testid="textLabel" item md={6}>
           <NumberEntry label="Number of Chunks" value={field11} setValue={setField11} />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
+        <Grid data-testid="textLabel" item md={6}>
           <TextEntry label="Spectral Resolution" value={field12} disabled />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
-          <DropDown label="Spectral Averaging" value={field13} setValue={setField12} options={DROPDOWN_4}/>
+        <Grid data-testid="textLabel" item md={6}>
+          <DropDown
+            label="Spectral Averaging"
+            value={field13}
+            setValue={setField12}
+            options={DROPDOWN_4}
+          />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
+        <Grid data-testid="textLabel" item md={6}>
           <TextEntry label="Effective resolution" value={field14} disabled />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
-          <DropDown label="Image Weighting" value={field15} setValue={setField15} options={DROPDOWN_5}/>
-        </Grid>        
-        <Grid data-testid="textLabel" item md={6} >
-          <DropDown label="Tapering" value={field16} setValue={setField16} options={DROPDOWN_6}/>
+        <Grid data-testid="textLabel" item md={6}>
+          <DropDown
+            label="Image Weighting"
+            value={field15}
+            setValue={setField15}
+            options={DROPDOWN_5}
+          />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
-          <DropDown label="Supplied" value={field17} setValue={setField17} options={DROPDOWN_7}/>
+        <Grid data-testid="textLabel" item md={6}>
+          <DropDown label="Tapering" value={field16} setValue={setField16} options={DROPDOWN_6} />
         </Grid>
-        <Grid data-testid="textLabel" item md={6} >
-        <Grid
-              container
-              spacing={0}
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-            <Grid data-testid="textLabel" item md={10} >
+        <Grid data-testid="textLabel" item md={6}>
+          <DropDown label="Supplied" value={field17} setValue={setField17} options={DROPDOWN_7} />
+        </Grid>
+        <Grid data-testid="textLabel" item md={6}>
+          <Grid
+            container
+            spacing={0}
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Grid data-testid="textLabel" item md={10}>
               <NumberEntry label="Integration Time" value={field18} setValue={setField18} />
             </Grid>
-            <Grid data-testid="textLabel" item md={2} >
-              <DropDown label="" value={field19} setValue={setField19} options={DROPDOWN_8}/>
+            <Grid data-testid="textLabel" item md={2}>
+              <DropDown label="" value={field19} setValue={setField19} options={DROPDOWN_8} />
             </Grid>
           </Grid>
         </Grid>
@@ -190,11 +217,23 @@ const ReactSkeleton = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid data-testid="textLabel" item >
-          <Button color={ButtonColorTypes.Secondary} icon={<RefreshIcon />} label="Reset" toolTip={'Reset'} variant={ButtonVariantTypes.Contained} />
+        <Grid data-testid="textLabel" item>
+          <Button
+            color={ButtonColorTypes.Secondary}
+            icon={<RefreshIcon />}
+            label="Reset"
+            toolTip={'Reset'}
+            variant={ButtonVariantTypes.Contained}
+          />
         </Grid>
-        <Grid data-testid="textLabel" item >
-          <Button color={ButtonColorTypes.Secondary} icon={<DoneOutlinedIcon />} label="Calculate" toolTip={'Calculate'} variant={ButtonVariantTypes.Contained} />
+        <Grid data-testid="textLabel" item>
+          <Button
+            color={ButtonColorTypes.Secondary}
+            icon={<DoneOutlinedIcon />}
+            label="Calculate"
+            toolTip={'Calculate'}
+            variant={ButtonVariantTypes.Contained}
+          />
         </Grid>
       </Grid>
     </Box>
