@@ -3,7 +3,7 @@ import { CssBaseline, Grid, Paper, ThemeProvider, Typography } from '@mui/materi
 import { useTranslation } from 'react-i18next';
 import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
-import TelescopeToggle from '../components/TelescopeToggle/telescopeToggle';
+import TelescopeToggle from '../components/TelescopeToggle/TelescopeToggle';
 import { storageObject } from '../services/stateStorage';
 import theme from '../services/theme/theme';
 
@@ -32,7 +32,7 @@ function App() {
         <Header data-testid="skaHeader" themeToggle={toggleTheme} toolTip={toolTip}>
           <Grid item />
           <Grid item>
-            <Typography variant="h4">SKA REACT SKELETON</Typography>
+            <Typography variant="h4">SKA SENSIBILITY CALCULATOR</Typography>
           </Grid>
           <Grid item />
         </Header>

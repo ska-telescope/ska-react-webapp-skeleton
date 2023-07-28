@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactSkeleton from './ReactSkeleton';
+import TelescopeToggle from './TelescopeToggle';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { THEME_DARK, THEME_LIGHT } from '@ska-telescope/ska-gui-components';
 import theme from '../../services/theme/theme';
@@ -12,10 +12,9 @@ describe('<ReactSkeleton />', () => {
       cy.mount(
         <ThemeProvider theme={theme(theTheme)}>
           <CssBaseline />
-          <ReactSkeleton />
+          <TelescopeToggle />
         </ThemeProvider>
       );
-      // TODO
     });
   }
 });

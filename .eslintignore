@@ -3,5 +3,7 @@ coverage
 **/*.css
 **/*.scss
 **/*.ttf
+**/*.cy.*
+**/*.json
 webpack.config.js
 cypress.config.ts
