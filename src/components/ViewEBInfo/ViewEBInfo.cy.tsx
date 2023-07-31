@@ -1,11 +1,11 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { mount } from 'cypress/react18';
-import App from './App';
+import ViewEBInfo from './ViewEBInfo';
 
-describe('<App />', () => {
+describe('<ViewEBInfo />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
-    mount(<App />);
+    // eslint-disable-next-line no-undef
+    mount(<ViewEBInfo />);
   });
 });

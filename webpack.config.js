@@ -6,6 +6,7 @@ const deps = require('./package.json').dependencies;
 
 module.exports = () => {
   return {
+    mode: 'development', // To use dev mode use 'yarn dev' to use production mode use 'yarn start'
     entry: './src/index.jsx',
     output: {},
 
@@ -16,11 +17,17 @@ module.exports = () => {
     },
 
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      // Add support for TypeScripts fully qualified ESM imports.
+      extensionAlias: {
+        '.js': ['.js', '.ts'],
+        '.cjs': ['.cjs', '.cts'],
+        '.mjs': ['.mjs', '.mts']
+      }
     },
 
     devServer: {
-      port: 8090,
+      port: 3333,
       historyApiFallback: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -59,13 +66,11 @@ module.exports = () => {
         'process.env.VERSION': JSON.stringify(process.env.npm_package_version)
       }),
       new ModuleFederationPlugin({
-        name: 'reactSkeleton',
+        name: 'projectTrackingTool',
         filename: 'remoteEntry.js',
-        remotes: {
-          counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
-        },
+        remotes: {},
         exposes: {
-          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
+          './projectTrackingTool': './src/components/Container/Container.tsx'
         },
         shared: {
           ...deps,
@@ -82,12 +87,12 @@ module.exports = () => {
           // i18n
           i18next: {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps.i18next
           },
           'react-i18next': {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps['react-i18next']
           },
           'i18next-browser-languagedetector': {
@@ -97,7 +102,7 @@ module.exports = () => {
           },
           'i18next-http-backend': {
             eager: true,
-            // singleton: true,
+            singleton: true,
             requiredVersion: deps['i18next-http-backend']
           },
           // Material UI
@@ -146,6 +151,10 @@ module.exports = () => {
       }),
       new HtmlWebPackPlugin({
         template: './public/index.html'
+      }),
+      new webpack.EnvironmentPlugin({
+        REACT_APP_DATA_API_URL: 'http://localhost:5000',
+        REACT_USE_LOCAL_DATA: false // Ensure set to false for production
       })
     ]
   };

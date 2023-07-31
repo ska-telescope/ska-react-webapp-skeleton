@@ -1,0 +1,37 @@
+{
+  "language": "English",
+  "date_format_one": "{{-date, YYYY/MM/DD}}",
+  "date_format_two": "{{date, DD-MM-YYYY}}",
+  "dummy": "I am in ENGLISH translation file only",
+  "intlNumber": "{{val, number}}",
+  "label": {
+    "button": {
+      "telescopeToggle": "Telescope Toggle"
+    },
+    "number": "Number Label",
+    "text": "Text Label",
+    "eb_panel": "Search for Execution Block (EB's)",
+    "sbd_panel": "Search for Scheduling Block Definition (SBD's)",
+    "search_by_date": "Search by dates",
+    "search_by_id": "Search by Id",
+    "last7days": "Last 7 days",
+    "today": "Today",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  },
+  "errMsg": {
+    "errFutureDate": "Selected date is greater than current date.",
+    "errInvalidDate": "Start date is greater than End date.",
+    "errInvalidEbId": "Please enter valid EB Id",
+    "errInvalidSBDId": "Please enter valid SBD Id",
+    "errRequiredEbId": "Please enter EB Id",
+    "errRequiredSBDId": "Please enter SBD Id"
+  },
+  "toolTip": {
+    "button": {
+      "mode": "Colour Mode Toggle",
+      "skao": "SKAO WebSite",
+      "telescopeToggle": "Switch between available telescopes"
+    }
+  }
+}
