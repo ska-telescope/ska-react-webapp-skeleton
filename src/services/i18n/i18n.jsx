@@ -15,7 +15,7 @@ i18n
     fallbackLng: 'en',
     lng: 'en',
     ns: ['reactSkeleton'],
-    defaultNS: 'dpd',
+    defaultNS: 'reactSkeleton',
     initImmediate: false,
     useSuspense: true,
     debug: true,
