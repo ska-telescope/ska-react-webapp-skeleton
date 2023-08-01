@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Card, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { storageObject } from '../../services/stateStorage';
 import { AlertCard, NumberEntry, TextEntry, Status } from '@ska-telescope/ska-gui-components';
+import { storageObject } from '../../services/stateStorage';
 
 const ALERT_CARD_2_TITLE = 'Alert Card ( Not filled, content variations displayed )';
 const ALERT_CARD_2_FILLED = false;

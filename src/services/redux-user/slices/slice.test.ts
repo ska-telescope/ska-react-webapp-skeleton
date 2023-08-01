@@ -1,4 +1,5 @@
 import { userSliceActions } from './userSlice';
+
 describe('User slice actions', () => {
   it('should update', () => {
     const payload = { role: 'role', username: 'username' };

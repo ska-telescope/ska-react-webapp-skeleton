@@ -5,11 +5,11 @@ export interface ButtonToggleProps {
   // required
   current: string;
   label: string;
-  options: { id: string; label: string; value: any }[];
+  options: { id: string; label: string; value: string }[];
   setValue?: Function;
   // optional
-  toolTip: string;
-  value: any;
+  toolTip?: string;
+  value?: string | number;
 }
 
 export function ButtonToggle({
@@ -21,11 +21,9 @@ export function ButtonToggle({
   toolTip
 }: ButtonToggleProps): JSX.Element {
   // MOTE: this will need to be changed should we want to extend to more than 2 options
-  const fetchValue = (id: string) => {
-    return options[options[0].id === id ? 0 : 1].value;
-  };
+  const fetchValue = (id: string) => options[options[0].id === id ? 0 : 1].value;
 
-  const updateValue = (e: any, id: string) =>
+  const updateValue = (e: string | number, id: string) =>
     typeof setValue !== 'undefined' ? setValue(e, fetchValue(id)) : null;
 
   return (
@@ -38,45 +36,45 @@ export function ButtonToggle({
         aria-label={label}
       >
         {options.map(
-          (option: { id: string; label: string; value: any }): JSX.Element => {
-            return (
-              <ToggleButton
-                id={option.id}
-                aria-label={option.id}
-                key={option.id}
-                selected={option.id === current}
-                value={option.id}
-                sx={{
-                  '&.Mui-selected': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.main',
-                    fontWeight: 'bold'
-                  },
-                  '&.Mui-focusVisible': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.dark'
-                  },
-                  ':hover': {
-                    color: 'primary.main',
-                    backgroundColor: 'secondary.dark'
-                  }
-                }}
-              >
-                {option.label}
-              </ToggleButton>
-            );
-          }
+          (option: { id: string; label: string; value: string | number }): JSX.Element => (
+            <ToggleButton
+              id={option.id}
+              aria-label={option.id}
+              key={option.id}
+              selected={option.id === current}
+              value={option.id}
+              sx={{
+                '&.Mui-selected': {
+                  color: 'primary.main',
+                  backgroundColor: 'secondary.main',
+                  fontWeight: 'bold'
+                },
+                '&.Mui-focusVisible': {
+                  color: 'primary.main',
+                  backgroundColor: 'secondary.dark'
+                },
+                ':hover': {
+                  color: 'primary.main',
+                  backgroundColor: 'secondary.dark'
+                }
+              }}
+            >
+              {option.label}
+            </ToggleButton>
+          )
         )}
       </ToggleButtonGroup>
     </Tooltip>
   );
 }
 
-//type="password"
-//autoComplete="current-password"
+// type="password"
+// autoComplete="current-password"
 
 ButtonToggle.defaultProps = {
-  toolTip: ''
+  setValue: null,
+  toolTip: '',
+  value: null
 };
 
 export default ButtonToggle;

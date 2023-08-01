@@ -69,3 +69,7 @@ export const storageObject = {
     };
   }
 };
+
+StoreProvider.defaultProps = {
+  children: null
+};

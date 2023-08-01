@@ -14,8 +14,19 @@ export const TelescopeToggle = () => {
     }
   };
 
-  const getOptions = (inList: any) => {
-    const results: { id: string; label: string; value: any }[] = [];
+  const getOptions = (
+    inList: {
+      code: string;
+      name: string;
+      location: string;
+      position: {
+        lat: number;
+        lon: number;
+      };
+      image: string;
+    }[]
+  ) => {
+    const results: { id: string; label: string; value: Telescope }[] = [];
     inList.forEach((el: Telescope): void => {
       results.push({ id: el.code, label: el.name, value: el });
     });

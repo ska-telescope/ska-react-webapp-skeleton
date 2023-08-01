@@ -16,7 +16,7 @@ function App() {
 
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
-  const toolTip = { skao: skao, mode: mode };
+  const toolTip = { skao, mode };
   const version = process.env.VERSION;
 
   return (

@@ -54,7 +54,7 @@ export const lowPos: Position = {
   lon: 117.08484475669175
 };
 
-export let tel: Tel;
-export let telescope: Telescope;
+export const tel: Tel = 'mid';
+export const telescope: Telescope = TELESCOPE_MID;
 
 export const TelescopeList = [TELESCOPE_LOW, TELESCOPE_MID];
