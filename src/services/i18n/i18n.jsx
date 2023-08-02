@@ -1,22 +1,36 @@
-import i18next from 'i18next';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
+import moment from 'moment';
 
-const i18nSkeleton = i18next.createInstance();
-i18nSkeleton
+i18n
   .use(Backend)
   .use(LanguageDetector)
-  .init(
-    {
-      fallbackLng: 'en',
-      ns: ['reactSkeleton'],
-      defaultNS: 'reactSkeleton',
-      debug: true
+  .use(initReactI18next)
+  .init({
+    backend: {
+      loadPath: './locales/{{lng}}/{{ns}}.json'
     },
-    (err, t) => {
-      if (err) return console.error('something went wrong loading', err);
-      t('key');
+    fallbackLng: 'en',
+    lng: 'en',
+    ns: ['reactSkeleton'],
+    defaultNS: 'reactSkeleton',
+    initImmediate: false,
+    useSuspense: true,
+    debug: true,
+    interpolation: {
+      escapeValue: false,
+      format(value, format) {
+        if (value instanceof Date) {
+          return moment(value).format(format);
+        }
+        if (typeof value === 'number') {
+          return new Intl.NumberFormat().format(value);
+        }
+        return typeof value;
+      }
     }
-  );
+  });
 
-export default i18nSkeleton;
+export default i18n;

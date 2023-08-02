@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Card, Grid } from '@mui/material';
+import { Box, Card, CardContent, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { storageObject } from '../../services/stateStorage';
 import { AlertCard, NumberEntry, TextEntry, Status } from '@ska-telescope/ska-gui-components';
+import { storageObject } from '../../services/stateStorage';
 
 const ALERT_CARD_2_TITLE = 'Alert Card ( Not filled, content variations displayed )';
 const ALERT_CARD_2_FILLED = false;
@@ -54,10 +54,14 @@ const ReactSkeleton = () => {
         justifyContent="space-between"
       >
         <Grid data-testid="textLabel" item>
-          <TextEntry label={t('label.text')} value={theText} setValue={setTheText} />
+          <Box m={1}>
+            <TextEntry label={t('label.text')} testId="textId" value={theText} setValue={setTheText} />
+          </Box>
         </Grid>
         <Grid data-testid="NumberLabel" item>
-          <NumberEntry label={t('label.number')} value={theNumber} setValue={setTheNumber} />
+          <Box m={1}>
+            <NumberEntry label={t('label.number')} testId="numberId" value={theNumber} setValue={setTheNumber} />
+          </Box>
         </Grid>
       </Grid>
       <Grid
@@ -69,6 +73,7 @@ const ReactSkeleton = () => {
       >
         <Grid data-testid="alertCard2" item>
           <AlertCard
+            testId="alertCard2"
             title={ALERT_CARD_2_TITLE}
             array={ALERT_CARD_2_DATA}
             filled={ALERT_CARD_2_FILLED}
@@ -76,21 +81,22 @@ const ReactSkeleton = () => {
         </Grid>
 
         <Grid item>
-          <Box>
-            <Card data-testid="status" variant="outlined">
+          <Card data-testid="cardId" variant="outlined">
+            <CardContent>
               <p>{t('language')}</p>
               {false && <p>{t('date_format_one', { date: new Date() })}</p>}
               {false && <p>{t('date_format_two', { date: new Date() })}</p>}
               {false && <p>{t('intlNumber', { val: 2000 })}</p>}
-              <Status level={STATUS_LEVEL} size={STATUS_SIZE} />
+              <Status level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
               <p>{telescope?.name}</p>
               <p>{user?.username}</p>
               <p>{t('dummy')}</p>
-            </Card>
-          </Box>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid data-testid="alertCard3" item>
           <AlertCard
+            testId="alertCard3"
             title={ALERT_CARD_3_TITLE}
             array={ALERT_CARD_3_DATA}
             filled={ALERT_CARD_3_FILLED}
@@ -99,6 +105,7 @@ const ReactSkeleton = () => {
       </Grid>
       <Grid data-testid="alertCard4" item>
         <AlertCard
+          testId="alertCard4"
           title={ALERT_CARD_4_TITLE}
           array={ALERT_CARD_4_DATA}
           filled={ALERT_CARD_4_FILLED}
