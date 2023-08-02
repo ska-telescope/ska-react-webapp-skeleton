@@ -15,19 +15,17 @@ context('Testing react skeleton', () => {
 
   it('verify alert cards', () => {
     cy.get('[data-testid="alertCard2"]').contains(
-      'Alert Card ( Not filled, content variations displayed )'
-    );
+      'Alert Card ( Not filled, content variations displayed )');
     cy.get('[data-testid="alertCard3"]').contains(
       'Alert Card ( Border colored to most significant warning level. )'
     );
     cy.get('[data-testid="alertCard4"]').contains(
       'Alert Card ( Not filled, with contents filled / values shown. Levels 2 - 4 coloured as Warnings )'
     );
-    cy.get('[data-testid="status"]').contains('English');
-    cy.get('[data-testid="status"]').contains('SKA LOW');
-    cy.get('[data-testid="status"]').contains('I am in ENGLISH translation file only');
-
-    cy.get('[data-testid="textLabel"]').should('exist');
-    cy.get('[data-testid="NumberLabel"]').should('exist');
+    cy.get('[data-testid="cardId"]').contains('English');
+    cy.get('[data-testid="cardId"]').contains('SKA LOW');
+    cy.get('[data-testid="cardId"]').contains('I am in ENGLISH translation file only');
+    cy.get('[data-testid="textId"]').should('exist');
+    cy.get('[data-testid="numberId"]').should('exist');
   });
 });
