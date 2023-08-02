@@ -4,7 +4,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { save, load } from 'redux-localstorage-simple';
 import dynamicMiddlewares from 'redux-dynamic-middlewares';
 import createSagaMiddleware from 'redux-saga';
-import { THEME_DARK } from '@ska-telescope/ska-gui-components';
+import { TELESCOPE_LOW, THEME_DARK } from '@ska-telescope/ska-gui-components';
 import {
   telescopeSliceActions,
   telescopeSliceReducer
@@ -12,7 +12,7 @@ import {
 import { themeSliceActions, themeSliceReducer } from '../redux-theme/slices/themeSlice';
 import { userSliceActions, userSliceReducer } from '../redux-user/slices/userSlice';
 
-import { Telescope, TELESCOPE_LOW } from '../types/telescope';
+import { Telescope } from '../types/telescope';
 import { User } from '../types/user';
 
 const rootReducer = {
