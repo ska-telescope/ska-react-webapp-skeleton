@@ -1,7 +1,13 @@
 import React from 'react';
 import { CssBaseline, Grid, Paper, ThemeProvider, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Footer, Header, Spacer, SPACER_VERTICAL, TelescopeSelector } from '@ska-telescope/ska-gui-components';
+import {
+  Footer,
+  Header,
+  Spacer,
+  SPACER_VERTICAL,
+  TelescopeSelector
+} from '@ska-telescope/ska-gui-components';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
 import { storageObject } from '../services/stateStorage';
 import theme from '../services/theme/theme';
