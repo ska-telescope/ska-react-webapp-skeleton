@@ -15,7 +15,8 @@ context('Testing react skeleton', () => {
 
   it('verify alert cards', () => {
     cy.get('[data-testid="alertCard2"]').contains(
-      'Alert Card ( Not filled, content variations displayed )');
+      'Alert Card ( Not filled, content variations displayed )'
+    );
     cy.get('[data-testid="alertCard3"]').contains(
       'Alert Card ( Border colored to most significant warning level. )'
     );

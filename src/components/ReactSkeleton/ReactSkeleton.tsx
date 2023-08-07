@@ -55,12 +55,22 @@ const ReactSkeleton = () => {
       >
         <Grid data-testid="textLabel" item>
           <Box m={1}>
-            <TextEntry label={t('label.text')} testId="textId" value={theText} setValue={setTheText} />
+            <TextEntry
+              label={t('label.text')}
+              testId="textId"
+              value={theText}
+              setValue={setTheText}
+            />
           </Box>
         </Grid>
         <Grid data-testid="NumberLabel" item>
           <Box m={1}>
-            <NumberEntry label={t('label.number')} testId="numberId" value={theNumber} setValue={setTheNumber} />
+            <NumberEntry
+              label={t('label.number')}
+              testId="numberId"
+              value={theNumber}
+              setValue={setTheNumber}
+            />
           </Box>
         </Grid>
       </Grid>
