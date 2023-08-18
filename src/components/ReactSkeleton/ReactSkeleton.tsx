@@ -1,39 +1,8 @@
 import React from 'react';
-import { Box, Card, CardContent, Grid } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { AlertCard, NumberEntry, TextEntry, Status } from '@ska-telescope/ska-gui-components';
+import { Alert, NumberEntry, TextEntry, Status, Spacer } from '@ska-telescope/ska-gui-components';
 import { storageObject } from '../../services/stateStorage';
-
-const ALERT_CARD_2_TITLE = 'Alert Card ( Not filled, content variations displayed )';
-const ALERT_CARD_2_FILLED = false;
-const ALERT_CARD_2_DATA = [
-  { level: 1, title: 'Level 1', value: 1, filled: true, hideValue: false },
-  { level: 1, title: 'Level 1', value: 1, filled: true, hideValue: true },
-  { level: 1, title: 'Level 1', value: 1, filled: false, hideValue: false },
-  { level: 1, title: 'Level 1', value: 1, filled: false, hideValue: true }
-];
-
-const ALERT_CARD_3_TITLE = 'Alert Card ( Border colored to most significant warning level. )';
-const ALERT_CARD_3_FILLED = false;
-const ALERT_CARD_3_DATA = [
-  { level: 2, title: 'Level 2', value: 1, filled: true, hideValue: false },
-  { level: 3, title: 'Level 3', value: 1, filled: true, hideValue: true },
-  { level: 4, title: 'Level 4', value: 1, filled: false, hideValue: false },
-  { level: 5, title: 'Level 5', value: 1, filled: false, hideValue: true }
-];
-
-const ALERT_CARD_4_TITLE =
-  'Alert Card ( Not filled, with contents filled / values shown.  Levels 2 - 4 coloured as Warnings )';
-const ALERT_CARD_4_FILLED = false;
-const ALERT_CARD_4_DATA = [
-  { level: 0, title: 'Level 0', value: 1, filled: true, hideValue: false },
-  { level: 1, title: 'Level 1', value: 1, filled: true, hideValue: false },
-  { level: 2, title: 'Level 2', value: 1, filled: true, hideValue: false },
-  { level: 3, title: 'Level 3', value: 1, filled: true, hideValue: false },
-  { level: 4, title: 'Level 4', value: 1, filled: true, hideValue: false },
-  { level: 5, title: 'Level 5', value: 1, filled: true, hideValue: false },
-  { level: 6, title: 'Level 6', value: 1, filled: true, hideValue: false }
-];
 
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
@@ -46,13 +15,64 @@ const ReactSkeleton = () => {
 
   return (
     <>
-      <Grid
-        container
-        spacing={0}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Grid container direction="row" alignItems="center" justifyContent="space-around">
+        <Typography variant="h5">Welcome</Typography>
+      </Grid>
+
+      <Spacer />
+
+      <Grid container direction="row" alignItems="center" justifyContent="space-around">
+        <Grid item xs={6}>
+          <Alert
+            ariaDescription="Sample description for screen readers"
+            ariaTitle="Sample title for screen readers"
+            severity={5}
+            testId="alertTestId"
+          >
+            <Grid container direction="row" alignItems="center" justifyContent="space-around">
+              <Grid item xs={2} />
+              <Grid item xs={8}>
+                <Typography>This is a simple implementation of a REACT Application</Typography>
+              </Grid>
+              <Grid item xs={2} />
+
+              <Grid item xs={2} />
+              <Grid item xs={8}>
+                <Typography>
+                  It is hoped that this is used as a basis for new applications for the SKAO
+                </Typography>
+              </Grid>
+              <Grid item xs={2} />
+
+              <Grid item xs={2} />
+              <Grid item xs={8}>
+                <Typography m={2}>
+                  A few basic components have been added as examples, as well as the MUI grid which
+                  can be used for component layout
+                </Typography>
+              </Grid>
+              <Grid item xs={2} />
+
+              <Grid item xs={3} />
+              <Grid item xs={6}>
+                <Typography m={2}>
+                  For information on the available gui-components, see the documentation available
+                  at this link
+                </Typography>
+              </Grid>
+              <Grid item xs={3} />
+
+              <Grid item>
+                <Typography m={2} variant="body2">
+                  https://developer.skao.int/projects/ska-gui-components/en/latest/?badge=latest
+                </Typography>
+              </Grid>
+            </Grid>
+          </Alert>
+        </Grid>
+      </Grid>
+
+      <Grid container direction="row" alignItems="center" justifyContent="space-evenly">
         <Grid data-testid="textLabel" item>
           <Box m={1}>
             <TextEntry
@@ -74,22 +94,8 @@ const ReactSkeleton = () => {
           </Box>
         </Grid>
       </Grid>
-      <Grid
-        container
-        spacing={0}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Grid data-testid="alertCard2" item>
-          <AlertCard
-            testId="alertCard2"
-            title={ALERT_CARD_2_TITLE}
-            array={ALERT_CARD_2_DATA}
-            filled={ALERT_CARD_2_FILLED}
-          />
-        </Grid>
 
+      <Grid container direction="row" alignItems="center" justifyContent="space-around">
         <Grid item>
           <Card data-testid="cardId" variant="outlined">
             <CardContent>
@@ -104,22 +110,6 @@ const ReactSkeleton = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid data-testid="alertCard3" item>
-          <AlertCard
-            testId="alertCard3"
-            title={ALERT_CARD_3_TITLE}
-            array={ALERT_CARD_3_DATA}
-            filled={ALERT_CARD_3_FILLED}
-          />
-        </Grid>
-      </Grid>
-      <Grid data-testid="alertCard4" item>
-        <AlertCard
-          testId="alertCard4"
-          title={ALERT_CARD_4_TITLE}
-          array={ALERT_CARD_4_DATA}
-          filled={ALERT_CARD_4_FILLED}
-        />
       </Grid>
     </>
   );

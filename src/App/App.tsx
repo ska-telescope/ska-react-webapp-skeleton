@@ -42,7 +42,7 @@ function App() {
           </Grid>
           <Grid item />
         </Header>
-        <Paper sx={{ height: '100%' }}>
+        <Paper sx={{ height: '100vh' }}>
           {
             // Example of the spacer being used to shift content from behind the Header component
           }
