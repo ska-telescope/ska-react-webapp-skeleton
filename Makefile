@@ -4,6 +4,4 @@
 -include .make/docs.mk
 -include .make/oci.mk
 -include .make/helm.mk
-
-# include your own private variables for custom deployment configuration
--include PrivateRules.mak
+-include .make/k8s.mk
