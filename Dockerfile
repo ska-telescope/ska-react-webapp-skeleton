@@ -1,10 +1,6 @@
 # pull the base image
 FROM node:18.12.1 as base
 
-# Install the SKAO specific libraries
-RUN npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/ &&\
-    yarn add @ska-telescope/ska-gui-components@latest
-
 # # set the working direction
 WORKDIR /app
 COPY . .

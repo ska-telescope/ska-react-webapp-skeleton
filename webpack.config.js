@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const deps = require('./package.json').dependencies;
 
@@ -146,7 +147,19 @@ module.exports = () => {
       }),
       new HtmlWebPackPlugin({
         template: './public/index.html'
-      })
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'public',
+            globOptions: {
+              dot: true,
+              gitignore: true,
+              ignore: ['**/*.html'],
+            },
+          },
+        ],
+      }),
     ]
   };
 };
