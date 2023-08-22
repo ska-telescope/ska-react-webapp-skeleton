@@ -5,4 +5,4 @@ image:
 
 ingress:
   prependByNamespace: true
-  path: skeleton
+  path: react-skeleton
