@@ -1,6 +1,9 @@
 # Minimal makefile for Sphinx documentation
 #
 
+docs-pre-build:
+	pip install -r docs/requirements.txt
+
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
