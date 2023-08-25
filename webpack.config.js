@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const path = require('path');
 const deps = require('./package.json').dependencies;
 
 module.exports = () => {
@@ -17,6 +17,11 @@ module.exports = () => {
     },
 
     resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@services': path.resolve(__dirname, 'src/services'),
+        '@utils': path.resolve(__dirname, 'src/utils')
+      },
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
     },
 
@@ -155,11 +160,11 @@ module.exports = () => {
             globOptions: {
               dot: true,
               gitignore: true,
-              ignore: ['**/*.html'],
-            },
-          },
-        ],
-      }),
+              ignore: ['**/*.html']
+            }
+          }
+        ]
+      })
     ]
   };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Alert, NumberEntry, TextEntry, Status, Spacer } from '@ska-telescope/ska-gui-components';
-import { storageObject } from '../../services/stateStorage';
+import { storageObject } from '@services/stateStorage';
 
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
