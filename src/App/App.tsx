@@ -8,6 +8,7 @@ import {
   SPACER_VERTICAL,
   TelescopeSelector
 } from '@ska-telescope/ska-gui-components';
+import Loader from '../components/Loader/Loader';
 import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
 import { storageObject } from '../services/stateStorage';
 import theme from '../services/theme/theme';
@@ -28,7 +29,7 @@ function App() {
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
       <CssBaseline enableColorScheme />
-      <React.Suspense fallback="...is loading">
+      <React.Suspense fallback={<Loader />}>
         {
           // Header container :
           // Even distribution of the children is built in

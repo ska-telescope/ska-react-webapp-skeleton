@@ -155,11 +155,11 @@ module.exports = () => {
             globOptions: {
               dot: true,
               gitignore: true,
-              ignore: ['**/*.html'],
-            },
-          },
-        ],
-      }),
+              ignore: ['**/*.html']
+            }
+          }
+        ]
+      })
     ]
   };
 };
