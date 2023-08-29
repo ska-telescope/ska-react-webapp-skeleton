@@ -17,7 +17,7 @@ const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;
 
 function App() {
-  const { t } = useTranslation('reactSkeleton');
+  const { t } = useTranslation();
   const { themeMode, toggleTheme } = storageObject.useStore();
   const { telescope, updateTelescope } = storageObject.useStore();
 
