@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 import moment from 'moment';
-import langAF from './locales/en/reactSkeleton.json';
+import langAF from './locales/af/reactSkeleton.json';
 import langEN from './locales/en/reactSkeleton.json';
 
 i18n
@@ -22,8 +22,8 @@ i18n
         translation: langEN
       }
     },
-    lng: "en", // if you're using a language detector, do not define the lng option
-    fallbackLng: "en",
+    lng: 'en', // if you're using a language detector, do not define the lng option
+    fallbackLng: 'en',
 
     interpolation: {
       escapeValue: false,
