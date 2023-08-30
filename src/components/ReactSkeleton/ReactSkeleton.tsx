@@ -8,7 +8,7 @@ const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
 
 const ReactSkeleton = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('reactSkeleton');
   const { telescope, user } = storageObject.useStore();
   const [theNumber, setTheNumber] = React.useState(0);
   const [theText, setTheText] = React.useState('');

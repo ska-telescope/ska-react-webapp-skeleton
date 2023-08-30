@@ -1,5 +1,5 @@
 {
-  "language": "English/ UK",
+  "language": "English",
   "date_format_one": "{{-date, YYYY/MM/DD}}",
   "date_format_two": "{{date, DD-MM-YYYY}}",
   "dummy": "I am in ENGLISH translation file only",
