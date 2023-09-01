@@ -2,14 +2,43 @@ import React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Alert, NumberEntry, TextEntry, Status, Spacer } from '@ska-telescope/ska-gui-components';
-import { storageObject } from '../../services/stateStorage';
 
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
 
+/*
+ *  Displaying information from the storage object
+ *  ==============================================
+ * 
+ *  import { storageObject } from '../../services/stateStorage';
+ * 
+ *  const { telescope, user } = storageObject.useStore();
+ * 
+ *  <p data-testId="telescopeNameId">{telescope?.name}</p>
+ *  <p data-testId="userNameId">{user?.username}</p> 
+ */
+
+/*
+ *  Displaying a number in an international format using i18n
+ *  =========================================================
+ * 
+ *  Specific formatting is done within the resource file for the specific language
+ * 
+ *  <p>{t('intlNumber', { val: 2000 })}</p>
+ */
+
+/*
+ *  Displaying a date in an international format using i18n
+ *  ========================================================
+ * 
+ *  Specific formatting is done within the resource file for the specific language
+ * 
+ *  <p>{t('date_format_one', { date: new Date() })}</p>
+ *  <p>{t('date_format_two', { date: new Date() })}</p>
+ */
+
 const ReactSkeleton = () => {
   const { t } = useTranslation('reactSkeleton');
-  const { telescope, user } = storageObject.useStore();
   const [theNumber, setTheNumber] = React.useState(0);
   const [theText, setTheText] = React.useState('');
 
@@ -104,12 +133,7 @@ const ReactSkeleton = () => {
           <Card data-testid="cardId" variant="outlined">
             <CardContent>
               <p data-testId="languageId">{t('language')}</p>
-              {false && <p>{t('date_format_one', { date: new Date() })}</p>}
-              {false && <p>{t('date_format_two', { date: new Date() })}</p>}
-              {false && <p>{t('intlNumber', { val: 2000 })}</p>}
               <Status level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
-              {false && <p data-testId="telescopeNameId">{telescope?.name}</p>}
-              {false && <p data-testId="userNameId">{user?.username}</p>}
               <p data-testId="dummyMessageId">{t('dummy')}</p>
             </CardContent>
           </Card>
