@@ -3,7 +3,7 @@ import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { THEME_DARK, THEME_LIGHT } from '@ska-telescope/ska-gui-components';
 import theme from '../../services/theme/theme';
-import ReactSkeleton from './ReactSkeleton';
+import App from './App';
 
 const THEME = [THEME_DARK, THEME_LIGHT];
 
@@ -13,7 +13,7 @@ describe('<ReactSkeleton />', () => {
       cy.mount(
         <ThemeProvider theme={theme(theTheme)}>
           <CssBaseline />
-          <ReactSkeleton />
+          <App />
         </ThemeProvider>
       );
     });

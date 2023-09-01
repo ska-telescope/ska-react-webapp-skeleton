@@ -8,10 +8,10 @@ import {
   SPACER_VERTICAL,
   TelescopeSelector
 } from '@ska-telescope/ska-gui-components';
-import Loader from '../components/Loader/Loader';
-import ReactSkeleton from '../components/ReactSkeleton/ReactSkeleton';
-import { storageObject } from '../services/stateStorage';
-import theme from '../services/theme/theme';
+import Loader from '../Loader/Loader';
+import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
+import { storageObject } from '../../services/stateStorage';
+import theme from '../../services/theme/theme';
 
 const HEADER_HEIGHT = 70;
 const FOOTER_HEIGHT = 90;
@@ -39,7 +39,9 @@ function App() {
         <Header testId="headerId" themeToggle={toggleTheme} toolTip={toolTip}>
           <Grid item />
           <Grid item>
-            <Typography variant="h4">SKA REACT SKELETON</Typography>
+            <Typography data-testid="headerTitleId" variant="h4">
+              SKA REACT SKELETON
+            </Typography>
           </Grid>
           <Grid item />
         </Header>
@@ -51,7 +53,7 @@ function App() {
           {
             // This is the ONLY component that is accessible via micro-frontend implementation
           }
-          <ReactSkeleton data-testid="reactSkeletonId" />
+          <ReactSkeleton />
           {
             // Example of the spacer being used to stop content from being hidden behind the Footer component
           }
@@ -62,7 +64,11 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer testId="footerId">
-          <Grid item>{version}</Grid>
+          <Grid item>
+            <Typography data-testid="footerVersionId" variant="subtitle1">
+              {version}
+            </Typography>
+          </Grid>
           <Grid item alignItems="center" justifyContent="center">
             <TelescopeSelector
               current={telescope.code}

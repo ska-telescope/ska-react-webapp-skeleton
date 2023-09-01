@@ -2,21 +2,52 @@ import React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Alert, NumberEntry, TextEntry, Status, Spacer } from '@ska-telescope/ska-gui-components';
-import { storageObject } from '../../services/stateStorage';
 
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
 
+/*
+ *  Displaying information from the storage object
+ *  ==============================================
+ * 
+ *  import { storageObject } from '../../services/stateStorage';
+ * 
+ *  const { telescope, user } = storageObject.useStore();
+ * 
+ *  <p data-testId="telescopeNameId">{telescope?.name}</p>
+ *  <p data-testId="userNameId">{user?.username}</p> 
+ */
+
+/*
+ *  Displaying a number in an international format using i18n
+ *  =========================================================
+ * 
+ *  Specific formatting is done within the resource file for the specific language
+ * 
+ *  <p>{t('intlNumber', { val: 2000 })}</p>
+ */
+
+/*
+ *  Displaying a date in an international format using i18n
+ *  ========================================================
+ * 
+ *  Specific formatting is done within the resource file for the specific language
+ * 
+ *  <p>{t('date_format_one', { date: new Date() })}</p>
+ *  <p>{t('date_format_two', { date: new Date() })}</p>
+ */
+
 const ReactSkeleton = () => {
   const { t } = useTranslation('reactSkeleton');
-  const { telescope, user } = storageObject.useStore();
   const [theNumber, setTheNumber] = React.useState(0);
   const [theText, setTheText] = React.useState('');
 
   return (
     <>
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Typography variant="h5">Welcome</Typography>
+        <Typography data-testId="titleId" variant="h5">
+          Welcome
+        </Typography>
       </Grid>
 
       <Spacer />
@@ -32,13 +63,15 @@ const ReactSkeleton = () => {
             <Grid container direction="row" alignItems="center" justifyContent="space-around">
               <Grid item xs={2} />
               <Grid item xs={8}>
-                <Typography>This is a simple implementation of a REACT Application</Typography>
+                <Typography data-testid="text1Id">
+                  This is a simple implementation of a REACT Application
+                </Typography>
               </Grid>
               <Grid item xs={2} />
 
               <Grid item xs={2} />
               <Grid item xs={8}>
-                <Typography>
+                <Typography data-testid="text2Id">
                   It is hoped that this is used as a basis for new applications for the SKAO
                 </Typography>
               </Grid>
@@ -46,7 +79,7 @@ const ReactSkeleton = () => {
 
               <Grid item xs={2} />
               <Grid item xs={8}>
-                <Typography m={2}>
+                <Typography data-testid="text3Id" m={2}>
                   A few basic components have been added as examples, as well as the MUI grid which
                   can be used for component layout
                 </Typography>
@@ -55,7 +88,7 @@ const ReactSkeleton = () => {
 
               <Grid item xs={3} />
               <Grid item xs={6}>
-                <Typography m={2}>
+                <Typography data-testid="text4Id" m={2}>
                   For information on the available gui-components, see the documentation available
                   at this link
                 </Typography>
@@ -63,7 +96,7 @@ const ReactSkeleton = () => {
               <Grid item xs={3} />
 
               <Grid item>
-                <Typography m={2} variant="body2">
+                <Typography data-testid="text5Id" m={2} variant="body2">
                   https://developer.skao.int/projects/ska-gui-components/en/latest/?badge=latest
                 </Typography>
               </Grid>
@@ -99,14 +132,9 @@ const ReactSkeleton = () => {
         <Grid item>
           <Card data-testid="cardId" variant="outlined">
             <CardContent>
-              <p>{t('language')}</p>
-              {false && <p>{t('date_format_one', { date: new Date() })}</p>}
-              {false && <p>{t('date_format_two', { date: new Date() })}</p>}
-              {false && <p>{t('intlNumber', { val: 2000 })}</p>}
+              <p data-testId="languageId">{t('language')}</p>
               <Status level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
-              <p>{telescope?.name}</p>
-              <p>{user?.username}</p>
-              <p>{t('dummy')}</p>
+              <p data-testId="dummyMessageId">{t('dummy')}</p>
             </CardContent>
           </Card>
         </Grid>
