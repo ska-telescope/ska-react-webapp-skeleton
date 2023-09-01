@@ -39,7 +39,9 @@ function App() {
         <Header testId="headerId" themeToggle={toggleTheme} toolTip={toolTip}>
           <Grid item />
           <Grid item>
-            <Typography variant="h4">SKA REACT SKELETON</Typography>
+            <Typography data-testid="headerTitleId" variant="h4">
+              SKA REACT SKELETON
+            </Typography>
           </Grid>
           <Grid item />
         </Header>
@@ -51,7 +53,7 @@ function App() {
           {
             // This is the ONLY component that is accessible via micro-frontend implementation
           }
-          <ReactSkeleton data-testid="reactSkeletonId" />
+          <ReactSkeleton />
           {
             // Example of the spacer being used to stop content from being hidden behind the Footer component
           }
@@ -62,7 +64,11 @@ function App() {
           // Even distribution of the children is built in
         }
         <Footer testId="footerId">
-          <Grid item>{version}</Grid>
+          <Grid item>
+            <Typography data-testid="footerVersionId" variant="subtitle1">
+              {version}
+            </Typography>
+          </Grid>
           <Grid item alignItems="center" justifyContent="center">
             <TelescopeSelector
               current={telescope.code}

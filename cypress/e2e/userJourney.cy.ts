@@ -1,23 +1,61 @@
-context('Testing react skeleton', () => {
+context('REACT SKELETON', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8090/');
   });
-  it('verify header', () => {
-    cy.get('h4').contains('SKA REACT SKELETON');
+
+  it('Header : Verify title and external link to skao site', () => {
+    cy.get('[data-testid="headerTitleId"]').contains('SKA REACT SKELETON');
+    cy.get('[data-testid="skaoLogo"]').click();
+  });
+
+  it('Header : Verify light/dark mode is available', () => {
     cy.get('[data-testid="Brightness7Icon"]').click();
-    cy.get('[aria-label="skaWebsite"]').click();
+    cy.get('[data-testid="Brightness4Icon"]').should('be.visible');
+    cy.get('[data-testid="Brightness4Icon"]').click();
+    cy.get('[data-testid="Brightness7Icon"]').should('be.visible');
   });
 
-  it('verify footer', () => {
-    cy.get('button').contains('SKA LOW');
-    cy.get('button').contains('SKA MID');
+  it('Footer : Verify Title and Telescope selector', () => {
+    cy.get('[data-testid="footerVersionId"]')
+      .contains('0.0.9')
+      .should('be.visible');
+    cy.get('[data-testid="telescopeSelectorIdlow"]').contains('SKA LOW');
+    cy.get('[data-testid="telescopeSelectorIdmid"]').contains('SKA MID');
   });
 
-  it('verify alert card', () => {
-    cy.get('[data-testid="cardId"]').contains('English');
-    cy.get('[data-testid="cardId"]').contains('SKA LOW');
-    cy.get('[data-testid="cardId"]').contains('I am in ENGLISH translation file only');
+  // Container testing
+
+  it('Content : verify title', () => {
+    cy.get('[data-testid="titleId"]').contains('Welcome');
+  });
+
+  it('Content : verify alert information panel', () => {
+    cy.get('[data-testid="alertTestId"]').should('exist');
+    cy.get('[data-testid="text1Id"]').contains(
+      'This is a simple implementation of a REACT Application'
+    );
+    cy.get('[data-testid="text2Id"]').contains(
+      'It is hoped that this is used as a basis for new applications for the SKAO'
+    );
+    cy.get('[data-testid="text3Id"]').contains(
+      'A few basic components have been added as examples, as well as the MUI grid which can be used for component layout'
+    );
+    cy.get('[data-testid="text4Id"]').contains(
+      'For information on the available gui-components, see the documentation available at this link'
+    );
+    cy.get('[data-testid="text5Id"]').contains(
+      'https://developer.skao.int/projects/ska-gui-components/en/latest/?badge=latest'
+    );
+  });
+
+  it('Content : verify sample data entry fields', () => {
     cy.get('[data-testid="textId"]').should('exist');
     cy.get('[data-testid="numberId"]').should('exist');
+  });
+
+  it('Content : verify alert card', () => {
+    cy.get('[data-testid="languageId"]').contains('English');
+    cy.get('[data-testid="statusId"]').should('exist');
+    cy.get('[data-testid="dummyMessageId"]').contains('I am in ENGLISH translation file only');
   });
 });

@@ -17,7 +17,6 @@ module.exports = defineConfig({
     defaultCommandTimeout: 12000,
 
     setupNodeEvents(on, config) {
-      // implement node event listeners here
       require('./cypress/plugins/index.js')(on, config);
       on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
       return config;

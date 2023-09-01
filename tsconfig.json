@@ -19,12 +19,11 @@
     "incremental": true
   },
   "include": [
-    "App.tsx",
-    "src/App/App.tsx",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "cypress/e2e/userJourney.cy.ts"
+    "src",
+    "cypress",
+    "./cypress.d.ts",
+    "./cypress/support/index.d.ts",
+    "public/locales/en/userJourney.cy.ts"
   ],
   "exclude": ["node_modules"],
   "paths": {
