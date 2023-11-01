@@ -10,12 +10,12 @@ const STATUS_SIZE = 50;
  *  Displaying information from the storage object
  *  ==============================================
  * 
- *  import { storageObject } from '../../services/stateStorage';
+ *  import { storageObject } from '@ska-telescope/ska-gui-local-storage';
  * 
  *  const { telescope, user } = storageObject.useStore();
  * 
- *  <p data-testId="telescopeNameId">{telescope?.name}</p>
- *  <p data-testId="userNameId">{user?.username}</p> 
+ *  <p data-testid="telescopeNameId">{telescope?.name}</p>
+ *  <p data-testid="userNameId">{user?.username}</p> 
  */
 
 /*
@@ -45,7 +45,7 @@ const ReactSkeleton = () => {
   return (
     <>
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Typography data-testId="titleId" variant="h5">
+        <Typography data-testid="titleId" variant="h5">
           Welcome
         </Typography>
       </Grid>
@@ -132,9 +132,9 @@ const ReactSkeleton = () => {
         <Grid item>
           <Card data-testid="cardId" variant="outlined">
             <CardContent>
-              <p data-testId="languageId">{t('language')}</p>
+              <p data-testid="languageId">{t('language')}</p>
               <Status level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
-              <p data-testId="dummyMessageId">{t('dummy')}</p>
+              <p data-testid="dummyMessageId">{t('dummy')}</p>
             </CardContent>
           </Card>
         </Grid>

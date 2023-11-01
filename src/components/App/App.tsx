@@ -8,9 +8,9 @@ import {
   SPACER_VERTICAL,
   TelescopeSelector
 } from '@ska-telescope/ska-gui-components';
+import { storageObject } from '@ska-telescope/ska-gui-local-storage';
 import Loader from '../Loader/Loader';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
-import { storageObject } from '../../services/stateStorage';
 import theme from '../../services/theme/theme';
 
 const HEADER_HEIGHT = 70;

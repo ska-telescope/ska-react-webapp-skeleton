@@ -131,6 +131,10 @@ module.exports = () => {
             requiredVersion: deps['@ska-telescope/ska-gui-components'],
             eager: true
           },
+          '@ska-telescope/ska-gui-local-storage': {
+            requiredVersion: deps['@ska-telescope/ska-gui-local-storage'],
+            eager: true
+          },
           // mixture
           '@emotion/react': {
             singleton: true,
