@@ -38,7 +38,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.12.1",
     "@reduxjs/toolkit": "^1.9.5",
-    "@ska-telescope/ska-gui-components": "^0.1.59",
+    "@ska-telescope/ska-gui-components": "^0.1.62",
     "@ska-telescope/ska-gui-local-storage": "^0.0.1",
     "babel-core": "6",
     "bundle-loader": "^0.5.6",

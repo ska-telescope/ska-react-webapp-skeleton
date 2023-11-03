@@ -14,12 +14,11 @@ import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
 import theme from '../../services/theme/theme';
 
 const HEADER_HEIGHT = 70;
-const FOOTER_HEIGHT = 90;
+const FOOTER_HEIGHT = 20;
 
 function App() {
   const { t } = useTranslation('reactSkeleton');
   const { themeMode, toggleTheme } = storageObject.useStore();
-  const { telescope, updateTelescope } = storageObject.useStore();
 
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
@@ -35,16 +34,14 @@ function App() {
           // Even distribution of the children is built in
           // Logo with URL link included
           // Button for light/dark mode included, and sample implementation provided.
+          // TelescopeSelector build in, displayed as determined by selectTelescope property
         }
-        <Header testId="headerId" themeToggle={toggleTheme} toolTip={toolTip}>
-          <Grid item />
-          <Grid item>
-            <Typography data-testid="headerTitleId" variant="h4">
-              SKA REACT SKELETON
-            </Typography>
-          </Grid>
-          <Grid item />
-        </Header>
+        <Header
+          testId="headerId"
+          title="ska react skeleton"
+          toolTip={toolTip}
+          selectTelescope={false}
+        />
         <Paper sx={{ height: '100%' }}>
           {
             // Example of the spacer being used to shift content from behind the Header component
@@ -63,22 +60,7 @@ function App() {
           // Footer container :
           // Even distribution of the children is built in
         }
-        <Footer testId="footerId">
-          <Grid item>
-            <Typography data-testid="footerVersionId" variant="subtitle1">
-              {version}
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center" justifyContent="center">
-            <TelescopeSelector
-              current={telescope.code}
-              setValue={updateTelescope}
-              toolTip={t('toolTip.button.telescopeToggle')}
-              value={telescope}
-            />
-          </Grid>
-          <Grid item />
-        </Footer>
+        <Footer testId="footerId" version={version} />
       </React.Suspense>
     </ThemeProvider>
   );

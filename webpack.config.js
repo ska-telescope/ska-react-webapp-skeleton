@@ -107,6 +107,11 @@ module.exports = () => {
           },
           // Material UI
           '@mui/material': { singleton: true, requiredVersion: deps['@mui/material'], eager: true },
+          '@mui/icons-material': {
+            singleton: true,
+            requiredVersion: deps['@mui/icons-material'],
+            eager: true
+          },
           // Redux
           'react-redux': { singleton: true, requiredVersion: deps['react-redux'], eager: true },
           redux: { singleton: true, requiredVersion: deps['redux'], eager: true },
