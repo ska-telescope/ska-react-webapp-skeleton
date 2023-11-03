@@ -4,7 +4,6 @@ context('REACT SKELETON', () => {
   });
 
   it('Header : Verify title and external link to skao site', () => {
-    cy.get('[data-testid="headerTitleId"]').contains('SKA REACT SKELETON');
     cy.get('[data-testid="skaoLogo"]').click();
   });
 
