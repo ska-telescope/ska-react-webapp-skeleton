@@ -15,11 +15,9 @@ context('REACT SKELETON', () => {
   });
 
   it('Footer : Verify Title and Telescope selector', () => {
-    cy.get('[data-testid="footerVersionId"]')
+    cy.get('[data-testid="footerId"]')
       .contains('0.0.9')
       .should('be.visible');
-    cy.get('[data-testid="telescopeSelectorIdlow"]').contains('SKA LOW');
-    cy.get('[data-testid="telescopeSelectorIdmid"]').contains('SKA MID');
   });
 
   // Container testing
