@@ -1,13 +1,7 @@
 import React from 'react';
-import { CssBaseline, Grid, Paper, ThemeProvider, Typography } from '@mui/material';
+import { CssBaseline, Paper, ThemeProvider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import {
-  Footer,
-  Header,
-  Spacer,
-  SPACER_VERTICAL,
-  TelescopeSelector
-} from '@ska-telescope/ska-gui-components';
+import { Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
 import { storageObject } from '@ska-telescope/ska-gui-local-storage';
 import Loader from '../Loader/Loader';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
@@ -18,7 +12,7 @@ const FOOTER_HEIGHT = 20;
 
 function App() {
   const { t } = useTranslation('reactSkeleton');
-  const { themeMode, toggleTheme } = storageObject.useStore();
+  const { themeMode } = storageObject.useStore();
 
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
