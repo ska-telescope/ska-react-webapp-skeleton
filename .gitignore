@@ -32,6 +32,7 @@ yarn-error.log*
 dist/
 junit.xml
 linting.xml
+cypress/screenshots
 
 package-lock.json
 

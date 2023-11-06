@@ -14,6 +14,11 @@ context('REACT SKELETON', () => {
     cy.get('[data-testid="Brightness7Icon"]').should('be.visible');
   });
 
+  it('Footer : Verify Title and Telescope selector', () => {
+    cy.get('[data-testid="footerId"]')
+      .contains('0.0.9')
+      .should('be.visible');
+  });
   // Container testing
 
   it('Content : verify title', () => {
