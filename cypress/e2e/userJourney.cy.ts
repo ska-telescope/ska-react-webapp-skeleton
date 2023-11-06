@@ -3,7 +3,7 @@ context('REACT SKELETON', () => {
     cy.visit('http://localhost:8090/');
   });
 
-  it('Header : Verify title and external link to skao site', () => {
+  it('Header : Verify external link to skao site', () => {
     cy.get('[data-testid="skaoLogo"]').click();
   });
 
@@ -19,7 +19,6 @@ context('REACT SKELETON', () => {
       .contains('0.0.9')
       .should('be.visible');
   });
-
   // Container testing
 
   it('Content : verify title', () => {
