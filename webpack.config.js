@@ -17,7 +17,10 @@ module.exports = () => {
     },
 
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      fallback: {
+        path: require.resolve('path-browserify'),
+      }
     },
 
     devServer: {
@@ -67,13 +70,18 @@ module.exports = () => {
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',
         remotes: {
-          counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
+          RemoteSKALogin: 'skaLoginPage@http://localhost:4201/remoteEntry.js',
         },
         exposes: {
           './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
         },
         shared: {
           ...deps,
+          '@module-federation/utilities': {
+            eager: true,
+            singleton: true,
+            requiredVersion: deps['@module-federation/utilities']
+          },
           react: {
             eager: true,
             singleton: true,
@@ -83,6 +91,11 @@ module.exports = () => {
             eager: true,
             singleton: true,
             requiredVersion: deps['react-dom']
+          },
+          'axios': {
+            eager: true,
+            singleton: true,
+            requiredVersion: deps['axios']
           },
           // i18n
           i18next: {
