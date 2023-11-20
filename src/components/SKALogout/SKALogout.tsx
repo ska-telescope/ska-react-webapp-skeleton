@@ -104,7 +104,7 @@ export function SKALogout({
           <Component
             openDialog={open}
             setOpenDialog={setOpen}
-            LoginFunction={confirmFunction}
+            LogoutFunction={confirmFunction}
             CancelFunction={cancelFunction}
             domain={DOMAIN}
           />

@@ -40,7 +40,7 @@ function App() {
   const loginButton = () => (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {!user && (
+      {(!user || !user.username) && (
         <Button
           ariaDescription="ariaDescription"
           color={ButtonColorTypes.Secondary}
