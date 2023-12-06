@@ -7,12 +7,10 @@ Writing
 We use Cypress as the test running framework. It will look for test files within a number of locations, however the standard that the SKAO will employ will be the use of `.cy.{tsx | jsx}` in the same folder as the component being tested.
 
 ```
-App
-|  App.cy.tsx
-|  App.tsx
-|
 components
-|
+└─ App
+   |  App.cy.tsx
+   |  App.tsx
 └─ ReactSkeleton
    |  ReactSkeleton.cy.tsx
    |  ReactSkeleton.tsx

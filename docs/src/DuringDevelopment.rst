@@ -17,9 +17,19 @@ Once these steps have been completed, the application should be accessible from 
 SKA Components
 ==============
 
-These are supplied from the ska-javascript-component library for pure components, or from the ska-gui-components library for those that has been built using Material UI. It is noted that all the components from ska-javascript are passed through so separate inclusion is not required if the ska-gui-components are also required.
+These are supplied from the various components. 
+An overview of the libraries have been provided here for reference.
+For specifics of the components/functions available, please refer to the appropriate repository
 
-For specifics of the components available, please refer to the appropriate repository
+ska-javascript-components : library containing a few pure components and types
+
+ska-gui-components : library containing components that have been built using Material UI. 
+
+ska-gui-local-storage : library containing redux local storage.  This is used by the ska-gui-components components as applicable
+
+It is noted that all the components from ska-javascript are provided in addition as part of the ska-gui-components library,
+so separate inclusion is not required if the ska-gui-components are included.
+
 
 Services
 ========
@@ -30,10 +40,5 @@ It is expected that in the main that there will be no updates to these services 
 Below is a list of the current services, together with their purpose.
 
 i18n : Allows for text to be displayed in the language of the browser, with English as the default
-redux-telescope : Local storage containing the current telescope. Accessed via the stateStorage service
-redux-theme : Local storage containing the current theme. Accessed via the stateStorage service
-redux-user : Local storage containing the current user. Accessed via the stateStorage service
-stateStorage : Contains Creation and access to the localStorage
-theme : Contains the initialization of the latest SKAO Theme
-types : Contains the TS type definitions for the services above
 
+theme : Contains the initialization of the latest SKAO Theme

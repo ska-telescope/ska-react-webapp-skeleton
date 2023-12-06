@@ -10,15 +10,21 @@ _All the following notes assume you are at the command prompt for your chosen en
 
 2.  Clone the project from GitHub
 
-3.  Install the SKAO specific library
+3.  Allow yarn to be able to include required SKAO libraries
 
 > npm config set @ska-telescope:registry https://artefact.skao.int/repository/npm-internal/
-
-> yarn add @ska-telescope/ska-gui-components@latest
 
 4.  Install all the necessary project dependencies by running
 
 > yarn init
+
+5.  INstall required SKAO libraries 
+
+It is expected that required SKAO libraries would have been included at this point,
+however if this is found not to be the case, the following command will include them.
+
+> yarn skao:update
+
 
 ### Steps to convert to your own application.
 

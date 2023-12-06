@@ -66,9 +66,7 @@ module.exports = () => {
       new ModuleFederationPlugin({
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',
-        remotes: {
-          counterStore: 'counterStore@http://localhost:8094/remoteEntry.js'
-        },
+        remotes: {},
         exposes: {
           './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
         },
@@ -110,25 +108,6 @@ module.exports = () => {
           '@mui/icons-material': {
             singleton: true,
             requiredVersion: deps['@mui/icons-material'],
-            eager: true
-          },
-          // Redux
-          'react-redux': { singleton: true, requiredVersion: deps['react-redux'], eager: true },
-          redux: { singleton: true, requiredVersion: deps['redux'], eager: true },
-          '@reduxjs/toolkit': {
-            singleton: true,
-            requiredVersion: deps['@reduxjs/toolkit'],
-            eager: true
-          },
-          'redux-saga': { singleton: true, requiredVersion: deps['redux-saga'], eager: true },
-          'redux-localstorage-simple': {
-            singleton: true,
-            requiredVersion: deps['redux-localstorage-simple'],
-            eager: true
-          },
-          'redux-dynamic-middlewares': {
-            singleton: true,
-            requiredVersion: deps['redux-dynamic-middlewares'],
             eager: true
           },
           // SKAO components
