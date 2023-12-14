@@ -59,7 +59,7 @@ code_analysis:
 
 # run the test coverage reports
 test_and_coverage:
-  image: cypress/node18.12.0-chrome103-ff107
+  image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
   stage: test
   tags:
     - k8srunner
@@ -79,7 +79,7 @@ test_and_coverage:
       - build/
 
 test-counts:
-  image: cypress/node18.12.0-chrome103-ff107
+  image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
   stage: scan
   tags:
     - k8srunner
@@ -120,24 +120,6 @@ build:
     - yarn install
     - yarn build
 
-# export the report
-pages:
-  stage: pages
-  tags:
-    - k8srunner
-  dependencies:
-    - test_and_coverage
-    - list_dependencies
-    - code_quality
-  script:
-    - mv public/* .
-    - cp -r build/* public
-    - cp -r .public/* public
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-
 include:
   - template: Code-Quality.gitlab-ci.yml
   # Docs pages
@@ -162,6 +144,10 @@ include:
 k8s-test:
   script:
     - echo "There are no e2e tests targeting deployment here yet!"
+    - echo "Deleting the deployment as it's unnecessary"
+    - make k8s-uninstall-chart
+    - kubectl -n $KUBE_NAMESPACE delete pods,svc,daemonsets,deployments,replicasets,statefulsets,cronjobs,jobs,ingresses,configmaps --all
+    - make k8s-delete-namespace
 
 code_quality:
   # https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#generate-an-html-report
