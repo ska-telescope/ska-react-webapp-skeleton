@@ -161,11 +161,7 @@ include:
 
 k8s-test:
   script:
-    - mkdir -p build/tests
-    - yarn install --immutable
-    - yarn test:cypress:component:ci
-    - yarn start &
-    - yarn test:cypress:e2e:ci
+    - echo "There are no e2e tests targeting deployment here yet!"
 
 code_quality:
   # https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#generate-an-html-report

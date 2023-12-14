@@ -1,7 +1,10 @@
 image:
   imagePullPolicy: IfNotPresent
   container: registry.gitlab.com/ska-telescope/templates/ska-react-webapp-skeleton/ska-react-webapp-skeleton
-  version: 0.0.0
+  version: 1.0.0
+
+labels:
+  app: ska-react-webapp-skeleton
 
 ingress:
   prependByNamespace: true
