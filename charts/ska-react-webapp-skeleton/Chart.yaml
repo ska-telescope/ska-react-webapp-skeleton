@@ -5,5 +5,5 @@ name: ska-react-webapp-skeleton
 description: A Helm chart to deploy the React Skeleton
 home: https://gitlab.com/ska-telescope/templates/ska-react-webapp-skeleton
 
-appVersion: 0.0.0
-version: 0.0.0
+appVersion: 0.1.0
+version: 0.1.0
