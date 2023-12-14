@@ -1,5 +1,5 @@
 # pull the base image
-FROM node:18.12.1 as base
+FROM node:21-slim as base
 
 # # set the working direction
 WORKDIR /app
