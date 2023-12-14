@@ -59,7 +59,7 @@ code_analysis:
 
 # run the test coverage reports
 test_and_coverage:
-  image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+  image: cypress/node18.12.0-chrome103-ff107
   stage: test
   tags:
     - k8srunner
@@ -79,7 +79,7 @@ test_and_coverage:
       - build/
 
 test-counts:
-  image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+  image: cypress/node18.12.0-chrome103-ff107
   stage: scan
   tags:
     - k8srunner
