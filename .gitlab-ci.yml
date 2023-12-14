@@ -1,5 +1,5 @@
 default:
-  image: node:20.2.0-alpine3.18
+  image: node:20-slim
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
@@ -13,6 +13,19 @@ stages:
   - pages
   - deploy
   - publish
+
+cache:
+  - key:
+      files:
+        - yarn.lock
+      prefix: $CI_COMMIT_REF_SLUG
+    fallback_keys:
+      - cache-$CI_COMMIT_REF_SLUG
+      - cache-default
+  paths:
+    - node_modules/
+    - public/
+    - vendor/
 
 #Install basic dependencies using yarn
 install_dependencies:
@@ -34,10 +47,6 @@ code_analysis:
   stage: lint
   tags:
     - k8srunner
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
   before_script:
     - mkdir -p build/reports
   script:
@@ -54,10 +63,6 @@ test_and_coverage:
   stage: test
   tags:
     - k8srunner
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
   before_script:
     - mkdir -p build/reports
     - mkdir -p build/.nyc_output
@@ -78,10 +83,6 @@ test-counts:
   stage: scan
   tags:
     - k8srunner
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
   before_script:
     - mkdir -p build/tests
     - yarn install --immutable
@@ -120,10 +121,6 @@ build:
   stage: build
   tags:
     - k8srunner
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
   script:
     - npm config set registry https://registry.npmjs.org/
     - yarn install
