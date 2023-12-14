@@ -25,3 +25,9 @@ FROM nginx:1.25.2 as final
 
 # Copy built files
 COPY --from=builder /dist/* /usr/share/nginx/html/
+
+COPY nginx.conf /etc/nginx/
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
