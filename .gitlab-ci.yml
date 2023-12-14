@@ -22,10 +22,10 @@ cache:
     fallback_keys:
       - cache-$CI_COMMIT_REF_SLUG
       - cache-default
-  paths:
-    - node_modules/
-    - public/
-    - vendor/
+    paths:
+      - node_modules/
+      - public/
+      - vendor/
 
 #Install basic dependencies using yarn
 install_dependencies:
