@@ -24,7 +24,6 @@ cache:
       - cache-default
     paths:
       - node_modules/
-      - public/
       - vendor/
 
 #Install basic dependencies using yarn
