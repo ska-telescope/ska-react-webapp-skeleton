@@ -15,32 +15,24 @@ context('REACT SKELETON', () => {
   });
 
   it('Footer : Verify Title and Telescope selector', () => {
-    cy.get('[data-testid="footerId"]')
-      .contains('1.0.0')
-      .should('be.visible');
+    cy.get('[data-testid="footerId"]').contains('1.0.1').should('be.visible');
   });
   // Container testing
 
   it('Content : verify title', () => {
-    cy.get('[data-testid="titleId"]').contains('Welcome');
+    cy.get('[data-testid="titleId"]').contains('WELCOME');
   });
 
   it('Content : verify alert information panel', () => {
     cy.get('[data-testid="alertTestId"]').should('exist');
     cy.get('[data-testid="text1Id"]').contains(
-      'This is a simple implementation of a REACT Application'
+      'It is hoped that this is used as a basis for new REACT applications for the SKAO',
     );
     cy.get('[data-testid="text2Id"]').contains(
-      'It is hoped that this is used as a basis for new applications for the SKAO'
+      'A few basic components have been added as examples, as well as the MUI grid which can be used for component layout',
     );
     cy.get('[data-testid="text3Id"]').contains(
-      'A few basic components have been added as examples, as well as the MUI grid which can be used for component layout'
-    );
-    cy.get('[data-testid="text4Id"]').contains(
-      'For information on the available gui-components, see the documentation available at this link'
-    );
-    cy.get('[data-testid="text5Id"]').contains(
-      'https://developer.skao.int/projects/ska-gui-components/en/latest/?badge=latest'
+      'For information on the available gui-components, click on the documentation link in the header',
     );
   });
 

@@ -1,7 +1,13 @@
 import React from 'react';
-import { CssBaseline, Paper, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { CopyrightModal, Footer, Header, Spacer, SPACER_VERTICAL } from '@ska-telescope/ska-gui-components';
+import {
+  CopyrightModal,
+  Footer,
+  Header,
+  Spacer,
+  SPACER_VERTICAL
+} from '@ska-telescope/ska-gui-components';
 import { storageObject } from '@ska-telescope/ska-gui-local-storage';
 import Loader from '../Loader/Loader';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
@@ -17,6 +23,9 @@ function App() {
 
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
+  const headerTip = t('toolTip.button.docs');
+  const headerURL = t('toolTip.button.docsURL');
+  const docs = { tooltip: headerTip, url: headerURL };
   const toolTip = { skao, mode };
   const version = process.env.VERSION;
 
@@ -33,25 +42,24 @@ function App() {
         }
         <CopyrightModal copyrightFunc={setShowCopyright} show={showCopyright} />
         <Header
+          docs={docs}
           testId="headerId"
           title="ska react skeleton"
           toolTip={toolTip}
           selectTelescope={false}
         />
-        <Paper sx={{ height: '100%' }}>
-          {
-            // Example of the spacer being used to shift content from behind the Header component
-          }
-          <Spacer size={HEADER_HEIGHT} axis={SPACER_VERTICAL} />
-          {
-            // This is the ONLY component that is accessible via micro-frontend implementation
-          }
-          <ReactSkeleton />
-          {
-            // Example of the spacer being used to stop content from being hidden behind the Footer component
-          }
-          <Spacer size={FOOTER_HEIGHT} axis={SPACER_VERTICAL} />
-        </Paper>
+        {
+          // Example of the spacer being used to shift content from behind the Header component
+        }
+        <Spacer size={HEADER_HEIGHT} axis={SPACER_VERTICAL} />
+        {
+          // This is the ONLY component that is accessible via micro-frontend implementation
+        }
+        <ReactSkeleton />
+        {
+          // Example of the spacer being used to stop content from being hidden behind the Footer component
+        }
+        <Spacer size={FOOTER_HEIGHT} axis={SPACER_VERTICAL} />
         {
           // Footer container :
           // Even distribution of the children is built in

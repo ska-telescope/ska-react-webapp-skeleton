@@ -13,11 +13,11 @@ module.exports = () => {
     performance: {
       hints: false,
       maxEntrypointSize: 512000,
-      maxAssetSize: 512000
+      maxAssetSize: 512000,
     },
 
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },
 
     devServer: {
@@ -26,8 +26,8 @@ module.exports = () => {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-      }
+        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      },
     },
 
     module: {
@@ -36,109 +36,109 @@ module.exports = () => {
           test: /\.m?js|\.jsx/,
           type: 'javascript/auto',
           resolve: {
-            fullySpecified: false
-          }
+            fullySpecified: false,
+          },
         },
         {
           test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader']
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         },
         {
           test: /\.json$/,
-          loader: 'json-loader'
+          loader: 'json-loader',
         },
         {
           test: /\.(ts|tsx|js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
-          }
-        }
-      ]
+            loader: 'babel-loader',
+          },
+        },
+      ],
     },
 
     devtool: 'source-map',
 
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.VERSION': JSON.stringify(process.env.npm_package_version)
+        'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
       }),
       new ModuleFederationPlugin({
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',
         remotes: {},
         exposes: {
-          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx'
+          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx',
         },
         shared: {
           ...deps,
           react: {
             eager: true,
             singleton: true,
-            requiredVersion: deps['react']
+            requiredVersion: deps['react'],
           },
           'react-dom': {
             eager: true,
             singleton: true,
-            requiredVersion: deps['react-dom']
+            requiredVersion: deps['react-dom'],
           },
           // i18n
           i18next: {
             eager: true,
             // singleton: true,
-            requiredVersion: deps.i18next
+            requiredVersion: deps.i18next,
           },
           'react-i18next': {
             eager: true,
             // singleton: true,
-            requiredVersion: deps['react-i18next']
+            requiredVersion: deps['react-i18next'],
           },
           'i18next-browser-languagedetector': {
             eager: true,
             singleton: true,
-            requiredVersion: deps['i18next-browser-languagedetector']
+            requiredVersion: deps['i18next-browser-languagedetector'],
           },
           'i18next-http-backend': {
             eager: true,
             // singleton: true,
-            requiredVersion: deps['i18next-http-backend']
+            requiredVersion: deps['i18next-http-backend'],
           },
           // Material UI
           '@mui/material': { singleton: true, requiredVersion: deps['@mui/material'], eager: true },
           '@mui/icons-material': {
             singleton: true,
             requiredVersion: deps['@mui/icons-material'],
-            eager: true
+            eager: true,
           },
           // SKAO components
           '@ska-telescope/ska-gui-components': {
             requiredVersion: deps['@ska-telescope/ska-gui-components'],
-            eager: true
+            eager: true,
           },
           '@ska-telescope/ska-gui-local-storage': {
             requiredVersion: deps['@ska-telescope/ska-gui-local-storage'],
-            eager: true
+            eager: true,
           },
           // mixture
           '@emotion/react': {
             singleton: true,
             requiredVersion: deps['@emotion/react'],
-            eager: true
+            eager: true,
           },
           '@emotion/styled': {
             singleton: true,
             requiredVersion: deps['@emotion/styled'],
-            eager: true
+            eager: true,
           },
           moment: {
             eager: true,
             singleton: true,
-            requiredVersion: deps.moment
-          }
-        }
+            requiredVersion: deps.moment,
+          },
+        },
       }),
       new HtmlWebPackPlugin({
-        template: './public/index.html'
+        template: './public/index.html',
       }),
       new CopyWebpackPlugin({
         patterns: [
@@ -147,11 +147,11 @@ module.exports = () => {
             globOptions: {
               dot: true,
               gitignore: true,
-              ignore: ['**/*.html']
-            }
-          }
-        ]
-      })
-    ]
+              ignore: ['**/*.html'],
+            },
+          },
+        ],
+      }),
+    ],
   };
 };
