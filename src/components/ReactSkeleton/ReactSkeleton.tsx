@@ -1,7 +1,14 @@
 import React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Alert, NumberEntry, TextEntry, Status, Spacer } from '@ska-telescope/ska-gui-components';
+import {
+  Alert,
+  NumberEntry,
+  TextEntry,
+  Status,
+  Spacer,
+  AlertColorTypes
+} from '@ska-telescope/ska-gui-components';
 
 const STATUS_LEVEL = 1;
 const STATUS_SIZE = 50;
@@ -45,59 +52,35 @@ const ReactSkeleton = () => {
   return (
     <>
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Typography data-testid="titleId" variant="h5">
-          Welcome
+        <Typography m={5} data-testid="titleId" variant="h5">
+          {t('text.title')}
         </Typography>
       </Grid>
 
       <Spacer />
 
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Grid item xs={6}>
+        <Grid item>
           <Alert
             ariaDescription="Sample description for screen readers"
             ariaTitle="Sample title for screen readers"
-            severity={5}
+            color={AlertColorTypes.Info}
             testId="alertTestId"
           >
-            <Grid container direction="row" alignItems="center" justifyContent="space-around">
-              <Grid item xs={2} />
-              <Grid item xs={8}>
-                <Typography data-testid="text1Id">
-                  This is a simple implementation of a REACT Application
-                </Typography>
+            <Grid container direction="column" alignItems="center" justifyContent="space-around">
+              <Grid item>
+                <Typography data-testid="text1Id">{t('text.row1')}</Typography>
               </Grid>
-              <Grid item xs={2} />
-
-              <Grid item xs={2} />
-              <Grid item xs={8}>
-                <Typography data-testid="text2Id">
-                  It is hoped that this is used as a basis for new applications for the SKAO
-                </Typography>
-              </Grid>
-              <Grid item xs={2} />
-
-              <Grid item xs={2} />
-              <Grid item xs={8}>
-                <Typography data-testid="text3Id" m={2}>
-                  A few basic components have been added as examples, as well as the MUI grid which
-                  can be used for component layout
-                </Typography>
-              </Grid>
-              <Grid item xs={2} />
-
-              <Grid item xs={3} />
-              <Grid item xs={6}>
-                <Typography data-testid="text4Id" m={2}>
-                  For information on the available gui-components, see the documentation available
-                  at this link
-                </Typography>
-              </Grid>
-              <Grid item xs={3} />
 
               <Grid item>
-                <Typography data-testid="text5Id" m={2} variant="body2">
-                  https://developer.skao.int/projects/ska-gui-components/en/latest/?badge=latest
+                <Typography data-testid="text2Id" m={2}>
+                  {t('text.row2')}
+                </Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography data-testid="text3Id" m={2}>
+                  {t('text.row3')}
                 </Typography>
               </Grid>
             </Grid>

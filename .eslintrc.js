@@ -6,15 +6,15 @@ module.exports = {
     'prettier',
     'plugin:cypress/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['prettier', 'cypress'],
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
-    }
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     '@typescript-eslint/comma-dangle': 1,
@@ -34,8 +34,8 @@ module.exports = {
       'error',
       {
         name: 'prop-types',
-        message: 'Please add TypeScript typings to props instead.'
-      }
+        message: 'Please add TypeScript typings to props instead.',
+      },
     ],
     'import/extensions': 'off',
     'object-curly-newline': 'off',
@@ -55,11 +55,11 @@ module.exports = {
     'no-bitwise': 'off',
     '@typescript-eslint/ban-types': 'off', //  Should re-introduce at some point
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-var-requires': 'off'
+    '@typescript-eslint/no-var-requires': 'off',
   },
   env: {
     browser: true,
     es6: true,
-    node: true
-  }
+    node: true,
+  },
 };
