@@ -20,7 +20,7 @@ context('REACT SKELETON', () => {
   // Container testing
 
   it('Content : verify title', () => {
-    cy.get('[data-testid="titleId"]').contains('Welcome');
+    cy.get('[data-testid="titleId"]').contains('WELCOME');
   });
 
   it('Content : verify alert information panel', () => {
