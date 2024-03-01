@@ -3,6 +3,7 @@ default:
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
+  a11y_urls: 'https://www.skao.int/'
 
 stages:
   - dependencies
@@ -12,6 +13,7 @@ stages:
   - scan
   - pages
   - deploy
+  - accessibility
   - publish
 
 cache:
@@ -58,22 +60,25 @@ code_analysis:
 
 # run the test coverage reports
 test_and_coverage:
-  image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+  image: cypress/browsers:node18.12.0-chrome106-ff106
   stage: test
   tags:
     - k8srunner
   before_script:
     - mkdir -p build/reports
     - mkdir -p build/.nyc_output
-    - yarn install --immutable
+    - yarn install --frozen-lockfile
   script:
     - yarn start &
     - yarn test:e2e:headless
     - yarn test:coverage:report:ci
-    - mv build/reports/cobertura-coverage.xml build/reports/code-coverage.xml
-
+    - cp build/reports/cobertura-coverage.xml build/reports/code-coverage.xml
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
   artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: build/reports/cobertura-coverage.xml
     paths:
       - build/
 
@@ -121,6 +126,7 @@ build:
 
 include:
   - template: Code-Quality.gitlab-ci.yml
+  - template: 'Verify/Accessibility.gitlab-ci.yml'
   # Docs pages
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
@@ -136,9 +142,12 @@ include:
     # Tag Based GitLab Release Management
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/release.gitlab-ci.yml'
-    # .post step finalisers eg: badges
+  # .post step finalizers eg: badges
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
+  # .post step finalizers eg: badges
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
 
 k8s-test:
   script:
