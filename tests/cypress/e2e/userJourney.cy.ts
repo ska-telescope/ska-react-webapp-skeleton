@@ -15,7 +15,7 @@ context('REACT SKELETON', () => {
   });
 
   it('Footer : Verify Title and Telescope selector', () => {
-    cy.get('[data-testid="footerId"]').contains('1.0.2').should('be.visible');
+    cy.get('[data-testid="footerId"]').contains('1.0.1').should('be.visible');
   });
   // Container testing
 
@@ -26,13 +26,13 @@ context('REACT SKELETON', () => {
   it('Content : verify alert information panel', () => {
     cy.get('[data-testid="alertTestId"]').should('exist');
     cy.get('[data-testid="text1Id"]').contains(
-      'It is hoped that this is used as a basis for new REACT applications for the SKAO'
+      'It is hoped that this is used as a basis for new REACT applications for the SKAO',
     );
     cy.get('[data-testid="text2Id"]').contains(
-      'A few basic components have been added as examples, as well as the MUI grid which can be used for component layout'
+      'A few basic components have been added as examples, as well as the MUI grid which can be used for component layout',
     );
     cy.get('[data-testid="text3Id"]').contains(
-      'For information on the available gui-components, click on the documentation link in the header'
+      'For information on the available gui-components, click on the documentation link in the header',
     );
   });
 
