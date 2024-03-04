@@ -88,6 +88,7 @@ test-counts:
   tags:
     - k8srunner
   script:
+    - yarn test:cypress:component:ci
     - yarn merge-reports
   artifacts:
     paths:
