@@ -135,9 +135,6 @@ build:
 include:
   - template: Code-Quality.gitlab-ci.yml
   - template: 'Verify/Accessibility.gitlab-ci.yml'
-  # Docs pages
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
     # OCI Images
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
@@ -153,7 +150,7 @@ include:
   # .post step finalizers eg: badges
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
-  # .post step finalizers eg: badges
+  # Docs pages
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
 
@@ -165,6 +162,25 @@ k8s-test:
     - kubectl -n $KUBE_NAMESPACE delete pods,svc,daemonsets,deployments,replicasets,statefulsets,cronjobs,jobs,ingresses,configmaps --all
     - make k8s-delete-namespace
 
+# export the report
+pages:
+  stage: pages
+  tags:
+    - k8srunner
+  dependencies:
+    - test-counts
+    - test_and_coverage
+    - list_dependencies
+    - code_quality
+  script:
+    - mv public/* .
+    - cp -r build/* public
+    - cp -r .public/* public
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+    
 code_quality:
   # https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#generate-an-html-report
   artifacts:
