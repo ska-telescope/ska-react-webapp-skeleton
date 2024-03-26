@@ -18,8 +18,9 @@ const FOOTER_HEIGHT = 20;
 
 function App() {
   const { t } = useTranslation('reactSkeleton');
-  const { themeMode } = storageObject.useStore();
   const [showCopyright, setShowCopyright] = React.useState(false);
+  const { help, helpToggle, telescope, themeMode, toggleTheme, updateTelescope } =
+    storageObject.useStore();
 
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
@@ -28,6 +29,14 @@ function App() {
   const docs = { tooltip: headerTip, url: headerURL };
   const toolTip = { skao, mode };
   const version = process.env.VERSION;
+  const theStorage = {
+    help,
+    helpToggle,
+    telescope,
+    themeMode: themeMode.mode,
+    toggleTheme,
+    updateTelescope
+  };
 
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
@@ -47,6 +56,7 @@ function App() {
           title="ska react skeleton"
           toolTip={toolTip}
           selectTelescope={false}
+          storage={theStorage}
         />
         {
           // Example of the spacer being used to shift content from behind the Header component
