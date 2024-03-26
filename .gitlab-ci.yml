@@ -180,7 +180,7 @@ pages:
     paths:
       - public
     expire_in: 30 days
-    
+
 code_quality:
   # https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#generate-an-html-report
   artifacts:
