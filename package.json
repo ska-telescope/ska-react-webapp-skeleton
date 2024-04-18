@@ -69,6 +69,7 @@
     "@cypress/instrument-cra": "^1.4.0",
     "@cypress/webpack-preprocessor": "^6.0.0",
     "@types/react": "^18.0.33",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.1.0",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.3",
