@@ -2,6 +2,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   a11y_urls: 'https://www.skao.int/'
   JS_NODE_VERSION: 21
+  TEST_IMAGE: cypress/browsers:node-20.12.2-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
 
 stages:
   - lint
@@ -13,9 +14,13 @@ stages:
   - accessibility
   - publish
 
-k8s-test:
-  script:
-    - echo "There are no e2e tests targeting deployment here yet!"
+js-test:
+  image: ${TEST_IMAGE}
+  before_script:
+    - apt update && apt install -y make ## needed because base image does not have these packages
+    - '[ -f .make/js.mk ] || (echo "File js.mk not included in Makefile"; exit 1;)'
+    - 'make help | grep js-test'
+    - make js-install-reinstall ## needed to re-install cypress
 
 pages:
   stage: pages
@@ -29,50 +34,6 @@ pages:
     paths:
       - public
     expire_in: 30 days
-
-# -------------------- E2E TESTS --------------------
-#test_and_coverage:
-#  image: cypress/browsers:node18.12.0-chrome106-ff106
-#  stage: test
-#  tags:
-#    - k8srunner
-#  before_script:
-#    - mkdir -p build/reports
-#    - mkdir -p build/.nyc_output
-#    - yarn install --frozen-lockfile
-#  script:
-#    - yarn start &
-#    - yarn test:e2e:headless
-#    - yarn test:coverage:report:ci
-#    - cp build/reports/cobertura-coverage.xml build/reports/code-coverage.xml
-#  coverage: /All\sfiles.*?\s+(\d+.\d+)/
-#  artifacts:
-#    reports:
-#      coverage_report:
-#        coverage_format: cobertura
-#        path: build/reports/cobertura-coverage.xml
-#    paths:
-#      - build/
-#
-#test-counts:
-#  image: cypress/browsers:node18.12.0-chrome106-ff106
-#  stage: test
-#  tags:
-#    - k8srunner
-#  cache:
-#    paths:
-#      - node_modules/
-#    policy: pull
-#  before_script:
-#    - mkdir -p build/tests
-#    - yarn install --immutable
-#  script:
-#    - yarn test:cypress:component:ci
-#    - yarn merge-reports
-#  artifacts:
-#    paths:
-#      - build/
-# -------------------- E2E TESTS --------------------
 
 include:
   - template: 'Verify/Accessibility.gitlab-ci.yml'

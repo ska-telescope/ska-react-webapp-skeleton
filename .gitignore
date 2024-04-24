@@ -47,3 +47,5 @@ PrivateRules.mak
 !.yarn/sdks
 !.yarn/versions
 
+serve.pid
+
