@@ -18,7 +18,7 @@ js-do-test:
 		. $(JS_SUPPORT); \
 		$(JS_COMMAND_RUNNER) cypress run \
 			--component --headless --browser chrome --config video=false \
-			--reporter junit --reporter-options mochaFile=build/tests/unit-tests[hash].xml; \
+			--reporter junit --reporter-options mochaFile=build/tests/unit-tests-[hash].xml; \
 		EXIT_CODE=$$?; \
     	echo "js-do-test: Exit code $$EXIT_CODE"; \
 		JS_PACKAGE_MANAGER=$(JS_PACKAGE_MANAGER) jsMergeReports ${JS_BUILD_REPORTS_DIRECTORY}/unit-tests.xml "build/tests/unit*.xml"; \
