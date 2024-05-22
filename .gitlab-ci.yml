@@ -3,7 +3,6 @@ variables:
   a11y_urls: 'https://www.skao.int/'
   JS_NODE_VERSION: 21
   TEST_IMAGE: cypress/browsers:node-20.12.2-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
-  CI_METRICS_REF: st-1962-support-e2e-badges
 
 stages:
   - lint
@@ -27,7 +26,6 @@ include:
   - template: 'Verify/Accessibility.gitlab-ci.yml'
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/js.gitlab-ci.yml'
-    ref: st-1948-react-skeleton-compat
     # OCI Images
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
@@ -43,7 +41,6 @@ include:
   # .post step finalizers eg: badges
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
-    ref: st-1948-react-skeleton-compat
   # Docs pages
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
