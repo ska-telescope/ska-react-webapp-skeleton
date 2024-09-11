@@ -7,12 +7,43 @@ It includes tools for linting, code formatting, and testing which are easily int
 It also includes modular federation, exposing the ReactSkeleton component, which can be imported into other applications.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Releases
 
-   Overview
-   Requirements
-   Installation
-   DuringDevelopment
-   RunningBuilding
-   Testing
+   CHANGELOG.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: General
+
+   general/General
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Deploying and Configuring
+
+   deploy/Variables
+   deploy/Kubernetes
+   deploy/Environments
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
+
+   userGuide/UserIntroduction
+
+   userGuide/UserQuestions
+   userGuide/UserTroubleShooting
+   userGuide/UserFeedback
+   userGuide/UserFuture
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Application Internals/Developer Docs
+
+   developer/Overview
+   developer/Installation
+   developer/Requirements
+   developer/DuringDevelopment
+   developer/RunningBuilding
+   developer/Testing
