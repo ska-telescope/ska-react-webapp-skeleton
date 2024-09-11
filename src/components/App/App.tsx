@@ -4,7 +4,6 @@ import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTranslation } from 'react-i18next';
 import {
-  AlertColorTypes,
   CopyrightModal,
   Footer,
   Header,
@@ -44,11 +43,7 @@ function App() {
     updateTelescope
   };
 
-  const mediaSizeNotSupported = () => {
-    return (
-      <Alert>{t('mediaSize.notSupported')}</Alert>
-    );
-  };
+  const mediaSizeNotSupported = () => <Alert>{t('mediaSize.notSupported')}</Alert>;
 
   return (
     <ThemeProvider theme={theme(themeMode.mode)}>
@@ -65,11 +60,11 @@ function App() {
         <Header
           docs={docs}
           testId="headerId"
-          title={LG() ? 'SRK' : 'SKA React Skeleton'}  // Use a 3 letter code for smaller screen widths
+          title={LG() ? 'SRK' : 'SKA React Skeleton'} // Use a 3 letter code for smaller screen widths
           toolTip={toolTip}
           selectTelescope={false}
           storage={theStorage}
-          useSymbol={LG()}  
+          useSymbol={LG()}
         />
         {
           // Example of the spacer being used to shift content from behind the Header component
