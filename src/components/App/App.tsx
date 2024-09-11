@@ -1,7 +1,10 @@
 import React from 'react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Alert, CssBaseline, ThemeProvider } from '@mui/material';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTranslation } from 'react-i18next';
 import {
+  AlertColorTypes,
   CopyrightModal,
   Footer,
   Header,
@@ -22,6 +25,9 @@ function App() {
   const { help, helpToggle, telescope, themeMode, toggleTheme, updateTelescope } =
     storageObject.useStore();
 
+  const LG = () => useMediaQuery(useTheme().breakpoints.down('lg')); // Allows us to code depending upon screen size
+  const REQUIRED_WIDTH = useMediaQuery('(min-width:600px)');
+
   const skao = t('toolTip.button.skao');
   const mode = t('toolTip.button.mode');
   const headerTip = t('toolTip.button.docs');
@@ -36,6 +42,12 @@ function App() {
     themeMode: themeMode.mode,
     toggleTheme,
     updateTelescope
+  };
+
+  const mediaSizeNotSupported = () => {
+    return (
+      <Alert>{t('mediaSize.notSupported')}</Alert>
+    );
   };
 
   return (
@@ -53,10 +65,11 @@ function App() {
         <Header
           docs={docs}
           testId="headerId"
-          title="ska react skeleton"
+          title={LG() ? 'SRK' : 'SKA React Skeleton'}  // Use a 3 letter code for smaller screen widths
           toolTip={toolTip}
           selectTelescope={false}
           storage={theStorage}
+          useSymbol={LG()}  
         />
         {
           // Example of the spacer being used to shift content from behind the Header component
@@ -65,7 +78,8 @@ function App() {
         {
           // This is the ONLY component that is accessible via micro-frontend implementation
         }
-        <ReactSkeleton />
+        {REQUIRED_WIDTH && <ReactSkeleton />}
+        {!REQUIRED_WIDTH && mediaSizeNotSupported()}
         {
           // Example of the spacer being used to stop content from being hidden behind the Footer component
         }
