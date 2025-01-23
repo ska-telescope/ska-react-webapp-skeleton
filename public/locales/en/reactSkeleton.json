@@ -11,6 +11,10 @@
     "number": "Number Label",
     "text": "Text Label"
   },
+  "buttonLogin": {
+    "label": "Sign In",
+    "toolTip": "Button Login ToolTip"
+  },
   "text": {
     "row1": "It is hoped that this is used as a basis for new REACT applications for the SKAO",
     "row2": "A few basic components have been added as examples, as well as the MUI grid which can be used for component layout",
@@ -23,7 +27,8 @@
       "docsURL": "https://developer.skao.int/projects/ska-react-webapp-skeleton/en/latest/?badge=latest",
       "mode": "Colour Mode Toggle",
       "skao": "SKAO WebSite",
-      "telescopeToggle": "Switch between available telescopes"
+      "telescopeToggle": "Switch between available telescopes",
+      "user": "Additional user functionality including sign out"
     }
   }
 }

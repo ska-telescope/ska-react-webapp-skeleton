@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const path = require('path');
 
 const deps = require('./package.json').dependencies;
 
@@ -17,6 +19,11 @@ module.exports = () => {
     },
 
     resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@services': path.resolve(__dirname, 'src/services'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
+      },
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },
 
@@ -67,9 +74,7 @@ module.exports = () => {
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',
         remotes: {},
-        exposes: {
-          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx',
-        },
+        exposes: {},
         shared: {
           ...deps,
           react: {
@@ -119,6 +124,17 @@ module.exports = () => {
             requiredVersion: deps['@ska-telescope/ska-gui-local-storage'],
             eager: true,
           },
+          // MS Entra components
+          '@azure/msal-browser': {
+            requiredVersion: deps['@azure/msal-browser'],
+            singleton: true,
+            eager: true,
+          },
+          '@azure/msal-react': {
+            requiredVersion: deps['@azure/msal-react'],
+            singleton: true,
+            eager: true,
+          },
           // mixture
           '@emotion/react': {
             singleton: true,
@@ -152,6 +168,9 @@ module.exports = () => {
           },
         ],
       }),
+      new Dotenv({
+        path: '.env'
+      })
     ],
   };
 };
