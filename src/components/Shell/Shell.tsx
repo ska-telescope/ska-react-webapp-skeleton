@@ -13,19 +13,18 @@ import {
   Spacer
 } from '@ska-telescope/ska-gui-components';
 import { storageObject } from '@ska-telescope/ska-gui-local-storage';
+import { InteractionType , InteractionRequiredAuthError, InteractionStatus } from '@azure/msal-browser';
+import { Box, IconButton, Paper, Tooltip } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { getMsEntraProfilePicture } from '../../services/graph/graph';
 import {
   ALLOW_MOCK_USER_PERMISSIONS,
   SPACER_FOOTER,
   SPACER_HEADER,
-  VERSION,
-  MSENTRA_CLIENT_ID
+  VERSION
 } from '../../utils/constants';
 import MockPermissionsButton from '../Auth/MockAuth/MockPermissionsButton/MockPermissionsButton';
 import MockPermissionsDialogs from '../Auth/MockAuth/MockPermissionsDialogs/MockPermissionsDialogs';
-import { InteractionType } from '@azure/msal-browser';
-import { Paper } from '@mui/material';
-import { loadUserPermissions } from '../../services/PermissionsApi/PermissionsApi';
-import { TELESCOPE_LOW, TELESCOPE_MID } from '@ska-telescope/ska-javascript-components';
 import User from '../User/User';
 
 function TheHeader(setOpenUser: {
@@ -48,75 +47,119 @@ function TheHeader(setOpenUser: {
     themeMode: themeMode.mode,
     toggleTheme
   };
-  const { accounts } = useMsal();
+  const { instance, inProgress, accounts } = useMsal();
   const username = accounts.length > 0 ? accounts[0].name : '';
+  const [photo, setPhoto] = React.useState<string | null | undefined>(null);
 
-  const { updateAccess } = storageObject.useStore();
-
-  React.useEffect(() => {
-    if (!ALLOW_MOCK_USER_PERMISSIONS) {
-      const tokens = sessionStorage.getItem(`msal.token.keys.${MSENTRA_CLIENT_ID}`);
-      if (tokens) {
-        const accessTokenName = JSON.parse(tokens).accessToken[0];
-        const accessToken = sessionStorage.getItem(accessTokenName);
-        if (accessToken) {
-          (async () => {
-            try {
-              const permissions = await loadUserPermissions(JSON.parse(accessToken).secret);
-              let lowChecked = false;
-              let midChecked = false;
-              const telescopePermissions = permissions.telescope;
-              if (telescopePermissions.includes('low')) {
-                lowChecked = true;
-              } else if (telescopePermissions.includes('mid')) {
-                midChecked = true;
-              }
-
-              const newAccess = {
-                telescopes: [
-                  lowChecked ? TELESCOPE_LOW.code : '',
-                  midChecked ? TELESCOPE_MID.code : ''
-                ],
-                menu: {
-                  too: [{ title: 'Dummy Title', path: 'Dummy Path' }],
-                  top: [],
-                  dev: [],
-                  obs: [],
-                  res: [],
-                  def: [],
-                  lnk: []
-                }
-              };
-              updateAccess(newAccess);
-            } catch (error) {
-              console.error('Error fetching permissions:', error);
+  function ProfileIcon() {
+    React.useEffect(() => {
+      if (!photo && inProgress === InteractionStatus.None) {
+        const accessTokenRequest = {
+          scopes: ['user.read'],
+          account: accounts[0]
+        };
+        instance
+          .acquireTokenSilent(accessTokenRequest)
+          .then((accessTokenResponse) => {
+            const { accessToken } = accessTokenResponse;
+            getMsEntraProfilePicture(accessToken).then((response) => {
+              setPhoto(response);
+            });
+          })
+          .catch((error) => {
+            if (error instanceof InteractionRequiredAuthError) {
+              instance.acquireTokenPopup(accessTokenRequest).then((accessTokenResponse) => {
+                const { accessToken } = accessTokenResponse;
+                getMsEntraProfilePicture(accessToken).then((response) => {
+                  setPhoto(response);
+                });
+              });
             }
-          })();
-        }
+          });
       }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [instance, accounts, inProgress, photo]);
+  }
+
+  ProfileIcon();
 
   const signIn = () => (
     <>
       <MsalAuthenticationTemplate interactionType={InteractionType.None} />
       <MockPermissionsButton />
       {username && (
-        <>
         <Button
+          icon={
+            photo ? (
+              <img
+                src={photo}
+                alt="Profile"
+                style={{ borderRadius: '50%', width: '32px', height: '32px', objectFit: 'cover' }}
+              />
+            ) : (
+              <AccountCircleIcon />
+            )
+          }
           aria-label={username}
           color={ButtonColorTypes.Secondary}
-          variant={ButtonVariantTypes.Contained}
           label={username}
           onClick={setOpenUser(true)}
           testId="userName"
           toolTip={t('toolTip.button.user', { ns: 'authentication' })}
+          variant={ButtonVariantTypes.Contained}
         />
-        </>
+      )}
+      {username && (
+        <Tooltip
+          data-testid="usernameIcon"
+          title={t('toolTip.button.user', { ns: 'authentication' })}
+          arrow
+        >
+          <span>
+            <IconButton
+              aria-label={t('toolTip.button.user', { ns: 'authentication' })}
+              onClick={setOpenUser(true)}
+              style={{ cursor: 'pointer' }}
+            >
+              {true ? (
+                <Box
+                  sx={{
+                    border: 3,
+                    borderColor: 'secondary.main',
+                    borderRadius: '50%',
+                    height: 42,
+                    width: 44
+                  }}
+                >
+                  <img
+                    src={photo}
+                    alt="Profile"
+                    style={{ paddingTop: 3, borderRadius: '50%', width: '30px' }}
+                  />
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    border: 3,
+                    borderColor: 'secondary.main',
+                    borderRadius: '50%',
+                    height: 42,
+                    width: 44
+                  }}
+                >
+                  <AccountCircleIcon
+                    fontSize="large"
+                    color="secondary"
+                    style={{ borderColor: 'secondary' }}
+                  />
+                </Box>
+              )}
+            </IconButton>
+          </span>
+        </Tooltip>
       )}
       {!username && (
-        <ButtonLogin color={ButtonColorTypes.Secondary} label={t('button.signIn')} variant={ButtonVariantTypes.Contained} />
+        <ButtonLogin label={t('button.signIn')} variant={ButtonVariantTypes.Contained} />
       )}
     </>
   );

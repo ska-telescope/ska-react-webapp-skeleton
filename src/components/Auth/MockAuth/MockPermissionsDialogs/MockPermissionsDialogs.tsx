@@ -5,7 +5,7 @@ import {
   CardContent,
   Checkbox,
   FormControlLabel,
-  Grid,
+  Grid2 as Grid,
   Typography
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +54,6 @@ const MockPermissionsDialogs = () => {
       };
       updateAccess(newAccess);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [midChecked, lowChecked, selectedUserRole]);
 
   const CancelFunction = () => {
@@ -89,7 +88,7 @@ const MockPermissionsDialogs = () => {
 
           {IS_DEV && (
             <Grid container direction="row" justifyContent="space-evenly">
-              <Grid item xs={3}>
+              <Grid size={3}>
                 <DropDown
                   label="ROLE"
                   options={ROLES}
@@ -143,7 +142,7 @@ const MockPermissionsDialogs = () => {
               <CardContent>
                 <Box component="form" noValidate sx={{ mt: 1 }}>
                   <Grid container spacing={2} alignItems="center" justifyContent="flex-end">
-                    <Grid item>
+                    <Grid size={12}>
                       <Button
                         ariaDescription={t('button.confirm')}
                         color={ButtonColorTypes.Error}

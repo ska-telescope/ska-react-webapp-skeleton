@@ -74,7 +74,9 @@ module.exports = () => {
         name: 'reactSkeleton',
         filename: 'remoteEntry.js',
         remotes: {},
-        exposes: {},
+        exposes: {
+          './ReactSkeleton': './src/components/ReactSkeleton/ReactSkeleton.tsx',
+        },
         shared: {
           ...deps,
           react: {
@@ -169,8 +171,8 @@ module.exports = () => {
         ],
       }),
       new Dotenv({
-        path: '.env'
-      })
+        path: '.env',
+      }),
     ],
   };
 };

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid2 as Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
   NumberEntry,
   TextEntry,
-  Status,
+  StatusIcon,
   Spacer,
   AlertColorTypes
 } from '@ska-telescope/ska-gui-components';
@@ -60,7 +60,7 @@ const ReactSkeleton = () => {
       <Spacer />
 
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Grid item>
+        <Grid size={6}>
           <Alert
             ariaDescription="Sample description for screen readers"
             ariaTitle="Sample title for screen readers"
@@ -68,17 +68,17 @@ const ReactSkeleton = () => {
             testId="alertTestId"
           >
             <Grid container direction="column" alignItems="center" justifyContent="space-around">
-              <Grid item>
+              <Grid size={12}>
                 <Typography data-testid="text1Id">{t('text.row1')}</Typography>
               </Grid>
 
-              <Grid item>
+              <Grid size={12}>
                 <Typography data-testid="text2Id" m={2}>
                   {t('text.row2')}
                 </Typography>
               </Grid>
 
-              <Grid item>
+              <Grid size={12}>
                 <Typography data-testid="text3Id" m={2}>
                   {t('text.row3')}
                 </Typography>
@@ -89,7 +89,7 @@ const ReactSkeleton = () => {
       </Grid>
 
       <Grid container direction="row" alignItems="center" justifyContent="space-evenly">
-        <Grid data-testid="textLabel" item>
+        <Grid size={3} data-testid="textLabel">
           <Box m={1}>
             <TextEntry
               label={t('label.text')}
@@ -99,7 +99,7 @@ const ReactSkeleton = () => {
             />
           </Box>
         </Grid>
-        <Grid data-testid="NumberLabel" item>
+        <Grid size={3} data-testid="NumberLabel">
           <Box m={1}>
             <NumberEntry
               label={t('label.number')}
@@ -112,11 +112,11 @@ const ReactSkeleton = () => {
       </Grid>
 
       <Grid container direction="row" alignItems="center" justifyContent="space-around">
-        <Grid item>
+        <Grid size={3}>
           <Card data-testid="cardId" variant="outlined">
             <CardContent>
               <p data-testid="languageId">{t('language')}</p>
-              <Status level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
+              <StatusIcon level={STATUS_LEVEL} size={STATUS_SIZE} testId="statusId" />
               <p data-testid="dummyMessageId">{t('dummy')}</p>
             </CardContent>
           </Card>
