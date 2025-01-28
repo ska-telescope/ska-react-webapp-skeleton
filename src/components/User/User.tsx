@@ -2,11 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Drawer, Grid2 as Grid, Stack } from '@mui/material';
 
-import {
-  ButtonLogout,
-  ButtonColorTypes,
-  ButtonVariantTypes
-} from '@ska-telescope/ska-gui-components';
+import { ButtonColorTypes, ButtonVariantTypes } from '@ska-telescope/ska-gui-components';
+import { ButtonLogout } from '@ska-telescope/ska-login-page';
 
 export interface UserProps {
   open: boolean;
