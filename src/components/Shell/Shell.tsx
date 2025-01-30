@@ -19,13 +19,10 @@ import { Paper } from '@mui/material';
 import { ButtonLogin, ButtonUser } from '@ska-telescope/ska-login-page';
 import { getMsEntraProfilePicture } from '../../services/graph/graph';
 import {
-  ALLOW_MOCK_USER_PERMISSIONS,
   SPACER_FOOTER,
   SPACER_HEADER,
   VERSION
 } from '../../utils/constants';
-import MockPermissionsButton from '../Auth/MockAuth/MockPermissionsButton/MockPermissionsButton';
-import MockPermissionsDialogs from '../Auth/MockAuth/MockPermissionsDialogs/MockPermissionsDialogs';
 import User from '../User/User';
 
 function TheHeader(setOpenUser: {
@@ -86,7 +83,6 @@ function TheHeader(setOpenUser: {
   const signIn = () => (
     <>
       <MsalAuthenticationTemplate interactionType={InteractionType.None} />
-      <MockPermissionsButton />
       {username && (
         <ButtonUser
           label={username}
@@ -164,7 +160,6 @@ export function Shell({ children }: LayoutProps) {
           <Spacer size={SPACER_FOOTER} axis={SPACER_VERTICAL} />
         </div>
       </Paper>
-      {ALLOW_MOCK_USER_PERMISSIONS ? <MockPermissionsDialogs /> : null}
       {TheFooter()}
     </Paper>
   );

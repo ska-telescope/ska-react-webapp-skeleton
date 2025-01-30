@@ -12,8 +12,8 @@ import UserDetails from '../UserDetails/UserDetails';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
 import { VERSION } from '../../utils/constants';
 
-const USE_WRAPPER = true;
-const SHOW_USER = false;
+const USE_WRAPPER = false;
+const SHOW_USER = true;
 
 function App() {
   const { help, helpToggle, themeMode, toggleTheme } = storageObject.useStore();
