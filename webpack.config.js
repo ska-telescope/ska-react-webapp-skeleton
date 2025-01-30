@@ -160,6 +160,7 @@ module.exports = () => {
         },
       }),
       new HtmlWebPackPlugin({
+        inject: true,
         template: './public/index.html',
       }),
       new CopyWebpackPlugin({
