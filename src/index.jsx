@@ -13,11 +13,7 @@ const root = createRoot(container);
 root.render(
   <React.Suspense fallback={<Loader />}>
     <StoreProvider>
-      <AuthProvider
-        MSENTRA_CLIENT_ID="bdbd5ae8-b9ec-494a-a74d-39245a0af01b"
-        MSENTRA_AUTHORITY="https://login.microsoftonline.com/78887040-bad7-494b-8760-88dcacfb3805"
-        MSENTRA_REDIRECT_URI="http://localhost:8090/"
-      >
+      <AuthProvider>
         <App />
       </AuthProvider>
     </StoreProvider>

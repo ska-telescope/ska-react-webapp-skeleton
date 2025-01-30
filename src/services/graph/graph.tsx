@@ -18,6 +18,7 @@ export async function getMsEntraProfilePicture(accessToken: string) {
       const url = URL.createObjectURL(blob);
       return url;
     } catch (error) {
+      /* eslint-disable no-console */
       console.error('Error fetching MS Graph data:', error);
       return null;
     }

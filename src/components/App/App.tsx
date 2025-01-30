@@ -12,7 +12,8 @@ import UserDetails from '../UserDetails/UserDetails';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
 import { VERSION } from '../../utils/constants';
 
-const SHOW_USER = true;
+const USE_WRAPPER = true;
+const SHOW_USER = false;
 
 function App() {
   const { help, helpToggle, themeMode, toggleTheme } = storageObject.useStore();
@@ -23,7 +24,7 @@ function App() {
       <CssBaseline enableColorScheme />
       <React.Suspense fallback={<Loader />}>
         <Paper sx={{ height: '100vh' }}>
-          {true && (
+          {USE_WRAPPER && (
             <AuthWrapper
               mainChildren={
                 <>
@@ -52,7 +53,7 @@ function App() {
               storageToggleTheme={toggleTheme}
             />
           )}
-          {false && (
+          {!USE_WRAPPER && (
             <Shell>
               <>
                 {SHOW_USER && <UserDetails />}
