@@ -18,11 +18,7 @@ import {
 import { Paper } from '@mui/material';
 import { ButtonLogin, ButtonUser } from '@ska-telescope/ska-login-page';
 import { getMsEntraProfilePicture } from '../../services/graph/graph';
-import {
-  SPACER_FOOTER,
-  SPACER_HEADER,
-  VERSION
-} from '../../utils/constants';
+import { SPACER_FOOTER, SPACER_HEADER, VERSION } from '../../utils/constants';
 import User from '../User/User';
 
 function TheHeader(setOpenUser: {

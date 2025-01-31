@@ -12,7 +12,7 @@ import UserDetails from '../UserDetails/UserDetails';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
 import { VERSION } from '../../utils/constants';
 
-const USE_WRAPPER = false;
+const USE_WRAPPER = true;
 const SHOW_USER = true;
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
               buttonUserShowPhoto
               buttonUserShowUsername
               buttonUserToolTip={t('toolTip.button.signOut')}
-              headerCildren={null}
+              headerChildren={null}
               docsIconToolTip={t('toolTip.button.docs')}
               docsURL={t('toolTip.button.docsURL')}
               skaoLogoToolTip={t('toolTip.button.skao')}
