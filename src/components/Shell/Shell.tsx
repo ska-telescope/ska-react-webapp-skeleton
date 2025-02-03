@@ -85,8 +85,7 @@ function TheHeader(setOpenUser: {
           onClick={() => setOpenUser(true)}
           photo={photo}
           toolTip={t('toolTip.button.user', { ns: 'authentication' })}
-          showPhoto
-          showUsername={false}
+          showUsername
         />
       )}
       {!username && (

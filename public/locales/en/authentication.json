@@ -1,5 +1,5 @@
 {
-  "application": "SKAO Login Page",
+  "application": "React Skeleton",
   "button": {
     "cancel": "Cancel",
     "close": "Close",
@@ -33,7 +33,7 @@
       "signIn": "Click here to access user specific features",
       "signOut": "Sign out of the application suite",
       "docs": "Click here for SKAO Login Page documentation",
-      "docsURL": "https://developer.skao.int/projects/ska-login-page/en/latest/?badge=latest",
+      "docsURL": "https://developer.skao.int/projects/ska-react-webapp-skeleton/en/latest/?badge=latest",
       "mode": "Colour Mode Toggle",
       "skao": "SKAO WebSite",
       "user": "Additional user functionality including sign out"

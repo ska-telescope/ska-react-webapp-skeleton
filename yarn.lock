@@ -2229,9 +2229,9 @@
     typescript "5.5.3"
 
 "@ska-telescope/ska-gui-components@^2.2.0":
-  version "2.2.0"
-  resolved "https://artefact.skao.int/repository/npm-internal/@ska-telescope/ska-gui-components/-/ska-gui-components-2.2.0.tgz#ba37194c0b150e97c612d409115525dfec231a6b"
-  integrity sha512-zn3uznjYrtiZbYW0Ml1thDfztmGWnjhDVn/GM/nVGlkJIzMWqLTE0jzPINkd34hOpBGglorNoDepoAAVnkdwDA==
+  version "2.2.1"
+  resolved "https://artefact.skao.int/repository/npm-internal/@ska-telescope/ska-gui-components/-/ska-gui-components-2.2.1.tgz#6bd89826ec59834f8a76989da7b09625b7d4d968"
+  integrity sha512-qLv+tYQ1tp8YO02O4yBBGSMZTUdiiOe3CVAW15N7NqvAT39elxhgGOtOW+hPCELdUb/ilxITt+i5bBfrz6GlMw==
   dependencies:
     "@mui/base" "^5.0.0-beta.68"
     "@mui/icons-material" "^6.1.8"
@@ -2290,7 +2290,7 @@
     svgo "^3.2.0"
     vite "^5.2.13"
 
-"@ska-telescope/ska-login-page@^0.9.8":
+"@ska-telescope/ska-login-page@0.9.8":
   version "0.9.8"
   resolved "https://artefact.skao.int/repository/npm-internal/@ska-telescope/ska-login-page/-/ska-login-page-0.9.8.tgz#43a490e4e6f309a3573d3f60271237b2005ca4db"
   integrity sha512-LYuokKHdwvFq9HPDDKpSkGD4NwYWvug0NEnlGHU+8yR5r71kZbEQGkDPNCxDQw0Xi7z6+Uur+/BTapUvx87Bkw==

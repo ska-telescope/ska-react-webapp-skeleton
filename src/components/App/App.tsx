@@ -12,7 +12,7 @@ import UserDetails from '../UserDetails/UserDetails';
 import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
 import { VERSION } from '../../utils/constants';
 
-const USE_WRAPPER = true;
+const USE_WRAPPER = false;
 const SHOW_USER = true;
 
 function App() {
