@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Box, Drawer, Grid2 as Grid, Stack } from '@mui/material';
 
 import { ButtonColorTypes, ButtonVariantTypes } from '@ska-telescope/ska-gui-components';
@@ -11,7 +10,6 @@ export interface UserProps {
 }
 
 export default function User({ open, toggleDrawer }: UserProps) {
-  const { t } = useTranslation('authentication');
   return (
     <div>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
@@ -21,7 +19,6 @@ export default function User({ open, toggleDrawer }: UserProps) {
               <Grid size={12}>
                 <ButtonLogout
                   color={ButtonColorTypes.Inherit}
-                  label={t('button.signOut')}
                   variant={ButtonVariantTypes.Contained}
                 />
               </Grid>

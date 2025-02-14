@@ -14,7 +14,7 @@ i18n
     },
     fallbackLng: 'en',
     lng: 'en',
-    ns: ['authentication', 'reactSkeleton'],
+    ns: ['common', 'authentication', 'reactSkeleton'],
     defaultNS: 'reactSkeleton',
     initImmediate: false,
     useSuspense: true,

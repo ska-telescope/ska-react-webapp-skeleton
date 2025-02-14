@@ -13,6 +13,10 @@ From the project directory, you can run any of the following:
 
   yarn will update the repository with the latest SKAO libraries
 
+- `> yarn checker`
+
+  yarn will run prettier:fix followed by lint:fix, effectively checking the code ready for a push to git
+
 - `> yarn start`
 
   Same as `yarn dev` but for some implementations it is prefixed with NODE_ENV=testing. This is used in the CI/CD Processes

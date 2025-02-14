@@ -1,0 +1,12 @@
+{
+  "iconDocs": {
+    "toolTip": "Click here for SKO documentation",
+    "url": "https://developer.skao.int/projects/ska-react-webapp-skeleton/en/latest/?badge=latest"
+  },
+  "iconSKAO": {
+    "toolTip": "SKAO WebSite"
+  },
+  "iconTheme": {
+    "toolTip": "Colour Mode Toggle"
+  }
+}

@@ -1,8 +1,15 @@
+/*
+This component provides a working example of a custom shell from displaying the various parts of a standard
+SKAO application using existing components as provided by SKAO libraries. If a standard layout is required, 
+it is recommended to use the AuthWrapper that is provided via the ska-login-page library, which has an example
+implementation available within App.tsx
+*/
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMsal, MsalAuthenticationTemplate } from '@azure/msal-react';
 import {
-  ButtonVariantTypes,
+  ButtonColorTypes,
   CopyrightModal,
   Footer,
   Header,
@@ -16,22 +23,24 @@ import {
   InteractionStatus
 } from '@azure/msal-browser';
 import { Paper } from '@mui/material';
-import { ButtonLogin, ButtonUser } from '@ska-telescope/ska-login-page';
+import { ButtonLogin, ButtonUser, ButtonUserMenu } from '@ska-telescope/ska-login-page';
 import { getMsEntraProfilePicture } from '../../services/graph/graph';
 import { SPACER_FOOTER, SPACER_HEADER, VERSION } from '../../utils/constants';
 import User from '../User/User';
+
+const USE_MENU = true; // DEtermines if the logout will be presented in a menu under the button or via a slide-out panel
 
 function TheHeader(setOpenUser: {
   (newOpen: boolean): () => void;
   (arg0: boolean): React.MouseEventHandler<HTMLButtonElement> | undefined;
 }): React.JSX.Element {
   const { t } = useTranslation('authentication');
-  const skao = t('toolTip.button.skao', { ns: 'authentication' });
-  const mode = t('toolTip.button.mode', { ns: 'authentication' });
+  const skao = t('iconSKAO.toolTip', { ns: 'common' });
+  const mode = t('iconTheme.toolTip', { ns: 'common' });
   const toolTip = { skao, mode };
   const getDocs = () => {
-    const headerTip = t('toolTip.button.docs');
-    const headerURL = t('toolTip.button.docsURL');
+    const headerTip = t('iconDocs.toolTip', { ns: 'common' });
+    const headerURL = t('iconDocs.url', { ns: 'common' });
     return { tooltip: headerTip, url: headerURL };
   };
   const { help, helpToggle, themeMode, toggleTheme } = storageObject.useStore();
@@ -77,22 +86,30 @@ function TheHeader(setOpenUser: {
   ProfileIcon();
 
   const signIn = () => (
-    <>
-      <MsalAuthenticationTemplate interactionType={InteractionType.None} />
-      {username && (
-        <ButtonUser
-          label={username}
-          onClick={() => setOpenUser(true)}
-          photo={photo}
-          toolTip={t('toolTip.button.user', { ns: 'authentication' })}
-          showUsername
-        />
-      )}
-      {!username && (
-        <ButtonLogin label={t('button.signIn')} variant={ButtonVariantTypes.Contained} />
-      )}
-    </>
-  );
+      <>
+        <MsalAuthenticationTemplate interactionType={InteractionType.None} />
+        {username && !USE_MENU && (
+          <ButtonUser
+            label={username}
+            onClick={() => setOpenUser(true)}
+            photo={photo}
+            toolTip={t('buttonUser.tooltip', { ns: 'authentication' })}
+            showUsername
+            color={ButtonColorTypes.Inherit}
+          />
+        )}
+        {username && USE_MENU && (
+                    <ButtonUserMenu
+                    label={username}
+                    photo={photo}
+                    toolTip={t('buttonUser.tooltip', { ns: 'authentication' })}
+                    showUsername
+                    color={ButtonColorTypes.Inherit}
+                  />
+        )}
+        {!username && <ButtonLogin color={ButtonColorTypes.Secondary} />}
+      </>
+    );
 
   return (
     <Header
