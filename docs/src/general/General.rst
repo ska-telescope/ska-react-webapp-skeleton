@@ -8,6 +8,10 @@ It also includes modular federation, exposing the ReactSkeleton component, which
 The documentation of the skeleton provides an overview for all the standard aspects mentioned here and so can be referenced
 as required for these items
 
+Note that it also includes authentication components, providing a number of differing options.  If Authentication is Not
+required by the application, then the ska-login-page library, and all components that it provides, can be removed from the 
+application, as well as ensuring that the skao:update script is amended 
+
 Application Background
 ~~~~~~~~~~~~~~~~~~~~~~
 

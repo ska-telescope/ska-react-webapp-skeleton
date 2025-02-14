@@ -1,46 +1,101 @@
+image: $SKA_K8S_TOOLS_BUILD_DEPLOY
+
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-  a11y_urls: 'https://www.skao.int/'
-  JS_NODE_VERSION: 21
-  TEST_IMAGE: cypress/browsers:node-20.12.2-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
+  NODE_IMAGE: 'node:22'
+  CYPRESS_IMAGE: 'cypress/browsers:22.12.0'
+  YARN_VERSION: '4.3.1'
+  JS_E2E_TESTS_DIR: cypress
 
 stages:
+  - dependencies
   - lint
   - build
   - test
   - scan
   - pages
-  - deploy
+  # - integration
+  # - staging
+  # - deploy
   - accessibility
   - publish
 
 js-test:
-  image: ${TEST_IMAGE}
+  allow_failure: true
   before_script:
-    - apt update && apt install -y make ## needed because base image does not have these packages
-    - '[ -f .make/js.mk ] || (echo "File js.mk not included in Makefile"; exit 1;)'
-    - 'make help | grep js-test'
-    - make js-install-reinstall ## needed to re-install cypress
+    - mkdir -p build/reports
+  script:
+    - yarn install
+    - yarn test:unit --reporter junit --output-file build/reports/unit-tests.xml
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+  artifacts:
+    when: always
+    reports:
+      junit: build/reports/unit-tests.xml
+    paths:
+      - build/reports
+    expire_in: 7 days
+
+ts-typecheck:
+  image: $NODE_IMAGE
+  stage: lint
+  needs: []
+  allow_failure: true
+  before_script:
+    - make js-install
+  script:
+    - make typecheck
 
 include:
-  - template: 'Verify/Accessibility.gitlab-ci.yml'
+
+    # TS linting and unit testing
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/js.gitlab-ci.yml'
+    # Accessibility
+  - template: 'Verify/Accessibility.gitlab-ci.yml'
+
     # OCI Images
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
+  #- project: 'ska-telescope/templates-repository'
+  #  file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
     # Helm Chart
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/helm-chart.gitlab-ci.yml'
+  #- project: 'ska-telescope/templates-repository'
+  # file: 'gitlab-ci/includes/helm-chart.gitlab-ci.yml'
     # K8s check
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/k8s.gitlab-ci.yml'
+  #- project: 'ska-telescope/templates-repository'
+  # file: 'gitlab-ci/includes/k8s.gitlab-ci.yml'
     # Tag Based GitLab Release Management
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/release.gitlab-ci.yml'
+  #- project: 'ska-telescope/templates-repository'
+  #  file: 'gitlab-ci/includes/release.gitlab-ci.yml'
   # .post step finalizers eg: badges
+  #- project: 'ska-telescope/templates-repository'
+  #  file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
+  # Docs pages
+  ##- project: 'ska-telescope/templates-repository'
+  #  file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
+
+
+include:
+  # TS linting and unit testing
   - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
+    file: 'gitlab-ci/includes/js.gitlab-ci.yml'
+  # OCI - build - scan stages
+  # - project: 'ska-telescope/templates-repository'
+  #   file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
   # Docs pages
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
+  # .post step finalisers eg: badges
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
+  # Tag Based GitLab Release Management
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/release.gitlab-ci.yml'
+  # Helm Chart linting and Publish
+  # - project: 'ska-telescope/templates-repository'
+  #   file: 'gitlab-ci/includes/helm-chart.gitlab-ci.yml'
+  # Deploy steps
+  # - project: 'ska-telescope/templates-repository'
+  #   file: 'gitlab-ci/includes/deploy.gitlab-ci.yml'

@@ -1,89 +1,79 @@
 import React from 'react';
-import { Alert, CssBaseline, ThemeProvider } from '@mui/material';
-import useTheme from '@mui/material/styles/useTheme';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTranslation } from 'react-i18next';
-import {
-  CopyrightModal,
-  Footer,
-  Header,
-  Spacer,
-  SPACER_VERTICAL
-} from '@ska-telescope/ska-gui-components';
+import { CssBaseline, MenuItem, Paper } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { storageObject } from '@ska-telescope/ska-gui-local-storage';
-import Loader from '../Loader/Loader';
-import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
+import { AuthWrapper } from '@ska-telescope/ska-login-page';
+import { Button, ButtonVariantTypes } from '@ska-telescope/ska-gui-components';
 import theme from '../../services/theme/theme';
+import Loader from '../Loader/Loader';
+import { Shell } from '../Shell/Shell';
+import UserDetails from '../UserDetails/UserDetails';
+import ReactSkeleton from '../ReactSkeleton/ReactSkeleton';
+import { VERSION } from '../../utils/constants';
 
-const HEADER_HEIGHT = 70;
-const FOOTER_HEIGHT = 20;
+// USE_WRAPPER : Makes use of the AuthWrapper component from the ska-login-page library
+// for a custom implementation, set this to false.  The Shell component illustrates a custom implemtentation.
+const USE_WRAPPER = true; // Makes use of the AuthWrapper component from the ska-login-page library
+
+const SHOW_USER = false;  // Indicates if the main aspect of the page is example components or user information
 
 function App() {
-  const { t } = useTranslation('reactSkeleton');
-  const [showCopyright, setShowCopyright] = React.useState(false);
-  const { help, helpToggle, telescope, themeMode, toggleTheme, updateTelescope } =
-    storageObject.useStore();
-
-  const LG = () => useMediaQuery(useTheme().breakpoints.down('lg')); // Allows us to code depending upon screen size
-  const REQUIRED_WIDTH = useMediaQuery('(min-width:600px)');
-
-  const skao = t('toolTip.button.skao');
-  const mode = t('toolTip.button.mode');
-  const headerTip = t('toolTip.button.docs');
-  const headerURL = t('toolTip.button.docsURL');
-  const docs = { tooltip: headerTip, url: headerURL };
-  const toolTip = { skao, mode };
-  const version = process.env.VERSION;
-  const theStorage = {
-    help,
-    helpToggle,
-    telescope,
-    themeMode: themeMode.mode,
-    toggleTheme,
-    updateTelescope
-  };
-
-  const mediaSizeNotSupported = () => <Alert>{t('mediaSize.notSupported')}</Alert>;
+  const { helpToggle, themeMode, toggleTheme } = storageObject.useStore();
+  const { t } = useTranslation('authentication');
 
   return (
-    <ThemeProvider theme={theme(themeMode.mode)}>
+    <ThemeProvider theme={theme(themeMode?.mode)}>
       <CssBaseline enableColorScheme />
       <React.Suspense fallback={<Loader />}>
-        {
-          // Header container :
-          // Even distribution of the children is built in
-          // Logo with URL link included
-          // Button for light/dark mode included, and sample implementation provided.
-          // TelescopeSelector build in, displayed as determined by selectTelescope property
-        }
-        <CopyrightModal copyrightFunc={setShowCopyright} show={showCopyright} />
-        <Header
-          docs={docs}
-          testId="headerId"
-          title={LG() ? 'SRK' : 'SKA React Skeleton'} // Use a 3 letter code for smaller screen widths
-          toolTip={toolTip}
-          selectTelescope={false}
-          storage={theStorage}
-          useSymbol={LG()}
-        />
-        {
-          // Example of the spacer being used to shift content from behind the Header component
-        }
-        <Spacer size={HEADER_HEIGHT} axis={SPACER_VERTICAL} />
-        {
-          // This is the ONLY component that is accessible via micro-frontend implementation
-        }
-        {REQUIRED_WIDTH && <ReactSkeleton />}
-        {!REQUIRED_WIDTH && mediaSizeNotSupported()}
-        {
-          // Example of the spacer being used to stop content from being hidden behind the Footer component
-        }
-        <Spacer size={FOOTER_HEIGHT} axis={SPACER_VERTICAL} />
-        {
-          // Footer container :
-          // Even distribution of the children is built in
-        }
-        <Footer copyrightFunc={setShowCopyright} testId="footerId" version={version} />
+        <Paper sx={{ height: '100vh' }}>  
+        {false && <AuthWrapper // THIS OPTION SHOWS THE `AuthWrapper` WITH MANDATORY CONFIGURATION ONLY
+              iconDocsURL="... some URL ..."
+              storageThemeMode={themeMode.mode}
+              storageToggleTheme={toggleTheme}
+            />}
+          {USE_WRAPPER && (
+            <AuthWrapper
+              iconDocsURL={t('iconDocs.url', { ns: 'common' })}
+              buttonUserShowUsername
+              // USE THE FOLLOWING FOR LOGOUT IN THE MENU UNDER THE BUTTON
+              // REQUIRES THE `buttonUserMenu` PROPERTY
+              buttonUserChildren={
+                <MenuItem>
+                  <Button icon="add" label="Dummy" testId="dummyButton" variant={ButtonVariantTypes.Text} />
+                </MenuItem>
+              }
+              // USE THE CODE ANNOTATED OUT FOR LOGOUT IN THE SLIDE OUT PANEL
+              // REMOVE THE `buttonUserMenu`  PROPERTY
+              // buttonUserChildren={
+              //   <Stack pb={1} >
+              //     <Button icon="add" label="Dummy" testId="dummyButton"  />
+              //   </Stack>
+              // }
+              buttonUserMenu
+              mainChildren={
+                <>
+                  {SHOW_USER && <UserDetails />}
+                  {!SHOW_USER && <ReactSkeleton />}
+                </>
+              }
+              // storageHelp={"help"}
+              storageHelpToggle={helpToggle}
+              storageThemeMode={themeMode.mode}
+              storageToggleTheme={toggleTheme}
+              version={VERSION}
+              versionTooltip="SOMETHING NICE"
+            />
+          )}
+          {!USE_WRAPPER && (
+            <Shell>
+              <>
+                {SHOW_USER && <UserDetails />}
+                {!SHOW_USER && <ReactSkeleton />}
+              </>
+            </Shell>
+          )}
+        </Paper>
       </React.Suspense>
     </ThemeProvider>
   );

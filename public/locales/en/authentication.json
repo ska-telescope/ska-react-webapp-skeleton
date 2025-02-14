@@ -1,0 +1,14 @@
+{
+  "buttonSignIn": {
+    "error": "Invalid credentials passed to authentication service",
+    "label": "Sign In",
+    "toolTip": "Click here to access user specific features"
+  },
+  "buttonSignOut": {
+    "label": "Sign Out",
+    "toolTip": "Sign out of the application suite"
+  },
+  "buttonUser": {
+    "toolTip": "Additional user functionality including sign out"
+  }
+}
