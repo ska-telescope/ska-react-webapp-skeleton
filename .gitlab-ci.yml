@@ -18,7 +18,7 @@ stages:
   # - staging
   # - deploy
   - accessibility
-  # - publish
+  - publish
 
 # js-test:
 #   image: ${TEST_IMAGE}
