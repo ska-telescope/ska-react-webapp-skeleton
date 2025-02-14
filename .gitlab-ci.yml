@@ -21,17 +21,42 @@ stages:
   - publish
 
 js-test:
-  image: ${TEST_IMAGE}
+  allow_failure: true
   before_script:
-    - apt update && apt install -y make ## needed because base image does not have these packages
-    - '[ -f .make/js.mk ] || (echo "File js.mk not included in Makefile"; exit 1;)'
-    - 'make help | grep js-test'
-    - make js-install-reinstall ## needed to re-install cypress
+    - mkdir -p build/reports
+  script:
+    - yarn install
+    - yarn test:unit --reporter junit --output-file build/reports/unit-tests.xml
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+  artifacts:
+    when: always
+    reports:
+      junit: build/reports/unit-tests.xml
+    paths:
+      - build/reports
+    expire_in: 7 days
+
+ts-typecheck:
+  image: $NODE_IMAGE
+  stage: lint
+  needs: []
+  allow_failure: true
+  before_script:
+    - make js-install
+  script:
+    - make typecheck
 
 include:
-  #- template: 'Verify/Accessibility.gitlab-ci.yml'
-  #- project: 'ska-telescope/templates-repository'
-  #  file: 'gitlab-ci/includes/js.gitlab-ci.yml'
+
+    # TS linting and unit testing
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/js.gitlab-ci.yml'
+    # Accessibility
+  - template: 'Verify/Accessibility.gitlab-ci.yml'
+
     # OCI Images
   #- project: 'ska-telescope/templates-repository'
   #  file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
@@ -50,6 +75,7 @@ include:
   # Docs pages
   ##- project: 'ska-telescope/templates-repository'
   #  file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
+
 
 include:
   # TS linting and unit testing
