@@ -108,6 +108,7 @@ ingress:
   prefixWithNamespace: true
   host:
   path: /(.*)
+  pathType: ImplementationSpecific
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
   extraAnnotations: {}

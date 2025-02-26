@@ -1,6 +1,6 @@
 {
   "name": "ska-webapps-react-skeleton",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "SKA React Web App Skeleton",
   "repository": "git@gitlab.com:ska-telescope/templates/ska-react-webapp-skeleton.git",
@@ -90,7 +90,7 @@
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "css-loader": "^6.7.1",
-    "cypress": "^13.6.6",
+    "cypress": "14.2.0",
     "eslint": "^8.46.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",

@@ -1,4 +1,5 @@
-ARG BUILD_IMAGE="registry.gitlab.com/ska-telescope/ska-base-images/ska-node-build:0.1.0"
+ARG BUILD_IMAGE="registry.gitlab.com/ska-telescope/ska-base-images/ska-build-node:0.1.0-dev.cfccfd72b"
+ARG BASE_IMAGE="registry.gitlab.com/ska-telescope/ska-base-images/ska-webserver:0.1.0-dev.cfccfd72b"
 FROM $BUILD_IMAGE AS build
 
 WORKDIR /build
@@ -18,11 +19,6 @@ RUN yarn webpack build \
     --output-clean \
     --output-path /build/dist/
 
-FROM nginx:1.25.2 as final
+FROM $BASE_IMAGE
 
 COPY --from=build /build/dist/ /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]

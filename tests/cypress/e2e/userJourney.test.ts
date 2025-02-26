@@ -1,6 +1,6 @@
 context('REACT SKELETON', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8090/');
+    cy.visit("/");
   });
 
   it('Header : Verify external link to skao site', () => {

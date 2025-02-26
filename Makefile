@@ -7,8 +7,16 @@
 -include .make/k8s.mk
 -include .make/js.mk
 
+LOCAL_IMAGE_TAG?=$(VERSION)-local.c$(shell git rev-parse --short HEAD)
+
+# Override unit test commands to use cypress
 JS_TEST_COMMAND=cypress run
-JS_TEST_DEFAULT_SWITCHES=--component --headless --browser chrome --config video=false --reporter junit --reporter-options mochaFile=$(JS_BUILD_TESTS_DIRECTORY)/unit-tests-[hash].xml
+JS_TEST_DEFAULT_SWITCHES=\
+	--component \
+	--headless \
+	--config video=false \
+	--reporter junit \
+	--reporter-options mochaFile=$(JS_BUILD_TESTS_DIRECTORY)/unit-tests-[hash].xml
 
 ifneq ($(findstring $(CI_JOB_NAME),js-e2e-deploy k8s-test),)
 K8S_CHART_PARAMS = \
@@ -16,9 +24,9 @@ K8S_CHART_PARAMS = \
 	--set image.tag=$(VERSION)-dev.c$(CI_COMMIT_SHORT_SHA)
 endif
 
-k8s-do-test: js-do-test
+js-pre-e2e-test:
+	@rm -rf tests/cypress/screenshots/*
 
-LOCAL_IMAGE_TAG?=$(VERSION)-local.c$(shell git rev-parse --short HEAD)
 # Build and deploy in the local minikube cluster
 k8s-do-install-chart-minikube:
 	@KUBECTL_CONTEXT=$$(kubectl config view -o json | jq -r '.["current-context"]'); \

@@ -7,7 +7,6 @@ export default defineConfig({
   screenshotsFolder: 'tests/cypress/screenshots',
   videosFolder: 'tests/cypress/videos',
   downloadsFolder: 'tests/cypress/downloads',
-
   component: {
     supportFile: 'tests/cypress/support/component.js',
     specPattern: '**/*.test.{js,jsx,ts,tsx}',
@@ -22,7 +21,6 @@ export default defineConfig({
       return config;
     },
   },
-
   e2e: {
     supportFile: 'tests/cypress/support/e2e.js',
     specPattern: 'tests/cypress/e2e/**/*.test.{js,jsx,ts,tsx}',
