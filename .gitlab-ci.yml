@@ -5,7 +5,6 @@ variables:
   JS_E2E_TESTS_DIR: cypress
 
 stages:
-  - dependencies
   - lint
   - build
   - test
@@ -14,50 +13,25 @@ stages:
   - accessibility
   - publish
 
-js-test:
-  allow_failure: true
-  before_script:
-    - mkdir -p build/reports
-  script:
-    - yarn test:unit --reporter junit --output-file build/reports/unit-tests.xml
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  artifacts:
-    when: always
-    reports:
-      junit: build/reports/unit-tests.xml
-    paths:
-      - build/reports
-    expire_in: 7 days
-
-ts-typecheck:
-  image: registry.gitlab.com/ska-telescope/ska-base-images/ska-node-build:0.1.0-dev.cd68288c0
-  stage: lint
-  needs: []
-  allow_failure: true
-  before_script:
-    - make js-install
-  script:
-    - make typecheck
-
 include:
-    # TS linting and unit testing
+  # Accessibility
+  - template: 'Verify/Accessibility.gitlab-ci.yml'
+  # JS/TS
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/js.gitlab-ci.yml'
     ref: st-2297-adopt-ska-base-image
-    # Accessibility
-  - template: 'Verify/Accessibility.gitlab-ci.yml'
-  # OCI - build - scan stages
+  # OCI images
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
+  # K8S charts
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/oci-image.gitlab-ci.yml'
   # Docs pages
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs.gitlab-ci.yml'
-  # .post step finalisers eg: badges
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
   # Tag Based GitLab Release Management
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/release.gitlab-ci.yml'
+  # .post step finalisers eg: badges
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'

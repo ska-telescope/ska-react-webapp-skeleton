@@ -1,1 +1,5 @@
 charts/**
+node_modules/
+build/
+dist/
+public/env.js

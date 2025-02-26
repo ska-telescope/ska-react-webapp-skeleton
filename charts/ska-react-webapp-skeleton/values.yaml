@@ -1,10 +1,113 @@
-image:
-  imagePullPolicy: IfNotPresent
-  container: registry.gitlab.com/ska-telescope/templates/ska-react-webapp-skeleton/ska-react-webapp-skeleton
-  version: 1.1.0
+nameOverride:
+fullnameOverride:
 
-labels:
-  app: ska-react-webapp-skeleton
+replicas: 1
+
+image:
+  pullPolicy: IfNotPresent
+  repository: artefact.skao.int/ska-react-webapp-skeleton
+  tag:
+
+labels: {}
+
+annotations: {}
+
+updateStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 40%
+  type: RollingUpdate
+
+dnsPolicy: ClusterFirst
+
+startupProbe:
+  httpGet:
+    path: /
+    port: 80
+    scheme: HTTP
+  initialDelaySeconds: 1
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+    scheme: HTTP
+  initialDelaySeconds: 5
+  periodSeconds: 60
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+    scheme: HTTP
+  initialDelaySeconds: 1
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+
+nodeSelector: {}
+
+tolerations: []
+
+extraEnvVars: []
+
+extraArgs: []
+
+antiAffinity:
+  enabled: true
+
+podAntiAffinity:
+  preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 1
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+                - api
+        topologyKey: kubernetes.io/hostname
+
+podAffinity: {}
+
+nodeAffinity: {}
+
+topologySpreadConstraints: []
+
+podSecurityContext: {}
+
+securityContext: {}
+
+imagePullSecrets: []
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  annotations: {}
+  nodePort:
+  port: 80
+  containerPort: 80
 
 ingress:
-  prependByNamespace: true
+  enabled: true
+  ingressClassName: nginx
+  prefixWithNamespace: true
+  host:
+  path: /(.*)
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  extraAnnotations: {}

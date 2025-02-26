@@ -7,10 +7,35 @@
 -include .make/k8s.mk
 -include .make/js.mk
 
-# Make production deployment to allow application to be run with Helm and Nginx image
-production-deploy:
-	cp -R public /dist/
-	yarn webpack build --optimization-concatenate-modules --mode production --optimization-minimize --output-clean --output-path /dist/
+JS_TEST_COMMAND=cypress run
+JS_TEST_DEFAULT_SWITCHES=--component --headless --browser chrome --config video=false --reporter junit --reporter-options mochaFile=$(JS_BUILD_TESTS_DIRECTORY)/unit-tests-[hash].xml
+
+ifneq ($(findstring $(CI_JOB_NAME),js-e2e-deploy k8s-test),)
+K8S_CHART_PARAMS = \
+	--set image.repository=$(CI_REGISTRY)/ska-telescope/ska-react-webapp-skeleton \
+	--set image.tag=$(VERSION)-dev.c$(CI_COMMIT_SHORT_SHA)
+endif
+
+k8s-do-test: js-do-test
+
+LOCAL_IMAGE_TAG?=$(VERSION)-local.c$(shell git rev-parse --short HEAD)
+# Build and deploy in the local minikube cluster
+k8s-do-install-chart-minikube:
+	@KUBECTL_CONTEXT=$$(kubectl config view -o json | jq -r '.["current-context"]'); \
+	if [ "$$KUBECTL_CONTEXT" != "minikube" ]; then \
+		echo "Not running against a minikube cluster. Exiting ..."; \
+		exit 1; \
+	fi
+	@eval $$(minikube docker-env); \
+	$(MAKE) \
+	OCI_SKIP_PUSH=true \
+	OCI_BUILD_ADDITIONAL_ARGS="-t $(OCI_IMAGE):$(LOCAL_IMAGE_TAG)" \
+	oci-build-all;
+	@$(MAKE) \
+	K8S_CHART_PARAMS="--set image.repository=$(OCI_IMAGE) --set image.tag=$(LOCAL_IMAGE_TAG)" \
+	k8s-install-chart
+
+k8s-install-chart-minikube: k8s-pre-install-chart k8s-do-install-chart-minikube k8s-post-install-chart
 
 dev-local-env:
 	-rm public/env.js src/env.ts
@@ -20,22 +45,3 @@ dev-local-env:
 	ENV_TYPE_FILE=env_scripts/env_config \
 	ENV_JS_OUTPUT_LOCATION=src/env.ts \
 		bash env_scripts/env_config.sh ts
-
-k8s-do-test:
-	@echo "Nothing to do here yet!"
-	@mkdir -p build; echo "0" > build/status
-
-js-do-test:
-	@mkdir -p $(JS_BUILD_REPORTS_DIRECTORY)
-	@rm -rf ./build/tests/unit*.xml
-	@{ \
-		. $(JS_SUPPORT); \
-		$(JS_COMMAND_RUNNER) cypress run \
-			--component --headless --browser chrome --config video=false \
-			--reporter junit --reporter-options mochaFile=build/tests/unit-tests-[hash].xml; \
-		EXIT_CODE=$$?; \
-    	echo "js-do-test: Exit code $$EXIT_CODE"; \
-		JS_PACKAGE_MANAGER=$(JS_PACKAGE_MANAGER) jsMergeReports ${JS_BUILD_REPORTS_DIRECTORY}/unit-tests.xml "build/tests/unit*.xml"; \
-		cp ${JS_BUILD_REPORTS_DIRECTORY}/cobertura-coverage.xml ${JS_BUILD_REPORTS_DIRECTORY}/code-coverage.xml; \
-		exit $$EXIT_CODE; \
-	}

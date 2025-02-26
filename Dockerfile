@@ -1,23 +1,26 @@
-# pull the base image
-FROM node:21-alpine as base
+ARG BUILD_IMAGE="registry.gitlab.com/ska-telescope/ska-base-images/ska-node-build:0.1.0"
+FROM $BUILD_IMAGE AS build
 
-# set the working directory
-WORKDIR /app
-COPY . .
+WORKDIR /build
 
-# install app dependencies and build the app
+COPY package*.json yarn.lock ./
+
 RUN yarn install && yarn cache clean
+
+COPY /src ./src
+COPY /public ./public
+COPY ./*.js ./*.json ./*.ts ./
+
 RUN yarn webpack build \
     --optimization-concatenate-modules \
     --optimization-minimize \
     --mode production \
-    --output-clean --output-path /dist/
+    --output-clean \
+    --output-path /build/dist/
 
-# Nginx stage to serve the static files
 FROM nginx:1.25.2 as final
 
-# Copy built files
-COPY --from=base /dist/* /usr/share/nginx/html/
+COPY --from=build /build/dist/ /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80

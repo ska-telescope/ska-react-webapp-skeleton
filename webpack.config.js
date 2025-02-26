@@ -172,7 +172,7 @@ module.exports = () => {
               gitignore: true,
               ignore: ['**/*.html'],
             },
-          },
+          }
         ],
       }),
       new Dotenv({
