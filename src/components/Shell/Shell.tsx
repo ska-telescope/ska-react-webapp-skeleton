@@ -9,7 +9,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMsal, MsalAuthenticationTemplate } from '@azure/msal-react';
 import {
-  ButtonColorTypes,
   CopyrightModal,
   Footer,
   Header,
@@ -23,12 +22,11 @@ import {
   InteractionStatus
 } from '@azure/msal-browser';
 import { Paper } from '@mui/material';
-import { ButtonLogin, ButtonUser, ButtonUserMenu } from '@ska-telescope/ska-login-page';
+import useTheme from '@mui/material/styles/useTheme.js';
+import { ButtonLogin, ButtonUser } from '@ska-telescope/ska-login-page';
 import { getMsEntraProfilePicture } from '../../services/graph/graph';
 import { SPACER_FOOTER, SPACER_HEADER, VERSION } from '../../utils/constants';
 import User from '../User/User';
-
-const USE_MENU = true; // DEtermines if the logout will be presented in a menu under the button or via a slide-out panel
 
 function TheHeader(setOpenUser: {
   (newOpen: boolean): () => void;
@@ -86,30 +84,31 @@ function TheHeader(setOpenUser: {
   ProfileIcon();
 
   const signIn = () => (
-      <>
-        <MsalAuthenticationTemplate interactionType={InteractionType.None} />
-        {username && !USE_MENU && (
-          <ButtonUser
-            label={username}
-            onClick={() => setOpenUser(true)}
-            photo={photo}
-            toolTip={t('buttonUser.tooltip', { ns: 'authentication' })}
-            showUsername
-            color={ButtonColorTypes.Inherit}
-          />
-        )}
-        {username && USE_MENU && (
-                    <ButtonUserMenu
-                    label={username}
-                    photo={photo}
-                    toolTip={t('buttonUser.tooltip', { ns: 'authentication' })}
-                    showUsername
-                    color={ButtonColorTypes.Inherit}
-                  />
-        )}
-        {!username && <ButtonLogin color={ButtonColorTypes.Secondary} />}
-      </>
-    );
+    <>
+      <MsalAuthenticationTemplate interactionType={InteractionType.None} />
+      {username && (
+        <ButtonUser
+          colorBG={useTheme().palette.primary.light}
+          colorFG={useTheme().palette.primary.contrastText}
+          label={username}
+          onClick={() => setOpenUser(true)}
+          photo={photo}
+          toolTip={t('buttonUser.tooltip', { ns: 'authentication' })}
+          showUsername
+        />
+      )}
+      {!username && (
+        // Note that the button below requires no properties, but they have been added here for illustrative purposes
+        <ButtonLogin
+          colorBG={useTheme().palette.secondary.main}
+          colorFG={useTheme().palette.secondary.contrastText}
+          loginRequest={{
+            scopes: ['User.Read']
+          }}
+        />
+      )}
+    </>
+  );
 
   return (
     <Header

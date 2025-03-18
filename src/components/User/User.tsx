@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Drawer, Grid2 as Grid, Stack } from '@mui/material';
 
-import { ButtonColorTypes, ButtonVariantTypes } from '@ska-telescope/ska-gui-components';
+import useTheme from '@mui/material/styles/useTheme.js';
 import { ButtonLogout } from '@ska-telescope/ska-login-page';
 
 export interface UserProps {
@@ -18,8 +18,8 @@ export default function User({ open, toggleDrawer }: UserProps) {
             <Grid container direction="row" justifyContent="space-evenly">
               <Grid size={12}>
                 <ButtonLogout
-                  color={ButtonColorTypes.Inherit}
-                  variant={ButtonVariantTypes.Contained}
+                  colorBG={useTheme().palette.primary.light}
+                  colorFG={useTheme().palette.primary.contrastText}
                 />
               </Grid>
             </Grid>
