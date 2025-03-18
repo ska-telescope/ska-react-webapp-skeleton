@@ -20,7 +20,7 @@ JS_TEST_DEFAULT_SWITCHES=\
 
 ifneq ($(findstring $(CI_JOB_NAME),js-e2e-deploy k8s-test),)
 K8S_CHART_PARAMS = \
-	--set image.repository=$(CI_REGISTRY)/ska-telescope/ska-react-webapp-skeleton \
+	--set image.repository=$(CI_REGISTRY)/$(CI_PROJECT_NAMESPACE)/$(CI_PROJECT_NAME)/$(CI_PROJECT_NAME) \
 	--set image.tag=$(VERSION)-dev.c$(CI_COMMIT_SHORT_SHA)
 endif
 
