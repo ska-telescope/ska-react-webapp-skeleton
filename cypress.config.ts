@@ -4,9 +4,9 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   fixturesFolder: 'tests/cypress/fixtures',
-  screenshotsFolder: 'tests/cypress/screenshots',
-  videosFolder: 'tests/cypress/videos',
-  downloadsFolder: 'tests/cypress/downloads',
+  screenshotsFolder: 'tests/cypress/artefacts/screenshots',
+  videosFolder: 'tests/cypress/artefacts/videos',
+  downloadsFolder: 'tests/cypress/artefacts/downloads',
   component: {
     supportFile: 'tests/cypress/support/component.js',
     specPattern: '**/*.test.{js,jsx,ts,tsx}',

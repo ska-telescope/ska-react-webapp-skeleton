@@ -89,8 +89,10 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.extraEnvVars }}
           env:
+            - name: REACT_APP_VERSION
+              value: {{ include "ska-react-webapp-skeleton.appVersion" $ }}
+          {{- with .Values.extraEnvVars }}
           {{- toYaml . | nindent 10 }}
           {{- end }}
           ports:

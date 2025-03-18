@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-screenshots
+artefacts
 
 # production
 /build
@@ -35,7 +35,7 @@ yarn-error.log*
 dist/
 junit.xml
 linting.xml
-cypress/screenshots
+cypress/artefacts
 
 package-lock.json
 

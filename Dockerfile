@@ -21,4 +21,10 @@ RUN yarn webpack build \
 
 FROM $BASE_IMAGE
 
+WORKDIR /
+
 COPY --from=build /build/dist/ /usr/share/nginx/html/
+COPY ./env_config/env.conf ./env_config/generate_env.sh ./
+COPY ./env_config/entrypoint.sh /docker-entrypoint.d/40-generate-env.sh
+
+RUN chmod +x /docker-entrypoint.d/40-generate-env.sh

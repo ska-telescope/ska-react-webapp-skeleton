@@ -4,11 +4,12 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{- define "ska-react-webapp-skeleton.labels.version" -}}
-app.kubernetes.io/version: {{ template "ska-react-webapp-skeleton.chartVersion" . }}
+app.kubernetes.io/version: {{ template "ska-react-webapp-skeleton.appVersion" . }}
+app.kubernetes.io/chartVersion: {{ template "ska-react-webapp-skeleton.chartVersion" . }}
 {{- end -}}
 
 {{- define "ska-react-webapp-skeleton.matchLabels" -}}
-app.kubernetes.io/part-of: {{ template "ska-react-webapp-skeleton.fullname" . }}
+app.kubernetes.io/part-of: {{ template "ska-react-webapp-skeleton.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
@@ -19,16 +20,4 @@ app.kubernetes.io/instance: {{ .Release.Name }}
   (include "ska-react-webapp-skeleton.matchLabels" .)
   (toYaml .Values.labels)
 ) -}}
-{{- end -}}
-
-{{- define "ska-react-webapp-skeleton.labels.component" -}}
-app.kubernetes.io/component: {{ . }}
-{{- end -}}
-
-{{- define "ska-react-webapp-skeleton.labels.componentVersion" -}}
-app.kubernetes.io/componentVersion: {{ . }}
-{{- end -}}
-
-{{- define "ska-react-webapp-skeleton.labels.name" -}}
-app.kubernetes.io/name: {{ . }}
 {{- end -}}

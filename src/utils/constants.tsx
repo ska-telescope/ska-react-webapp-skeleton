@@ -1,6 +1,6 @@
 import { env } from '../env';
 
-export const VERSION = process.env.REACT_APP_VERSION;
+export const VERSION = env.REACT_APP_VERSION || "Unknown";
 
 // Common URLs
 export const { NODE_ENV } = process.env;

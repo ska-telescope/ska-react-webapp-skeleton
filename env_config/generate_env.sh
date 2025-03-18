@@ -8,7 +8,7 @@ if [ -z "$ENV_SEPARATOR" ]; then
     ENV_SEPARATOR=':'
 fi
 if [ -z "$ENV_TYPE_FILE" ]; then
-    ENV_TYPE_FILE='/env_config'
+    ENV_TYPE_FILE='/env.conf'
 fi
 if [ -z "$ENV_JS_OUTPUT_LOCATION" ]; then
     ENV_JS_OUTPUT_LOCATION='/usr/share/nginx/html/env.js'
